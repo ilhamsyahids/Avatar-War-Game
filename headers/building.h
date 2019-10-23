@@ -26,8 +26,8 @@ typedef struct {
     int level; /* [0..4] Level dari bangunan */
     int soldierCount; /* Jumlah pasukan yang ada di bangunan */
     int soldierAddValue; /* A = Nilai penambahan pasukan */
-    int maximumSoldierCount; /* M = Batas atas jumlah pasukan di bangunan */
-    int SoldierAddCount;  /* Menandakan berapa banyak pasukan yang telah ditambah */
+    int maximumSoldierAddCount; /* M = Batas atas jumlah penambahan pasukan di bangunan */
+    int soldierAddCount;  /* Menandakan berapa banyak pasukan yang telah ditambah */
     boolean isDefended; /* Boolean untuk menandakan apakah bangunan dilindungi */ 
     boolean hasAttacked;
     POINT position; /* Posisi bangunan dalam map */
@@ -42,14 +42,16 @@ typedef struct {
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika B adalah Building, maka akses elemen : */
-#define kind(B)    				(B).kind
-#define player(B)   			(B).player
-#define level(B)     			(B).level
-#define soldierCount(B)     	(B).soldierCount
-#define soldierAddValue(B)     	(B).soldierAddValue
-#define maximumSoldierCount(B)	(B).maximumSoldierCount
-#define isDefended(B)     		(B).isDefended
-#define position(B)     		(B).position
+#define kind(B)                     (B).kind
+#define player(B)   			          (B).player
+#define level(B)     			          (B).level
+#define soldierCount(B)     	      (B).soldierCount
+#define soldierAddValue(B)          (B).soldierAddValue
+#define maximumSoldierAddCount(B)   (B).maximumSoldierAddCount
+#define soldierAddCount(B)          (B).soldierAddCount
+#define isDefended(B)     		      (B).isDefended
+#define hasAttacked(B)              (B).hasAttacked
+#define position(B)     		        (B).position
 
 /* ********* Prototype ********* */
 int NBElmt (BuildingList BL);
@@ -98,6 +100,18 @@ void InitializeBuilding(Building *B);
 */
 /* Proses : Melakukan setup sesuai kind */
 
+/* *** Predikat *** */
+boolean isPasukanEmpty(Building B);
+/* Mengirimkan apakah pasukan di markas kosong */
+
+boolean canAddPasukan(Building B);
+/* Mengirimkan apakah pasukan di bangunan masih dapat ditambah */
+/* soldierAddCount < maximumSoldierAddCount */
+
+boolean isLevelMax(Bulding B);
+/* Mengirimkan apakah level bangunan sudah maximum (4) */
+
+
 /* *** Destruktor *** */
 void DeAlokasi(BuildingList * BL);
 /* Proses: Mengembalikan memori BL */
@@ -126,6 +140,11 @@ void IncreaseAllPasukan (BuildingList * BL);
 /* F.S. Jumlah pasukan bertambah sesuai nilai atribut A dari masing-masing building */
 /* Proses: Menambahkan nilai atribut A pada soldierCount dari tiap Building */
 
+void DecreaseAllPasukan (BuildingList * BL);
+/* I.S. Jumlah pasukan bangunan ke-index BL sudah terdefinisi */
+/* F.S. Jumlah pasukan berkurang sesuai nilai atribut A dari masing-masing building */
+/* Proses: Mengurangkan nilai atribut A pada soldierCount dari tiap Building */
+
 void ChangePlayer (BuildingList * BL, int index);
 /* I.S. Bangunan ke-index BL terdefinisi milik salah satu player */
 /* F.S. Bangunan ke-index BL berubah kepemilikan menjadi player yang lain */
@@ -139,9 +158,21 @@ void LevelUpBuilding (BuildingList * BL, int index);
 /* Proses: Mengecek apakah levelup bisa dilakukan, jika bisa FS1 jika tidak FS2 */
 
 /* Operasi Tambahan */
-void PrintBuildingInfo (BuildingList BL, int index);
-/* Mencetak isi info Building ke-index ke layar */
-/* I.S. BL dan B terdefinisi */
+Building* GetPlayerBuildingPointer(BuildingList BL, int player);
+/* Mengirimkan list pointer ke building yang dimiliki seorang player */
+
+Building* GetCorrelatedBuildingPointer(BuildingList BL, int index);
+/* Mengirimkan list pointer ke building yang berhubungan dengan building ke-index di BL*/
+
+void PrintPlayerBuilding(BuildingList BL, int player);
+/* Menampilkan ke layar building yang dimiliki seorang player */
+
+void PrintCorrelatedBuilding(Building* BL, int index);
+/* Menampilkan ke layar building yang berhubungan dengan building ke-index di BL */
+
+void PrintBuildingInfo (Building B);
+/* Mencetak isi info Building B ke layar */
+/* I.S. B terdefinisi */
 /* F.S. B tercetak ke layar dengan format:
 <Nama Bangunan> <(Posisi)> <Jumlah Pasukan> <Level>
 */
