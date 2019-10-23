@@ -27,7 +27,9 @@ typedef struct {
     int soldierCount; /* Jumlah pasukan yang ada di bangunan */
     int soldierAddValue; /* A = Nilai penambahan pasukan */
     int maximumSoldierCount; /* M = Batas atas jumlah pasukan di bangunan */
+    int SoldierAddCount;  /* Menandakan berapa banyak pasukan yang telah ditambah */
     boolean isDefended; /* Boolean untuk menandakan apakah bangunan dilindungi */ 
+    boolean hasAttacked;
     POINT position; /* Posisi bangunan dalam map */
 } Building;
 
@@ -103,7 +105,7 @@ void DeAlokasi(BuildingList * BL);
 /* F.S. BL menjadi tidak terdefinisi lagi, MaxEl dan NBElmt diset 0 */
 
 /* *** Primitif *** */
-String GetBuildingName(int kind);
+char* GetBuildingName(int kind);
 /* Mengirimkan nama building dengan kind tertentu */
 
 void IncreasePasukan (BuildingList * BL, int index, int value);
