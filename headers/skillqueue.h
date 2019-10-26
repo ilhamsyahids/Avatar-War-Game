@@ -1,85 +1,90 @@
 //==============================================//
 //								       			//
-//					Queue             			//
+//					SkillQueue             		//
 //                                     			//
 //----------------------------------------------//
-// File : queue.h */              				//
+// File : skillqueue.h */              			//
 //----------------------------------------------//
-// Definisi ADT Queue dengan representasi		//
+// Definisi ADT SkillQueue dengan representasi	//
 // array secara eksplisit dan alokasi dinamik 	//
 // Implementasi Versi III dengan circular buffer//
 //==============================================//
 
-#ifndef queue_H
-#define queue_H
+#ifndef _skillqueue_H
+#define _skillqueue_H
 
 ///////////////////////////
 //		  INCLUDE	 	 //
 ///////////////////////////
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "boolean.h"
+#include "skill.h"
 
 ///////////////////////////////////
 //		  CONST & TYPEDEF	 	 //
 ///////////////////////////////////
-const int QueueNil = 0;
+const int SkillQueueNil = 0;
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
-typedef int QueueInfotype;	/* Tipe Elemen tabel */
-typedef int QueueAddress; 	/* TIpe Indeks tabel */
+typedef Skill SkillQueueInfotype; 	/* Tipe Elemen tabel */
+typedef int SkillQueueAddress; 		/* TIpe Indeks tabel */
 
 
 ///////////////////////////
-// 	Definisi Queue  	 //
+// 	Definisi SkillQueue  //
 ///////////////////////////
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
 typedef struct
 {
-    QueueInfotype *T;  /* tabel penyimpan elemen */
-    QueueAddress HEAD; /* alamat penghapusan */
-    QueueAddress TAIL; /* alamat penambahan */
+    SkillQueueInfotype *T;  /* tabel penyimpan elemen */
+    SkillQueueAddress HEAD; /* alamat penghapusan */
+    SkillQueueAddress TAIL; /* alamat penambahan */
     int MaxEl;    /* Max elemen queue */
-} Queue;
+} SkillQueue;
 /* Definisi Queue kosong: HEAD=Nil; TAIL=Nil. */
 /* Catatan implementasi: T[0] tidak pernah dipakai */
 
 ///////////////////////////
 // 		 PREDIKAT		 //
 ///////////////////////////
-boolean IsQueueEmpty(Queue Q);
+boolean IsSkillQueueEmpty(SkillQueue Q);
 /* Mengirim true jika Q kosong: lihat definisi di atas */
 
-boolean IsQueueFull(Queue Q);
+boolean IsSkillQueueFull(SkillQueue Q);
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
 
 ///////////////////////////
 // 		 PROTOTYPE		 //
 ///////////////////////////
-int QueueNBElmt(Queue Q);
+int SkillQueueNBElmt(SkillQueue Q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 
 ///////////////////////////
 // 		 SELECTOR		 //
 ///////////////////////////
-QueueAddress QueueHead(Queue Q);
-/* Mengirimkan address Head dari Queue */
+SkillQueueAddress SkillQueueHead(SkillQueue Q);
+/* Mengirimkan address Head dari SkillQueue */
 
-QueueAddress QueueTail(Queue Q);
-/* Mengirimkan address Tail dari Queue */
+SkillQueueAddress SkillQueueTail(SkillQueue Q);
+/* Mengirimkan address Tail dari SkillQueue */
 
-QueueInfotype QueueInfoHead(Queue Q);
-/* Mengirimkan InfoHead dari Queue */
+SkillQueueInfotype SkillQueueInfoHead(SkillQueue Q);
+/* Mengirimkan InfoHead dari SkillQueue */
 
-QueueInfotype QueueInfoTail(Queue Q);
-/* Mengirimkan InfoTail dari Queue */
+SkillQueueInfotype SkillQueueInfoTail(SkillQueue Q);
+/* Mengirimkan InfoTail dari SkillQueue */
 
-int QueueMaxElement(Queue Q);
-/* Mengirimkan MaxEl dari Queue */
+int SkillQueueMaxElement(SkillQueue Q);
+/* Mengirimkan MaxEl dari SkillQueue */
+
 
 ///////////////////////////
 // 		CONSTRUCTOR 	 //
 ///////////////////////////
-void QueueCreateEmpty(Queue *Q, int Max);
+void SkillQueueCreateEmpty(SkillQueue *Q, int Max);
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
@@ -89,7 +94,7 @@ void QueueCreateEmpty(Queue *Q, int Max);
 ///////////////////////////
 // 		DESTRUCTOR 	 	 //
 ///////////////////////////
-void QueueDealokasi(Queue *Q);
+void SkillQueueDealokasi(SkillQueue *Q);
 /* Proses: Mengembalikan memori Q */
 /* I.S. Q pernah dialokasi */
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
@@ -97,14 +102,22 @@ void QueueDealokasi(Queue *Q);
 ///////////////////////////
 // 	     PRIMITIVES 	 //
 ///////////////////////////
-void QueueAddElement(Queue *Q, QueueInfotype X);
+void SkillQueueAddSkill(SkillQueue *Q, SkillQueueInfotype X);
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
-void QueueDelElement(Queue *Q, QueueInfotype *X);
+
+void SkillQueueDelSkill(SkillQueue *Q, SkillQueueInfotype *X);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
+
+//////////////////////////////////
+// 	   SKILLQUEUE OPERATIONS	//
+//////////////////////////////////
+
+
+// Gonna still be added
 
 #endif
