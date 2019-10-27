@@ -423,6 +423,8 @@ void BuildingIncreasePasukan(Building *B, int value)
     }
 
     (*B).soldierCount = count;
+
+    //(*B).solderAddCount += value;
 }
 
 void BuildingDecreasePasukan(Building *B, int value)
