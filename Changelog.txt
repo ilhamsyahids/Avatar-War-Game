@@ -1,0 +1,43 @@
+[Changelog]
+
+<27/10/2019 8:22> by Gunawan
+1. queue.h
+	[UPDATE] change define
+
+2. skill.h
+	[UPDATE] change define
+
+3. 	building.h
+	[UPDATE] change define
+
+4.	stackt.h
+	[UPDATE] adjustment to convention
+
+5.	matriks.h
+	[DEPRECATED] ganti ke matrix.h
+
+6. 	matrix.h
+	[NEW] adjust matriks.h to convention	
+
+7. 	arrayimp.h
+	[UPDATE] change ImplicitArraySearchForIndex -> ImplicitArrayIndexSearch
+	[UPDATE] change ImplicitArraySearchForBoolean -> ImplicitArrayBooleanSearch
+
+8.	array.h
+	[DEPRECATED] ganti ke arrayexp.h
+
+9.	arraydin.h
+	[DEPRECATED] ganti ke arrayexp.h
+
+10.	arrayexp.h
+	[NEW] make an explicit version of arrayimp.h
+
+11.	building.c
+	[UPDATE] delete redefinition of building
+
+12. point.h
+	[UPDATE] adjustment to convention
+	[UPDATE] change definition of how point is represented (not cartesius)
+
+13. backup folder
+	[NEW] all deprecated source code will go here

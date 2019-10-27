@@ -1,11 +1,23 @@
+//==============================================//
+//                                              //
+//                  Array                       //
+//                                              //
+//----------------------------------------------//
+// File : array.h */                            //
+//----------------------------------------------//
+// Definisi ADT Array dengan banyaknya          //
+// elemen didefinisikan secara eksplisit        //
+// dan memori tabel statik                      //
+//==============================================//
+
 /* MODUL TABEL INTEGER */
 /* Berisi definisi dan semua primitif pemrosesan tabel integer */
 /* Penempatan elemen selalu rapat kiri */
 /* Versi I : dengan banyaknya elemen didefinisikan secara eksplisit, 
    memori tabel statik */
 
-#ifndef ARRAY_H
-#define ARRAY_H
+#ifndef _ARRAY_H
+#define _ARRAY_H
 
 #include "boolean.h"
 

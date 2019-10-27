@@ -10,8 +10,8 @@
 // di dalam game                                //
 //==============================================//
 
-#ifndef _building_H
-#define _building_H
+#ifndef _BUILDING_H
+#define _BUILDING_H
 
 ///////////////////////////
 //        INCLUDE        //

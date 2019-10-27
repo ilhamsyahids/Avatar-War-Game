@@ -19,30 +19,6 @@
 #include "boolean.h"
 #include "point.h"
 
-////////////////////////////////////
-//     Definisi elemen Building   //
-////////////////////////////////////
-typedef struct
-{
-    int kind;                   /* [1..4] Menandakan jenis bangunan */
-                                /*  1 = Castle
-                                    2 = Tower
-                                    3 = Fort
-                                    4 = Village */
-    int player;                 /* [0..2] Menandakan player mana yang memiliki bangunan */
-                                /* 0 = No Player
-                                    1 = Player 1
-                                    2 = Player 2 */
-    int level;                  /* [0..4] Level dari bangunan */
-    int soldierCount;           /* Jumlah pasukan yang ada di bangunan */
-    int soldierAddValue;        /* A = Nilai penambahan pasukan */
-    int maximumSoldierAddCount; /* M = Batas atas jumlah penambahan pasukan di bangunan */
-    int soldierAddCount;        /* Menandakan berapa banyak pasukan yang telah ditambah */
-    boolean hasDefense;         /* Boolean untuk menandakan apakah bangunan dilindungi */
-    boolean hasAttacked;
-    POINT position; /* Posisi bangunan dalam map */
-} Building;
-
 ///////////////////////////
 //        SELECTOR       //
 ///////////////////////////

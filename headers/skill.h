@@ -10,8 +10,8 @@
 // pada keberjalanan game                       //
 //==============================================//
 
-#ifndef _skill_H
-#define _skill_H
+#ifndef _SKILL_H
+#define _SKILL_H
 
 ///////////////////////////
 //		  INCLUDE	 	 //

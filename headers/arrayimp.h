@@ -42,7 +42,7 @@ typedef int ImplicitArrayElType;  /* type elemen tabel */
 typedef struct
 {
     ImplicitArrayElType *TI; /* memori tempat penyimpan elemen (container) */
-    int MaxEl;  /* ukuran elemen */
+    int MaxElement;  /* ukuran elemen */
 } ImplicitArray;
 /* Indeks yang digunakan [IdxMin..MaxEl] */
 /* Definisi :
@@ -79,8 +79,8 @@ ImplicitArrayElType ImplicitArrayTabElement(ImplicitArray T, ImplicitArrayIdxTyp
 int ImplicitArrayNBElmt(ImplicitArray T);
 /* Mengirimkan banyaknya elemen efektif tabel */
 /* Mengirimkan nol jika tabel kosong */
-/* *** Daya tampung container *** */
 
+/* *** Daya tampung container *** */
 int ImplicitArrayMaxElement(ImplicitArray T);
 /* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */
 
@@ -121,14 +121,14 @@ ImplicitArray ImplicitArrayPlusMinusTab(ImplicitArray T1, ImplicitArray T2, bool
 /* Jika plus = true, mengirimkan  T1+T2, yaitu setiap elemen T1 dan T2 pada indeks yang sama dijumlahkan */
 /* Jika plus = false, mengirimkan T1-T2, yaitu setiap elemen T1 dikurangi elemen T2 pada indeks yang sama */
 
-ImplicitArrayIdxType ImplicitArraySearchForIndex(ImplicitArray T, ImplicitArrayElType X);
+ImplicitArrayIdxType ImplicitArrayIndexSearch(ImplicitArray T, ImplicitArrayElType X);
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan indeks i terkecil, dengan elemen ke-i = X */
 /* Jika tidak ada, mengirimkan IdxUndef */
 /* Menghasilkan indeks tak terdefinisi (IdxUndef) jika tabel T kosong */
 /* Skema Searching yang digunakan bebas */
 
-boolean ImplicitArraySearchForBoolean(ImplicitArray T, ImplicitArrayElType X);
+boolean ImplicitArrayBooleanSearch(ImplicitArray T, ImplicitArrayElType X);
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */
 /* Skema searching yang digunakan bebas */
