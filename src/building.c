@@ -343,6 +343,7 @@ void BuildingInitialize(Building *B)
     (*B).soldierCount = BuildingGetU(kind);
     (*B).soldierAddValue = BuildingGetA(kind, level);
     (*B).maximumSoldierAddCount = BuildingGetM(kind, level);
+    (*B).soldierAddCount = 0;
     (*B).hasDefense = BuildingGetP(kind, level);
     (*B).hasAttacked = false;
 }
@@ -352,6 +353,21 @@ void BuildingResetStatus(Building *B)
     /* I.S Building telah terisinisialisasi sembarang */
     /* F.S HasAttacked building diset menjadi false */
     (*B).hasAttacked = false;
+}
+
+void BuildingRefreshStatus(Building *B)
+{
+    /* I.S Building telah terisinisialisasi sembarang */
+    /* F.S Atribut soldierAddValue maximumSoldierAddCount hasAttacked hasDefense
+    diset ulang sesuai level 
+    soldierAddCount diset menjadi 0 */
+
+    (*B).soldierAddValue = BuildingGetA(kind, level);
+    (*B).maximumSoldierAddCount = BuildingGetM(kind, level);
+    (*B).soldierAddCount = 0;
+    (*B).hasDefense = BuildingGetP(kind, level);
+    (*B).hasAttacked = false;
+
 }
 
 ///////////////////////////
@@ -379,6 +395,8 @@ boolean IsBuildingLevelMax(Building B)
 boolean CanBuildingAttack(Building B)
 {
     /* Mengirimkan apakah building dapat menyerang */
+
+    return !((B).hasAttacked);
 }
 
 boolean CanBuildingLevelUp(Building B)
@@ -428,7 +446,7 @@ void BuildingChangePlayer(Building *B)
     /* I.S. Bangunan ke-index BL terdefinisi milik salah satu player */
     /* F.S. Bangunan ke-index BL berubah kepemilikan menjadi player yang lain */
     /* Proses: Mengganti nilai atribut player pada Building dan kembali inisialisasi Building. */
-    int player = ((*B).level == 1) ? 2 : 1;
+    int player = ((*B).player == 1) ? 2 : 1;
     (*B).player = player;
 }
 

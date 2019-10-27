@@ -121,6 +121,12 @@ void BuildingResetStatus(Building *B);
 /* I.S Building telah terisinisialisasi sembarang */
 /* F.S HasAttacked building diset menjadi false */
 
+void BuildingRefreshStatus(Building *B);
+/* I.S Building telah terisinisialisasi sembarang */
+/* F.S Atribut soldierAddValue soldierAddCount soldierMaximumAddValue hasAttacked hasDefense
+        diset ulang sesuai level */
+
+
 ///////////////////////////
 //        PREDIKAT       //
 ///////////////////////////
