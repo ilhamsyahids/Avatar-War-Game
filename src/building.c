@@ -3,15 +3,12 @@
 //                   Building                   //
 //                                              //
 //----------------------------------------------//
-// File : building.h */                         //
+// File : building.c */                         //
 //----------------------------------------------//
 // Definisi ADT Building                        //
 // Building menjadi tempat semua aksi terjadi   //
 // di dalam game                                //
 //==============================================//
-
-#ifndef _building_H
-#define _building_H
 
 ///////////////////////////
 //        INCLUDE        //
@@ -49,35 +46,58 @@ typedef struct
 ///////////////////////////
 //        SELECTOR       //
 ///////////////////////////
-int BuildingKind(Building B);
-/** Mengembalikan kind building */
+int BuildingKind(Building B)
+{
+    /** Mengembalikan kind building */
+    return B.kind;
+}
 
-int BuildingPlayer(Building B);
-/* Mengembalikan player building */
+int BuildingPlayer(Building B)
+{
+    /* Mengembalikan player building */
+    return B.player;
+}
+int BuildingLevel(Building B)
+{
+    /* Mengembalikan Level building */
+    return B.level;
+}
+int BuildingSoldierCount(Building B)
+{
+    /* Mengembalikan SoldierCount building */
+    return B.soldierCount;
+}
+int BuildingSoldierAddValue(Building B)
+{
+    /* Mengembalikan SoldierAddValue building */
+    return B.soldierAddValue;
+}
+int BuildingMaximumSoldierAddCount(Building B)
+{
+    /* Mengembalikan MaximumSoldierAddCount building */
+    return B.maximumSoldierAddCount;
+}
+int BuildingSoldierAddCount(Building B)
+{
+    /* Mengembalikan Soldier Count building */
+    return B.soldierAddCount;
+}
+boolean BuildingHasDefense(Building B)
+{
+    /* Mengembalikan apakah building memiliki defense */
+    return B.hasDefense;
+}
+boolean BuildingHasAttacked(Building B)
+{
+    /* Mengembalikan apakah building sudah menyerang pada turn tersebut*/
+    return B.hasAttacked;
+}
 
-int BuildingLevel(Building B);
-/* Mengembalikan Level building */
-
-int BuildingSoldierCount(Building B);
-/* Mengembalikan SoldierCount building */
-
-int BuildingSoldierAddValue(Building B);
-/* Mengembalikan SoldierAddValue building */
-
-int BuildingMaximumSoldierAddCount(Building B);
-/* Mengembalikan MaximumSoldierAddCount building */
-
-int BuildingSoldierAddCount(Building B);
-/* Mengembalikan Soldier Count building */
-
-boolean BuildingHasDefense(Building B);
-/* Mengembalikan apakah building memiliki defense */
-
-boolean BuildingHasAttacked(Building B);
-/* Mengembalikan apakah building sudah menyerang pada turn tersebut*/
-
-POINT BuildingPosition(Building B);
-/* Mengembalikan posisi building */
+POINT BuildingPosition(Building B)
+{
+    /* Mengembalikan posisi building */
+    return B.position;
+}
 
 ///////////////////////////
 //       PROTOTYPE       //
@@ -177,5 +197,3 @@ void BuildingPrintInfo(Building B);
 /* F.S. B tercetak ke layar dengan format:
 <Nama Bangunan> <(Posisi)> <Jumlah Pasukan> <Level>
 */
-
-#endif
