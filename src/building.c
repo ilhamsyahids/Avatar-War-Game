@@ -461,6 +461,7 @@ void BuildingLevelUp(Building *B)
     {
         (*B).level += 1;
         (*B).soldierCount -= (*B).maximumSoldierAddCount / 2;
+        BuildingRefreshStatus(B);
     }
     else
     {
