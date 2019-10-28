@@ -21,7 +21,7 @@
 ///////////////////////////////////
 //		  CONST & TYPEDEF	 	 //
 ///////////////////////////////////
-const int QueueNil = 0;
+#define QueueNil 0;
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 typedef int QueueInfotype;	/* Tipe Elemen tabel */
@@ -29,7 +29,7 @@ typedef int QueueAddress; 	/* TIpe Indeks tabel */
 
 
 ///////////////////////////
-// 	Definisi Queue  	 //
+// 	   Definisi Queue    //
 ///////////////////////////
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
 typedef struct
@@ -37,44 +37,21 @@ typedef struct
     QueueInfotype *T;  /* tabel penyimpan elemen */
     QueueAddress HEAD; /* alamat penghapusan */
     QueueAddress TAIL; /* alamat penambahan */
-    int MaxEl;    /* Max elemen queue */
+    int MaxElement;    /* Max elemen queue */
 } Queue;
-/* Definisi Queue kosong: HEAD=Nil; TAIL=Nil. */
+/* Definisi Queue kosong: HEAD=QueueNil; TAIL=QueueNil. */
 /* Catatan implementasi: T[0] tidak pernah dipakai */
 
-///////////////////////////
-// 		 PREDIKAT		 //
-///////////////////////////
-boolean IsQueueEmpty(Queue Q);
-/* Mengirim true jika Q kosong: lihat definisi di atas */
-
-boolean IsQueueFull(Queue Q);
-/* Mengirim true jika tabel penampung elemen Q sudah penuh */
-/* yaitu mengandung elemen sebanyak MaxEl */
-
-///////////////////////////
-// 		 PROTOTYPE		 //
-///////////////////////////
-int QueueNBElmt(Queue Q);
-/* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
-
-///////////////////////////
-// 		 SELECTOR		 //
-///////////////////////////
-QueueAddress QueueHead(Queue Q);
-/* Mengirimkan address Head dari Queue */
-
-QueueAddress QueueTail(Queue Q);
-/* Mengirimkan address Tail dari Queue */
-
-QueueInfotype QueueInfoHead(Queue Q);
-/* Mengirimkan InfoHead dari Queue */
-
-QueueInfotype QueueInfoTail(Queue Q);
-/* Mengirimkan InfoTail dari Queue */
-
-int QueueMaxElement(Queue Q);
-/* Mengirimkan MaxEl dari Queue */
+//////////////////////////
+//        SELECTOR      //
+//////////////////////////
+/* ********* AKSES (Selektor) ********* */
+/* Jika Q adalah Queue, maka akses elemen : */
+#define QueueHead(Q) 		(Q).HEAD
+#define QueueTail(Q) 		(Q).TAIL
+#define QueueInfoHead(Q) 	(Q).T[(Q).HEAD]
+#define QueueInfoTail(Q) 	(Q).T[(Q).TAIL]
+#define QueueMaxElement(Q) 	(Q).MaxElement
 
 ///////////////////////////
 // 		CONSTRUCTOR 	 //
@@ -95,12 +72,26 @@ void QueueDealokasi(Queue *Q);
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
 ///////////////////////////
-// 	     PRIMITIVES 	 //
+// 		 PREDIKAT		 //
 ///////////////////////////
+boolean IsQueueEmpty(Queue Q);
+/* Mengirim true jika Q kosong: lihat definisi di atas */
+
+boolean IsQueueFull(Queue Q);
+/* Mengirim true jika tabel penampung elemen Q sudah penuh */
+/* yaitu mengandung elemen sebanyak MaxElement */
+
+///////////////////////////////
+// 	     QUEUE OPERATIONS 	 //
+///////////////////////////////
+int QueueNBElmt(Queue Q);
+/* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
+
 void QueueAddElement(Queue *Q, QueueInfotype X);
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
+
 void QueueDelElement(Queue *Q, QueueInfotype *X);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */

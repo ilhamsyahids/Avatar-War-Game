@@ -32,21 +32,12 @@ typedef struct {
     		      4 = Barrage (BR) */
 } Skill;
 
-
-///////////////////////////
-// 		 SELEKTOR		 //
-///////////////////////////
-int SkillKind(Skill S);
-/* Mengembalikan kind dari Skill */
-
-///////////////////////////
-// 		 PROTOTYPE		 //
-///////////////////////////
-char* SkillGetName(int kind);
-/* Mengembalikan string nama skill dengan kind tertentu */
-
-char* SkillGetEffect(int kind);
-/* Mengembalikan string efek skill dengan kind tertentu */
+//////////////////////////
+//        SELECTOR      //
+//////////////////////////
+/* ********* AKSES (Selektor) ********* */
+/* Jika S adalah Array, maka akses elemen : */
+#define SkillKind(S)	(S).kind
 
 ///////////////////////////
 // 		CONSTRUCTOR 	 //
@@ -57,6 +48,13 @@ Skill SkillCreate(int kind);
 //////////////////////////////////
 // 		 SKILL OPERATIONS		//
 //////////////////////////////////
+char* SkillGetName(int kind);
+/* Mengembalikan string nama skill dengan kind tertentu */
+
+char* SkillGetEffect(int kind);
+/* Mengembalikan string efek skill dengan kind tertentu */
+
 // Gonna still be added
+
 
 #endif

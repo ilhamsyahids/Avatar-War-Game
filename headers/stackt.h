@@ -21,10 +21,10 @@
 ///////////////////////////////////
 //		  CONST & TYPEDEF	 	 //
 ///////////////////////////////////
-const int StackNil = 0;
+#define StackNil 0;
 /* Nil adalah stack dengan elemen kosong . */
 
-const int StackMaximumElement = 10;
+#define StackMaximumElement 100;
 /* Karena indeks dalam bhs C dimulai 0 maka tabel dg indeks 0 tidak dipakai */
 
 typedef int StackInfotype;	/* Tipe Elemen tabel */
@@ -37,30 +37,27 @@ typedef int StackAddress;   /* TIpe Indeks tabel */
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct {
-  StackInfotype T[MaxEl+1]; /* tabel penyimpan elemen */
+  StackInfotype T[StackMaximumElement + 1]; /* tabel penyimpan elemen */
   StackAddress TOP;  /* alamat TOP: elemen puncak */
 } Stack;
 /* Definisi stack S kosong : S.TOP = Nil */
-/* Elemen yang dipakai menyimpan nilai Stack T[1]..T[MaxEl] */
+/* Elemen yang dipakai menyimpan nilai Stack T[1]..T[StackMaximumElement] */
 
-
-///////////////////////////
-// 		 SELECTOR		 //
-///////////////////////////
-StackAddress StackTop(Stack S);
-/* Mengembalikan address Top dari stack */
-
-StackInfotype StackInfoTop(Stack S);
-/* Mengembalikan nilai Top dari stack */
-
+//////////////////////////
+//        SELECTOR      //
+//////////////////////////
+/* ********* AKSES (Selektor) ********* */
+/* Jika S adalah Stack, maka akses elemen : */
+#define StackTop(S) 		(S).TOP
+#define StackInfoTop(S) 	(S).T[(S).TOP]
 
 ///////////////////////////
 // 		CONSTRUCTOR 	 //
 ///////////////////////////
 void StackCreateEmpty(Stack *S);
 /* I.S. sembarang; */
-/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
-/* jadi indeksnya antara 1.. MaxEl+1 karena 0 tidak dipakai */
+/* F.S. Membuat sebuah stack S yang kosong berkapasitas StackMaximumElement */
+/* jadi indeksnya antara 1.. StackMaximumElement+1 karena 0 tidak dipakai */
 /* Ciri stack kosong : TOP bernilai Nil */
 
 ///////////////////////////
@@ -72,9 +69,9 @@ boolean IsStackEmpty(Stack S);
 boolean IsStackFull(Stack S);
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 
-///////////////////////////
-// 	     PRIMITIVES 	 //
-///////////////////////////
+///////////////////////////////
+// 	     STACK OPERATIONS 	 //
+///////////////////////////////
 void StackPush(Stack *S, StackInfotype X);
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */

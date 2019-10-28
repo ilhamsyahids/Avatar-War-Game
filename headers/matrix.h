@@ -6,7 +6,7 @@
 // File : matrix.h */              				//
 //----------------------------------------------//
 // Definisi ADT Matrix dengan elemen integer	//
-//  											//
+// Alokasi array secara statik					//
 // 												//
 //==============================================//
 
@@ -22,13 +22,13 @@
 //		  CONST & TYPEDEF	 	 //
 ///////////////////////////////////
 /* Ukuran minimum dan maksimum baris dan kolom */
-const int MatrixBarisMinimum = 1;
+#define MatrixBarisMinimum 1
 
-const int MatrixBarisMaximum = 100;
+#define MatrixBarisMaximum 100
 
-const int MatrixKolomMinimimum = 1;
+#define MatrixKolomMinimimum 1
 
-const int MatrixKolomMaximum = 100;
+#define MatrixKolomMaximum 100
 
 typedef int MatrixIdxType; /* TIpe Indeks Matrix (baris dan kolom) */
 typedef int MatrixElType;	/* Tipe Elemen Matrix */
@@ -47,35 +47,15 @@ typedef struct
 /* Indeks Matrix yang digunakan: [MatrixBarisMinimum..MatrixBarisMaximum][MatrixKolomMinimum..MatrixKolomMaximum] */
 /* Memori Matrix yang dipakai selalu di "ujung kiri atas" */
 
-///////////////////////////
-// 		 SELECTOR		 //
-///////////////////////////
-int MatrixNBrsEff(Matrix M);
-/* Mengembalikan nilai banyak baris yang terdefinisi */
 
-int MatrixNKolEff(Matrix M);
-/* Mengembalikan nilai banyak kolom yang terdefinisi */
-
-int MatrixNBElmt(Matrix M);
-/* Mengirimkan banyaknya elemen M */
-
-MatrixElType MatrixElement(Matrix M, int row, int col);
-/* Mengembalikan nilai elemen matrix M baris row kolom col */
-
-MatrixIdxType MatrixFirstIdxBaris(Matrix M);
-/* Mengirimkan indeks baris terkecil M */
-
-MatrixIdxType MatrixFirstIdxKolom(Matrix M);
-/* Mengirimkan indeks kolom terkecil M */
-
-MatrixIdxType MatrixLastIdxBaris(Matrix M);
-/* Mengirimkan indeks baris terbesar M */
-
-MatrixIdxType MatrixLastIdxKolom(Matrix M);
-/* Mengirimkan indeks kolom terbesar M */
-
-MatrixElType GetElmtDiagonal(Matrix M, MatrixIdxType i);
-/* Mengirimkan elemen M(i,i) */
+//////////////////////////
+//        SELECTOR      //
+//////////////////////////
+/* ********* AKSES (Selektor) ********* */
+/* Jika M adalah Matrix, maka akses elemen : */
+#define MatrixNBrsEff(M) 		(M).NBrsEff
+#define MatrixNKolEff(M) 		(M).NKolEff
+#define MatrixElement(M,i,j) 	(M).Mem[(i)][(j)]
 
 
 ///////////////////////////
@@ -85,7 +65,6 @@ void MatrixCreateEmpty(int row, int col, Matrix *M);
 /* Membentuk sebuah Matrix "kosong" yang siap diisi berukuran row x column di "ujung kiri" memori */
 /* I.S. row dan col adalah valid untuk memori matriks yang dibuat */
 /* F.S. Matrix M sesuai dengan definisi di atas terbentuk */
-
 
 ///////////////////////////
 // 		 PREDIKAT		 //
@@ -102,11 +81,26 @@ boolean IsMatrixSquare(Matrix M);
 boolean IsMatrixSimetric(Matrix M);
 /* Mengirimkan true jika M adalah Matrix simetri */
 
-///////////////////////////
-// 	     PRIMITIVES 	 //
-///////////////////////////
-void MatrixCopy(Matrix MIn, Matrix *MHsl);
-/* Melakukan pengopian matrix MIn ke MHsl */
+///////////////////////////////
+// 	     MATRIX OPERATIONS 	 //
+///////////////////////////////
+int MatrixNBElmt(Matrix M);
+/* Mengirimkan banyaknya elemen M */
+
+MatrixIdxType MatrixFirstIdxBaris(Matrix M);
+/* Mengirimkan indeks baris terkecil M */
+
+MatrixIdxType MatrixFirstIdxKolom(Matrix M);
+/* Mengirimkan indeks kolom terkecil M */
+
+MatrixIdxType MatrixLastIdxBaris(Matrix M);
+/* Mengirimkan indeks baris terbesar M */
+
+MatrixIdxType MatrixLastIdxKolom(Matrix M);
+/* Mengirimkan indeks kolom terbesar M */
+
+MatrixElType GetElmtDiagonal(Matrix M, MatrixIdxType i);
+/* Mengirimkan elemen M(i,i) */
 
 void MatrixReadTab(Matrix *M, int row, int col);
 /* I.S. IsMatrixIdxValid(row,column) */
@@ -129,6 +123,9 @@ void MatrixPrintTab(Matrix M);
 4 5 6
 8 9 10
 */
+
+void MatrixCopy(Matrix MIn, Matrix *MHsl);
+/* Melakukan pengopian matrix MIn ke MHsl */
 
 Matrix MatrixAdd(Matrix M1, Matrix M2);
 /* Prekondisi : M1 berukuran sama dengan M2 */

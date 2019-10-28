@@ -42,69 +42,33 @@ typedef struct
     int maximumSoldierAddCount; /* M = Batas atas jumlah penambahan pasukan di bangunan */
     int soldierAddCount;        /* Menandakan berapa banyak pasukan yang telah ditambah */
     boolean hasDefense;         /* Boolean untuk menandakan apakah bangunan dilindungi */
-    boolean hasAttacked;
-    POINT position; /* Posisi bangunan dalam map */
+    boolean hasAttacked;        /* Boolean untuk menandakan apakah bangunan sudah menyerang pada turn */
+    boolean hasMovedPasukan ;   /* Boolean untuk menandakan apakah pasukan di bangunan sudah dipindahkan pada turn */
+    Point position;             /* Posisi bangunan dalam map */
 } Building;
 
-///////////////////////////
-//        SELECTOR       //
-///////////////////////////
-int BuildingKind(Building B);
-/** Mengembalikan kind building */
-
-int BuildingPlayer(Building B);
-/* Mengembalikan player building */
-
-int BuildingLevel(Building B);
-/* Mengembalikan Level building */
-
-int BuildingSoldierCount(Building B);
-/* Mengembalikan SoldierCount building */
-
-int BuildingSoldierAddValue(Building B);
-/* Mengembalikan SoldierAddValue building */
-
-int BuildingMaximumSoldierAddCount(Building B);
-/* Mengembalikan MaximumSoldierAddCount building */
-
-int BuildingSoldierAddCount(Building B);
-/* Mengembalikan Soldier Count building */
-
-boolean BuildingHasDefense(Building B);
-/* Mengembalikan apakah building memiliki defense */
-
-boolean BuildingHasAttacked(Building B);
-/* Mengembalikan apakah building sudah menyerang pada turn tersebut*/
-
-POINT BuildingPosition(Building B);
-/* Mengembalikan posisi building */
-
-///////////////////////////
-//       PROTOTYPE       //
-///////////////////////////
-int BuildingGetU(int kind);
-/* Mengirimkan nilai U untuk kind tertentu */
-
-int BuildingGetA(int kind, int level);
-/* Mengirimkan nilai A untuk kind dan level tertentu */
-
-int BuildingGetM(int kind, int level);
-/* Mengirimkan nilai M untuk kind dan level tertentu */
-
-boolean BuildingGetP(int kind, int level);
-/* Mengirimkan nilai P untuk kind dan level tertentu */
-
-char *BuildingGetName(int kind);
-/* Mengirimkan nama building dengan kind tertentu */
+//////////////////////////
+//        SELECTOR      //
+//////////////////////////
+/* ********* AKSES (Selektor) ********* */
+/* Jika B adalah Building, maka akses elemen : */
+#define BuildingKind(B)                     (B).kind
+#define BuildingPlayer(B)                   (B).player
+#define BuildingLevel(B)                    (B).level
+#define BuildingSoldierCount(B)             (B).soldierCount
+#define BuildingSoldierAddValue(B)          (B).soldierAddValue
+#define BuildingMaximumSoldierAddCount(B)   (B).maximumSoldierAddCount
+#define BuildingSoldierAddCount(B)          (B).soldierAddCount
+#define BuildingHasDefense(B)               (B).hasDefense
+#define BuildingHasAttacked(B)              (B).hasAttacked
+#define BuildingHasMovedPasukan(B)          (B).hasMovedPasukan
+#define BuildingPosition(B)                 (B).position
 
 ///////////////////////////
 //       CONSTRUCTOR     //
 ///////////////////////////
-Building BuildingCreate(int kind, int player, POINT position);
+Building BuildingCreate(int kind, int player, Point position);
 /* Mengirimkan building yang sudah diset kind, player, dan positionnya */
-
-Building BuildingCreateDummy();
-/* Mengirimkan building dummy dengan kind 0 */
 
 void BuildingInitialize(Building *B);
 /* I.S. Atribut B yang telah diset hanya kind, player, dan position */
@@ -116,15 +80,6 @@ void BuildingInitialize(Building *B);
    isDefended = P
 */
 /* Proses : Melakukan setup sesuai kind */
-
-void BuildingResetStatus(Building *B);
-/* I.S Building telah terisinisialisasi sembarang */
-/* F.S HasAttacked building diset menjadi false */
-
-void BuildingRefreshStatus(Building *B);
-/* I.S Building telah terisinisialisasi sembarang */
-/* F.S Atribut soldierAddValue soldierAddCount soldierMaximumAddValue hasAttacked hasDefense
-        diset ulang sesuai level */
 
 
 ///////////////////////////
@@ -143,12 +98,40 @@ boolean IsBuildingLevelMax(Building B);
 boolean CanBuildingAttack(Building B);
 /* Mengirimkan apakah building dapat menyerang */
 
-boolean BuildingHasDefense(Building B);
-/* Mengirimkan apakah building memiliki defense */
+/////////////////////////////////////
+//       BUILDING OPERATIONS       //
+/////////////////////////////////////
+int BuildingGetU(int kind);
+/* Mengirimkan nilai U untuk kind tertentu */
 
-///////////////////////////
-//       PRIMITIVES      //
-///////////////////////////
+int BuildingGetA(int kind, int level);
+/* Mengirimkan nilai A untuk kind dan level tertentu */
+
+int BuildingGetM(int kind, int level);
+/* Mengirimkan nilai M untuk kind dan level tertentu */
+
+boolean BuildingGetP(int kind, int level);
+/* Mengirimkan nilai P untuk kind dan level tertentu */
+
+char *BuildingGetName(int kind);
+/* Mengirimkan nama building dengan kind tertentu */
+
+void BuildingPrintInfo(Building B);
+/* Mencetak isi info Building B ke layar */
+/* I.S. B terdefinisi */
+/* F.S. B tercetak ke layar dengan format:
+<Nama Bangunan> <(Posisi)> <Jumlah Pasukan> <Level>
+*/
+
+void BuildingResetStatus(Building *B);
+/* I.S Building telah terisinisialisasi sembarang */
+/* F.S HasAttacked building diset menjadi false */
+
+void BuildingRefreshStatus(Building *B);
+/* I.S Building telah terisinisialisasi sembarang */
+/* F.S Atribut soldierAddValue soldierAddCount soldierMaximumAddValue hasAttacked hasDefense
+        diset ulang sesuai level */
+
 void BuildingIncreasePasukan(Building *B, int value);
 /* I.S. Jumlah pasukan bangunan ke-index BL sudah terdefinisi */
 /* F.S. Jumlah pasukan bertambah sesuai parameter value */
@@ -174,14 +157,5 @@ void BuildingLevelUp(Building *B);
 /* Atau : Level tetap karena sudah maksimum atau soldierCount kurang (berikan prompt) */
 /* Proses: Mengecek apakah levelup bisa dilakukan, jika bisa FS1 jika tidak FS2 */
 
-//////////////////////////////////
-//      BUILDING OPERATIONS     //
-//////////////////////////////////
-void BuildingPrintInfo(Building B);
-/* Mencetak isi info Building B ke layar */
-/* I.S. B terdefinisi */
-/* F.S. B tercetak ke layar dengan format:
-<Nama Bangunan> <(Posisi)> <Jumlah Pasukan> <Level>
-*/
 
 #endif

@@ -38,11 +38,68 @@
 12. point.h
 	[UPDATE] adjustment to convention
 	[UPDATE] change definition of how point is represented (not cartesius)
+	[UPDATE 28/10/2019] nama adt POINT diganti menjadi Point
 
 13. backup folder
 	[NEW] all deprecated source code will go here
 
 
 <28/10/2019 6:45> by Ilham
-14. listlinier.h listlinier.c
+1. listlinier.h listlinier.c
 	[NEW] adt list linier
+
+<28/10/2019 20:12> by Gunawan
+1. building.h
+	[UPDATE] add attribute hasMovedPasukan and getter BuildingHasMovedPasukan
+	penambahan dilakukan terkait perubahan pada spesifikasi tugas
+
+2. arrayimp.h arrayexp.h
+	[DEPRECATED] diganti ke array.h karena spesifikasi tidak memerlukan array implisit lagi
+	array.h yang baru BERBEDA dengan yang dari pra praktikum
+	array.h yang baru adalah arrayexp yang disesuaikan namanya
+	(array eksplisit dengan alokasi dinamis)
+
+3. array.h
+	[NEW] arrayimp.h dan arrayexp.h digantikan ini
+	array.h adalah array eksplisit dengan alokasi dinamis
+
+<28/10/2019 20:12> by Gunawan
+[MAJOR CHANGE IN CATEGORIZATION]
+See naming convention for details
+
+1. building.h
+	[UPDATE] Change categorization to adjust to new naming convention
+	[UPDATE] Change Selectors & Const to Define
+
+2. building.c
+	[UPDATE] Change categorization to adjust to new naming convention
+	[UPDATE] Change Selectors & Const to Define
+	[UPDATE] Adjust methods to new convention
+
+4. array.h
+	[UPDATE] Change categorization to adjust to new naming convention
+	[UPDATE] Change Selectors & Const to Define
+
+4. buildingarray.h
+	[UPDATE] Change categorization to adjust to new naming convention
+	[UPDATE] Change Selectors & Const to Define
+
+5. skill.h
+	[UPDATE] Adjust categorization to new naming convention
+	[UPDATE] Change Selectors & Const to Define
+
+6. queue.h
+	[UPDATE] Adjust categorization to new naming convention
+	[UPDATE] Change Selectors & Const to Define
+
+7. skillqueue.h
+	[UPDATE] Adjust categorization to new naming convention
+	[UPDATE] Change Selectors & Const to Define
+	
+8. stackt.h
+	[UPDATE] Adjust categorization to new naming convention
+	[UPDATE] Change Selectors & Const to Define
+
+9. matrix.h
+	[UPDATE] Adjust categorization to new naming convention
+	[UPDATE] Change Selectors & Const to Define
