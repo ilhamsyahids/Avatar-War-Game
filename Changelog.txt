@@ -63,7 +63,7 @@
 	[NEW] arrayimp.h dan arrayexp.h digantikan ini
 	array.h adalah array eksplisit dengan alokasi dinamis
 
-<28/10/2019 20:12> by Gunawan
+<28/10/2019 22:55> by Gunawan
 [MAJOR CHANGE IN CATEGORIZATION]
 See naming convention for details
 
@@ -101,5 +101,9 @@ See naming convention for details
 	[UPDATE] Change Selectors & Const to Define
 
 9. matrix.h
+	[UPDATE] Adjust categorization to new naming convention
+	[UPDATE] Change Selectors & Const to Define
+
+10. point.h
 	[UPDATE] Adjust categorization to new naming convention
 	[UPDATE] Change Selectors & Const to Define

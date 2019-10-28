@@ -39,15 +39,13 @@ typedef struct
     float Y; /* ordinat */
 } Point;
 
-
-///////////////////////////
-//        SELECTOR       //
-///////////////////////////
-float PointX(Point P);
-/* Mengembalikan nilai X dari point */
-
-float PointY(Point P);
-/* Mengembalikan nilai Y dari point */
+//////////////////////////
+//        SELECTOR      //
+//////////////////////////
+/* ********* AKSES (Selektor) ********* */
+/* Jika P adalah Point, maka akses elemen : */
+#define PointX(P) 	(P).X 	/* Mengembalikan nilai X dari point */
+#define PointY(P) 	(P).Y 	/* Mengembalikan nilai Y dari point */
 
 ///////////////////////////
 //       CONSTRUCTOR     //
