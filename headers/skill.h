@@ -51,6 +51,9 @@ Skill SkillCreate(int kind);
 char* SkillGetName(int kind);
 /* Mengembalikan string nama skill dengan kind tertentu */
 
+char* SkillGetAcronym(int kind);
+/* Mengembalikan akronim nama skill dengan kind tertentu */
+
 char* SkillGetEffect(int kind);
 /* Mengembalikan string efek skill dengan kind tertentu */
 

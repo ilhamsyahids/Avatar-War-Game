@@ -107,3 +107,43 @@ See naming convention for details
 10. point.h
 	[UPDATE] Adjust categorization to new naming convention
 	[UPDATE] Change Selectors & Const to Define
+
+
+<29/10/2019 01:30> by Gunawan
+1. matrix.h
+	[UPDATE] change GetElmtDiagonal -> MatrixGetDiagonalElement
+
+2. queue.h
+	[UPDATE] change some MaxEl to MaxElement
+
+3. stackt.h
+	[UPDATE] Stack sekarang dialokasikan secara dinamis untuk
+	memfasilitasi jika ukuran tidak dapat ditentukan
+	misalnya pada pembuatan ActionStack
+	[UPDATE] Modify Struct and CreateEmpty Method
+	[UPDATE] Added Dealocation and GrowTab method
+
+4. skill.h
+	[UPDATE] add method SkillGetAcronym to get skill acronyms
+
+5. player.h
+	[NEW] Untuk menyimpan state player selama keberjalanan game
+
+6. listlinier.h & listlinier.c
+	[DEPRECATED] dirubah menjadi list.h untuk menyesuaikan penamaan
+
+7. list.h
+	[NEW] Pengganti listlinier.h
+	[NEW] nama struct untuk elemen diganti menjadi TListElement dengan typedef ListElement
+	[UPDATE] Adjustment to convention
+
+8. buildinglist.h
+	[NEW] Sebagai list untuk menyimpan bangunan yang dimiliki player
+
+9. actionstackt.h
+	[NEW] Sebagai stack penyimpan history action player untuk keperluan Undo
+
+10. mapmatrix.h
+	[NEW] Sebagai representasi peta building, setiap elemen adalah index yang mengacu pada BuildingArray
+
+

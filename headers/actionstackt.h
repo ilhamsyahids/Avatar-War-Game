@@ -1,32 +1,35 @@
 //==============================================//
 //								       			//
-//					Stack             			//
+//				  Action Stack             		//
 //                                     			//
 //----------------------------------------------//
-// File : stackt.h */              				//
+// File : actionstackt.h */              		//
 //----------------------------------------------//
-// Definisi ADT stack yang diimplementasi		//
-// dengan tabel kontigu dan ukuran sama 		//
-// Implementasi dengan alokasi DINAMIS			//
+// Definisi ADT Action Stack					//
+// Action Stack digunakan untuk menyimpan 		//
+// History Action yang dilakukan player di turn	//
+// Stack akan dikosongkan tiap end_turn dan     //
+// pengaktifan skill							//
+// Action Stack dibuat dengan alokasi DINAMIS	//
 //==============================================//
 
-#ifndef _STACKT_H
-#define _STACKT_H
+#ifndef _ACTIONSTACKT_H
+#define _ACTIONSTACKT_H
 
 ///////////////////////////
 //		  INCLUDE	 	 //
 ///////////////////////////
 #include "boolean.h"
+#include "player.h"
 
 ///////////////////////////////////
 //		  CONST & TYPEDEF	 	 //
 ///////////////////////////////////
-#define StackNil 0;
-/* Nil adalah stack dengan elemen kosong . */
+#define ActionStackNil 0;
+/* Nil adalah action stack dengan elemen kosong . */
 
-typedef int StackInfotype;	/* Tipe Elemen tabel */
-typedef int StackAddress;   /* TIpe Indeks tabel */
-
+typedef Player ActionStackInfotype;	/* Tipe Elemen tabel */
+typedef int ActionStackAddress;   /* TIpe Indeks tabel */
 
 ///////////////////////////
 // 	Definisi Stack  	 //
@@ -34,11 +37,11 @@ typedef int StackAddress;   /* TIpe Indeks tabel */
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct {
-  	StackInfotype *T; 	/* tabel penyimpan elemen */
-  	StackAddress TOP;  	/* alamat TOP: elemen puncak */
+  	ActionStackInfotype *T; 	/* tabel penyimpan elemen */
+  	ActionStackAddress TOP;  	/* alamat TOP: elemen puncak */
 	int MaxElement; 	/* Jumlah elemen maksimum stack */
-} Stack;
-/* Definisi stack S kosong : S.TOP = StackNil */
+} ActionStack;
+/* Definisi stack S kosong : S.TOP = ActionStackNil */
 /* Elemen yang dipakai menyimpan nilai Stack T[1]..T[MaxElement] */
 
 //////////////////////////
@@ -46,51 +49,50 @@ typedef struct {
 //////////////////////////
 /* ********* AKSES (Selektor) ********* */
 /* Jika S adalah Stack, maka akses elemen : */
-#define StackTop(S) 		(S).TOP
-#define StackInfoTop(S) 	(S).T[(S).TOP]
+#define ActionStackTop(S) 		(S).TOP
+#define ActionStackInfoTop(S) 	(S).T[(S).TOP]
 
 ///////////////////////////
 // 		CONSTRUCTOR 	 //
 ///////////////////////////
-void StackCreateEmpty(Stack *S, int maxElement);
+void ActionStackCreateEmpty(ActionStack *S, int maxElement);
 /* I.S. sembarang; */
-/* F.S. Mengalokasikan sebuah stack S yang kosong berkapasitas maxElement */
+/* F.S. Mengalokasikan sebuah actopn stack S yang kosong berkapasitas maxElement */
 /* jadi indeksnya antara 1.. maxElement+1 karena 0 tidak dipakai */
 /* Ciri stack kosong : TOP bernilai StackNil */
 
 ///////////////////////////
 // 		 DESTRUCTOR 	 //
 ///////////////////////////
-void StackDealokasi(Stack *S);
+void ActionStackDealokasi(ActionStack *S);
 /* I.S. S terdefinisi; */
 /* F.S. T(S) dikembalikan ke system, MaxElement(S)=0; TOP(S)=StackNil */
 
 ///////////////////////////
 // 		 PREDIKAT		 //
 ///////////////////////////
-boolean IsStackEmpty(Stack S);
+boolean IsActionStackEmpty(ActionStack S);
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
 
-boolean IsStackFull(Stack S);
+boolean IsActionStackFull(ActionStack S);
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 
-///////////////////////////////
-// 	     STACK OPERATIONS 	 //
-///////////////////////////////
-void StackPush(Stack *S, StackInfotype X);
+///////////////////////////////////////
+// 	     ACTION STACK OPERATIONS 	 //
+///////////////////////////////////////
+void ActionStackPush(ActionStack *S, ActionStackInfotype X);
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
 
-void StackPop(Stack *S, StackInfotype *X);
+void ActionStackPop(ActionStack *S, ActionStackInfotype *X);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 
-void StackGrowTab(Stack *T, int num);
-/* Proses : Menambahkan max element sebanyak num */
-/* I.S. Tabel sudah terdefinisi */
-/* F.S. Ukuran tabel bertambah sebanyak num */
-
+void ActionStackEmpty(ActionStack *S);
+/* Mengosongkan Action Stack */
+/* I.S. S terdefinisi dan mungkin kosong */
+/* F.S. S menjadi kosong dengan MaxElement tidak berubah */
 
 #endif

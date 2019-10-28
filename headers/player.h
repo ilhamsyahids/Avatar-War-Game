@@ -23,6 +23,7 @@
 #include "boolean.h"
 #include "buildingarray.h"
 #include "skillqueue.h"
+#include "buildinglist.h"
 
 ///////////////////////
 //  Definisi Player  //
@@ -33,35 +34,24 @@ typedef struct {
     char color; /* Color disesuaikan dengan yang tersedia di pcolor.h
                     R, G, Y, B, M, C */
 
-    BuildingArray playerBuildingList; /* Akan dirubah menjadi Building List
-                                        berisi list bangunan pemain */
+    BuildingList ownedBuildingList; /* Berisi index bangunan pemain yang mengacu
+                                        ke BuildingArray */
 
     int totalSoldier; /* Jumlah total pasukan pada bangunan yang dimiliki */
     
-    SkillQueue playerSkillQueue; /* SKillQueue yang dimiliki player*/
+    SkillQueue currentSkillQueue; /* SKillQueue yang dimiliki player*/
 } Player;
 
-///////////////////////////
-//      SELECTOR GET     //
-///////////////////////////
-int PlayerRole(Player P);
-/* Mengirimkan role player, player 1 atau 2 */
-
-char PlayerColor(Player P)
-/* Mengirimkan char yang berisi penanda warna player */
-
-BuildingArray PlayerBuildingList(Player P);
-/* Mengirimkan List bangunan pemain */
-/* BuildingArray akan diganti menjadi BuildingList*/
-
-int PlayerTotalSoldier(Player P);
-/* Mengirimkan jumlah total pasukan pada bangunan yang dimiliki player */
-
-SkillQueue PlayerSkillQueue(Player P);
-/* Mengirimkan SkillQueue player pada saat itu */
-
-int PlayerBuildingCount(Player P);
-
+//////////////////////////
+//        SELECTOR      //
+//////////////////////////
+/* ********* AKSES (Selektor) ********* */
+/* Jika P adalah Player, maka akses elemen : */
+#define PlayerRole(P)               (P).role
+#define PlayerColor(P)              (P).color
+#define PlayerOwnedBuildingList(P)  (P).ownedBuildingList
+#define PlayerTotalSoldier(P)       (P).totalSoldier
+#define PlayerCurrentSkillQueue(P)  (P).currentSkillQueue
 
 ///////////////////////////
 //       CONSTRUCTOR     //
@@ -82,3 +72,42 @@ void PlayerInitialize(Player *P);
 //////////////////////////////////
 //      PLAYER OPERATIONS       //
 //////////////////////////////////
+void PlayerPrintCurrentStatus(Player P);
+/* Mencetak status player sekarang ke layar */
+/* I.S. P terdefinisi */
+/* F.S. P tercetak ke layar dengan format:
+Player <PlayerRole>
+1. <Building-1 Name> <Position> <SoldierCount> lv. <Level>
+..
+..
+Skill Available : <Skill Name>
+*/
+
+void PlayerPrintOwnedBuilding(Player P, BuildingArray T);
+/* Mencetak bangunan yang dimiliki player ke layar */
+/* I.S. P dan T terdefinisi */
+/* F.S. bangunan tercetak ke layar dengan format :
+1. <Building-1 Name> <Position> <SoldierCount> lv. <Level>
+..
+..
+*/
+/* Proses: PlayerOwnedBuildingList berisi index bangunan player pada
+            BuildingArray, maka untuk setiap index pada list ambil bangunan yang
+            berkorespondensi pada T */
+
+void PlayerRefreshStatus(Player P, BuildingArray T);
+/* Memperbarui PlayerOwnedBuildingList dengan BuildingArray terbaru,
+kemudian menghitung kembali total pasukan */
+/* I.S. P dan T terdefinisi */
+/* F.S. PlayerOwnedBuildingList dan PlayerTotalSoldier diperbaharui */
+/* Proses : Jika Bangunan milik player di T tidak ada di list, masukkan di belakang
+            Jika ada, maka biarkan
+            Setelah T selesai diiterasi, hitung jumlah seluruh pasukan */
+
+int PlayerBuildingCount(Player P);
+/* Mengembalikan berapa banyak bangunan yang dimiliki player */
+
+int PlayerSoldierCount(Player P);
+/* Mengembalikan total berapa banyak pasukan yang dimiliki player */
+
+#endif

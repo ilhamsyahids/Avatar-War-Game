@@ -40,6 +40,8 @@ For easier categorization, methods of ADT will be divided into 4 types:
 
 2. CONSTRUCTOR -> Everything about creating and initialization the ADT
 				  e.g QueueCreateEmpty(), BuildingInitialization()
+				  One thing to note, all base ADT (player, building, skill) returns itself in constructor,
+				  while other ADT are procedures (return void)
 
 3. DESTRUCTOR -> Deallocation of ADT
 				 e.g ImplicitArrayDealokasi()

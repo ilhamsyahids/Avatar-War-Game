@@ -16,6 +16,8 @@
 ///////////////////////////
 //		  INCLUDE	 	 //
 ///////////////////////////
+#include <stdio.h>
+#include <stdlib.h>
 #include "boolean.h"
 
 ///////////////////////////////////
@@ -61,10 +63,11 @@ typedef struct
 ///////////////////////////
 // 		CONSTRUCTOR 	 //
 ///////////////////////////
-void MatrixCreateEmpty(int row, int col, Matrix *M);
+void MatrixCreateEmpty( Matrix *M, int row, int col);
 /* Membentuk sebuah Matrix "kosong" yang siap diisi berukuran row x column di "ujung kiri" memori */
 /* I.S. row dan col adalah valid untuk memori matriks yang dibuat */
-/* F.S. Matrix M sesuai dengan definisi di atas terbentuk */
+/* F.S. Matrix M sesuai dengan definisi di atas terbentuk 
+		row dan col menjadi NBrsEff dan NKolEff */
 
 ///////////////////////////
 // 		 PREDIKAT		 //
@@ -99,7 +102,7 @@ MatrixIdxType MatrixLastIdxBaris(Matrix M);
 MatrixIdxType MatrixLastIdxKolom(Matrix M);
 /* Mengirimkan indeks kolom terbesar M */
 
-MatrixElType GetElmtDiagonal(Matrix M, MatrixIdxType i);
+MatrixElType MatrixGetDiagonalElement(Matrix M, MatrixIdxType i);
 /* Mengirimkan elemen M(i,i) */
 
 void MatrixReadTab(Matrix *M, int row, int col);

@@ -60,7 +60,7 @@ void QueueCreateEmpty(Queue *Q, int Max);
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
-/* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
+/* atau : jika alokasi gagal, Q kosong dg MaxElement=0 */
 /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
 
 ///////////////////////////
