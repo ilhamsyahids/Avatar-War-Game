@@ -24,10 +24,10 @@
 ///////////////////////////////////
 //         CONST & TYPEDEF       //
 ///////////////////////////////////
-#define BuildingArrayIdxMin 1;
+#define BuildingArrayIdxMin 1
 /* Indeks minimum building array */
 
-#define BuildingArrayIdxUndef -999;
+#define BuildingArrayIdxUndef -999
 /* Indeks tak terdefinisi building array */
 
 typedef int BuildingArrayIdxType;     /* type indeks */

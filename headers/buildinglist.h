@@ -25,7 +25,7 @@
 #define BuildingListNil NULL
 
 typedef int BuildingListInfotype;
-typedef struct TListElement *BuildingListAddress;
+typedef struct TBuildingListElement *BuildingListAddress;
 
 //////////////////////////////////////
 //  Definisi List dan ElementList  	//
@@ -44,15 +44,14 @@ typedef struct
 /* Setiap elemen dengan address P dapat diacu BuildingListElementInfo(P),Building ListElementNext(P) */
 /* Elemen terakhir list : jika addressnya Last, maka BuildingListElementNext(Last)=Nil */
 
-
 //////////////////////////
 //        SELECTOR      //
 //////////////////////////
 /* ********* AKSES (Selektor) ********* */
 /* Jika L adalah BuildingList dan P adalah BuildingListAddress, maka akses elemen : */
-#define BuildingListElementInfo(P) 		(P)->info
-#define BuildingListElementNext(P) 		(P)->next
-#define BuildingListFirstAddress(L) 	((L).First)
+#define BuildingListElementInfo(P) (P)->info
+#define BuildingListElementNext(P) (P)->next
+#define BuildingListFirstAddress(L) ((L).First)
 
 ///////////////////////////
 //       CONSTRUCTOR     //

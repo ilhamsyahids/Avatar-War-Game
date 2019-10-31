@@ -27,7 +27,7 @@ void BuildingArrayCreateEmpty(BuildingArray *T, int maxel)
 /* F.S. Terbentuk tabel T kosong dengan kapasitas maxel + 1 */
 /* Setiap elemen diisi dengan elemen dummy building (ValUndef) */
 {
-  BuildingArrayTab(*T) = (BuildingArray *)malloc((maxel + 1) * sizeof(BuildingArray));
+  BuildingArrayTab(*T) = (BuildingArrayElType *)malloc((maxel + 1) * sizeof(BuildingArray));
   BuildingArrayMaxElement(*T) = maxel;
   BuildingArrayNeff(*T) = 0;
 }

@@ -27,8 +27,8 @@ void PointRead(Point *P)
 /* F.S. P terdefinisi */
 {
     int x, y;
-    scanf("%f", &x);
-    scanf("%f", &y);
+    scanf("%d", &x);
+    scanf("%d", &y);
     *P = MakePoint(x, y);
 }
 
@@ -40,7 +40,7 @@ void PointPrint(Point P)
 /* I.S. P terdefinisi */
 /* F.S. P tertulis di layar dengan format "(X,Y)" */
 {
-    printf("(%d,%d)", Absis(P), Ordinat(P));
+    printf("(%d,%d)", PointX(P), PointY(P));
 }
 
 /* *** Kelompok operasi relasional terhadap Point *** */

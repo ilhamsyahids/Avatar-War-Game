@@ -146,9 +146,25 @@ See naming convention for details
 10. mapmatrix.h
 	[NEW] Sebagai representasi peta building, setiap elemen adalah index yang mengacu pada BuildingArray
 
-<28/10/2019 6:45> by Ilham
+<31/10/2019 17:00> by Ilham
 1. point.h point.c
 	[UPDATE] change tipe data dari komponen Point dari float menjadi integer
 
 2. BuildingArray
 	[DEPRECATED] fungsi BuildingArraySearchForBoolean, BuildingArrayCopyTab, BuildingArraySearchForIndex, IsBuildingArrayEQ, BuildingArrayPrintTab
+
+<31/10/2019 22:27> by Ilham
+1. buildingarray.h
+	[UPDATE] no ; after #define
+
+2. buildinglist.h
+	[UPDATE] TListElement to TBuildingListElement
+
+3. buildingarray.c
+	[UPDATE] casting element saat create empty
+
+4. buildinglist.c
+	[NEW]
+
+5. point.c
+	[UPDATE] change name tipe data input & absis, ordinat
