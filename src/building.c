@@ -20,7 +20,6 @@
 #include "point.h"
 #include "building.h"
 
-
 ///////////////////////////
 //       CONSTRUCTOR     //
 ///////////////////////////
@@ -28,12 +27,6 @@ Building BuildingCreate(int kind, int player, Point position)
 {
     /* Mengirimkan building yang sudah diset kind, player, level, dan positionnya */
     Building B;
-    
-    /*
-    B.kind = kind;
-    B.player = player;
-    B.position = position;
-    changed to below */
 
     BuildingKind(B) = kind;
     BuildingPlayer(B) = player;
@@ -58,25 +51,14 @@ void BuildingInitialize(Building *B)
     int kind = BuildingKind(*B);
     int level = 1;
 
-    /*
-    (*B).level = level;
-    (*B).soldierCount = BuildingGetU(kind);
-    (*B).soldierAddValue = BuildingGetA(kind, level);
-    (*B).maximumSoldierAddCount = BuildingGetM(kind, level);
-    (*B).soldierAddCount = 0;
-    (*B).hasDefense = BuildingGetP(kind, level);
-    (*B).hasAttacked = false;
-    changed to below */
-
     BuildingLevel(*B) = level;
-    BuildingSoldierCount(*B)  = BuildingGetU(kind);
+    BuildingSoldierCount(*B) = BuildingGetU(kind);
     BuildingSoldierAddValue(*B) = BuildingGetA(kind, level);
     BuildingMaximumSoldierAddCount(*B) = BuildingGetM(kind, level);
     BuildingSoldierAddCount(*B) = 0;
     BuildingHasDefense(*B) = BuildingGetP(kind, level);
     BuildingHasAttacked(*B) = false;
     BuildingHasMovedPasukan(*B) = false;
-    
 }
 
 ///////////////////////////
@@ -85,11 +67,6 @@ void BuildingInitialize(Building *B)
 boolean IsBuildingEmpty(Building B)
 {
     /* Mengirimkan apakah pasukan di markas kosong */
-    
-    /*
-    return B.soldierCount <= 0;
-    changed to below */
-
     return (BuildingSoldierCount(B) <= 0);
 }
 
@@ -97,22 +74,12 @@ boolean CanBuildingAddPasukan(Building B)
 {
     /* Mengirimkan apakah pasukan di bangunan masih dapat ditambah */
     /* soldierAddCount < maximumSoldierAddCount */
-    
-    /*
-    return B.soldierAddCount < B.maximumSoldierAddCount;
-    changed to below */
-
     return (BuildingSoldierAddCount(B) < BuildingMaximumSoldierAddCount(B));
 }
 
 boolean IsBuildingLevelMax(Building B)
 {
     /* Mengirimkan apakah level bangunan sudah maximum (4) */
-    
-    /*
-    return B.level >= 4;
-    changed to below */
-
     return (BuildingLevel(B) >= 4);
 }
 
@@ -120,22 +87,14 @@ boolean CanBuildingAttack(Building B)
 {
     /* Mengirimkan apakah building dapat menyerang */
 
-    /*
-    return !((B).hasAttacked);
-    changed to below */
-
     return (!BuildingHasAttacked(B));
 }
 
 boolean CanBuildingLevelUp(Building B)
 {
     /* Mengirimkan apakah building dapat level up */
-    
-    /*
-    return (IsBuildingLevelMax(B) || (B.soldierCount < B.maximumSoldierAddCount / 2)) ? false : true;
-    changed to below */
 
-    return (IsBuildingLevelMax(B) || (BuildingSoldierCount(B) < (BuildingMaximumSoldierAddCount(B) /2))) ? false : true;
+    return (IsBuildingLevelMax(B) || (BuildingSoldierCount(B) < (BuildingMaximumSoldierAddCount(B) / 2))) ? false : true;
 }
 
 /////////////////////////////////////
@@ -349,14 +308,6 @@ void BuildingPrintInfo(Building B)
     /* F.S. B tercetak ke layar dengan format:
         <Nama Bangunan> <(Posisi)> <Jumlah Pasukan> <Level>
         */
-
-    /*
-    printf("%s ", BuildingGetName(B.kind));
-    TulisPOINT(B.position);
-    printf(" %d ", B.soldierCount);
-    printf("lv. %d", B.level);
-    changed to below */
-
     printf("%s ", BuildingGetName(B.kind));
     PointPrint(BuildingPosition(B));
     printf(" %d ", BuildingSoldierCount(B));
@@ -367,11 +318,6 @@ void BuildingResetStatus(Building *B)
 {
     /* I.S Building telah terisinisialisasi sembarang */
     /* F.S hasAttacked dan hasMovedPasukan building diset menjadi false */
-
-    /*
-    (*B).hasAttacked = false;
-    changed to below */
-
     BuildingHasAttacked(*B) = false;
     BuildingHasMovedPasukan(*B) = false;
 }
@@ -382,24 +328,13 @@ void BuildingRefreshStatus(Building *B)
     /* F.S Atribut soldierAddValue maximumSoldierAddCount hasDefense
     diset ulang sesuai level 
     soldierAddCount diset menjadi 0 */
-
-    /*
-    (*B).soldierAddValue = BuildingGetA(kind, level);
-    (*B).maximumSoldierAddCount = BuildingGetM(kind, level);
-    (*B).soldierAddCount = 0;
-    (*B).hasDefense = BuildingGetP(kind, level);
-    changed to below */
-
     int kind = BuildingKind(*B);
     int level = BuildingLevel(*B);
 
-    BuildingSoldierAddValue(*B) =  BuildingGetA(kind, level);
+    BuildingSoldierAddValue(*B) = BuildingGetA(kind, level);
     BuildingMaximumSoldierAddCount(*B) = BuildingGetM(kind, level);
     BuildingSoldierAddCount(*B) = 0;
     BuildingHasDefense(*B) = BuildingGetP(kind, level);
-    
-    //(*B).hasAttacked = false; Deprecated
-
 }
 
 void BuildingIncreasePasukan(Building *B, int value)
@@ -409,10 +344,6 @@ void BuildingIncreasePasukan(Building *B, int value)
     /* Proses: Menambahkan value pada soldierCount dari Building */
     /* Jika jumlah akhir melebihi jumlah pasukan yang dapat ditampung,
         soldierCount akan sama dengan M */
-
-
-    // int count = (*B).soldierCount; changed to below
-
     int count = BuildingSoldierCount(*B);
 
     count += value;
@@ -421,9 +352,7 @@ void BuildingIncreasePasukan(Building *B, int value)
         count = 1000000;
     }
 
-    //(*B).soldierCount = count; changed to below
-
-    BuildingSoldierCount(*B) = count; 
+    BuildingSoldierCount(*B) = count;
 }
 
 void BuildingDecreasePasukan(Building *B, int value)
@@ -432,9 +361,6 @@ void BuildingDecreasePasukan(Building *B, int value)
     /* F.S. Jumlah pasukan berkurang sesuai parameter value */
     /* Proses: Mengurangkan value pada soldierCount dari Building */
     /* Jika jumlah akhir kurang dari 0, soldierCount akan menjadi 0 */
-
-    // int count = (*B).soldierCount; changed to below
-    
     int count = BuildingSoldierCount(*B);
 
     count -= value;
@@ -443,7 +369,7 @@ void BuildingDecreasePasukan(Building *B, int value)
         count = 0;
     }
 
-    BuildingSoldierCount(*B) = count; 
+    BuildingSoldierCount(*B) = count;
 }
 
 void BuildingChangePlayer(Building *B)
@@ -451,12 +377,6 @@ void BuildingChangePlayer(Building *B)
     /* I.S. Bangunan ke-index BL terdefinisi milik salah satu player */
     /* F.S. Bangunan ke-index BL berubah kepemilikan menjadi player yang lain */
     /* Proses: Mengganti nilai atribut player pada Building dan kembali inisialisasi Building. */
-    
-    /*
-    int player = ((*B).player == 1) ? 2 : 1;
-    (*B).player = player;
-    changed to below */
-
     int player = (BuildingPlayer(*B) == 1) ? 2 : 1;
     BuildingPlayer(*B) = player;
 }
@@ -470,13 +390,8 @@ void BuildingLevelUp(Building *B)
     /* Proses: Mengecek apakah levelup bisa dilakukan, jika bisa FS1 jika tidak FS2 */
     if (CanBuildingLevelUp(*B))
     {
-        /* 
-        (*B).level += 1;
-        (*B).soldierCount -= (*B).maximumSoldierAddCount / 2;
-        changed to below */
-
         int nextLevel = (BuildingLevel(*B) + 1);
-        int soldierDecreasedValue = (BuildingSoldierCount(*B) - (BuildingMaximumSoldierAddCount(*B)/2)); 
+        int soldierDecreasedValue = (BuildingSoldierCount(*B) - (BuildingMaximumSoldierAddCount(*B) / 2));
         BuildingLevel(*B) = nextLevel;
         BuildingSoldierCount(*B) = soldierDecreasedValue;
 
@@ -487,4 +402,3 @@ void BuildingLevelUp(Building *B)
         printf("Jumlah pasukan %s kurang untuk level up\n", BuildingGetName((*B).kind));
     }
 }
-

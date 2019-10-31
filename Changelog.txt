@@ -146,4 +146,9 @@ See naming convention for details
 10. mapmatrix.h
 	[NEW] Sebagai representasi peta building, setiap elemen adalah index yang mengacu pada BuildingArray
 
+<28/10/2019 6:45> by Ilham
+1. point.h point.c
+	[UPDATE] change tipe data dari komponen Point dari float menjadi integer
 
+2. BuildingArray
+	[DEPRECATED] fungsi BuildingArraySearchForBoolean, BuildingArrayCopyTab, BuildingArraySearchForIndex, IsBuildingArrayEQ, BuildingArrayPrintTab

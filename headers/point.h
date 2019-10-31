@@ -16,11 +16,11 @@
 // 					A  .  .						//
 // 					.  .  .						//
 // 					.  B  .						//
-//												//						
+//												//
 // Ruang 3x3 di atas adalah bidang koordinat 2D	//
 // A menempati Point (1,1)						//
 // B menempati Point (3,2)						//
-//----------------------------------------------//		
+//----------------------------------------------//
 
 #ifndef _POINT_H
 #define _POINT_H
@@ -35,8 +35,8 @@
 ////////////////////////////////////
 typedef struct
 {
-    float X; /* absis   */
-    float Y; /* ordinat */
+    int X; /* absis   */
+    int Y; /* ordinat */
 } Point;
 
 //////////////////////////
@@ -44,13 +44,13 @@ typedef struct
 //////////////////////////
 /* ********* AKSES (Selektor) ********* */
 /* Jika P adalah Point, maka akses elemen : */
-#define PointX(P) 	(P).X 	/* Mengembalikan nilai X dari point */
-#define PointY(P) 	(P).Y 	/* Mengembalikan nilai Y dari point */
+#define PointX(P) (P).X /* Mengembalikan nilai X dari point */
+#define PointY(P) (P).Y /* Mengembalikan nilai Y dari point */
 
 ///////////////////////////
 //       CONSTRUCTOR     //
 ///////////////////////////
-Point PointCreate(float X, float Y);
+Point PointCreate(int X, int Y);
 /* Membentuk sebuah Point dari komponen-komponennya */
 
 ///////////////////////////
