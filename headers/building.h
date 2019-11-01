@@ -125,7 +125,7 @@ void BuildingPrintInfo(Building B);
 
 void BuildingResetStatus(Building *B);
 /* I.S Building telah terisinisialisasi sembarang */
-/* F.S HasAttacked, HasMovedPasukan building diset menjadi false */
+/* F.S HasAttacked, HasMovedPasukan building diset menjadi false pada game */
 
 void BuildingRefreshStatus(Building *B);
 /* I.S Building telah terisinisialisasi sembarang */

@@ -197,5 +197,5 @@ See naming convention for details
 
 2. diagrams
 	[UPDATE] update program main flow, game flow, setup flow termination
-	[UPDATE] added levelup flow and move flow (attack and skill is to be made)
+	[UPDATE] added levelup flow and move flow (attack and skill are to be made)
 
