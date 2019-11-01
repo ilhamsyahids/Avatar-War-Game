@@ -186,3 +186,7 @@ See naming convention for details
 
 4. FlowAlstrukdat.drawio
 	[NEW] Diagram raw untuk flow
+
+<1/11/2019 11:18> by Ilham
+1. buildinglist.c
+	[NEW] Implements BuildingListPrintInfo and BuildingListNbElmt

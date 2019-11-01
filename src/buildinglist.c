@@ -187,7 +187,7 @@ void BuildingListDeleteValue(BuildingList *L, BuildingListInfotype X)
     }
 }
 
-void BuildingListPrintInfo(BuildingList L, BuildingArray BL);
+void BuildingListPrintInfo(BuildingList L, BuildingArray BL)
 /* I.S. List mungkin kosong */
 /* F.S. Jika list tidak kosong, list dicetak ke bawah */
 /* Elemen list adalah index yang merujuk pada index building di Building Array */
@@ -197,6 +197,31 @@ void BuildingListPrintInfo(BuildingList L, BuildingArray BL);
 /* 1. PrintBuilding1
    2. PrintBuilding3
    3. PrintBuilding5 */
+{
+    if (!IsBuildingListEmpty(L))
+    {
+        BuildingListAddress P = BuildingListFirstAddress(L);
+        while (BuildingListElementNext(P) != BuildingListNil)
+        {
+            BuildingPrintInfo(BuildingArrayElement(BL, BuildingListElementInfo(P)));
+            P = BuildingListElementNext(P);
+        }
+    }
+}
 
-int BuildingListNbElmt(BuildingList L);
+int BuildingListNbElmt(BuildingList L)
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
+{
+    int count = 0;
+    if (!IsBuildingListEmpty(L))
+    {
+        BuildingListAddress P = BuildingListFirstAddress(L);
+        do
+        {
+            count++;
+            P = BuildingListElementNext(P);
+        } while (BuildingListElementNext(P) != BuildingListNil);
+        return count + 1;
+    }
+    return count;
+}
