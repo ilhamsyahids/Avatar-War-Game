@@ -21,6 +21,7 @@
 ///////////////////////////
 #include "boolean.h"
 #include "player.h"
+#include "gamemap.h"
 
 ///////////////////////////////////
 //		  CONST & TYPEDEF	 	 //
@@ -28,7 +29,7 @@
 #define ActionStackNil 0;
 /* Nil adalah action stack dengan elemen kosong . */
 
-typedef Player ActionStackInfotype;	/* Tipe Elemen tabel */
+typedef GameMap ActionStackInfotype;	/* Tipe Elemen tabel */
 typedef int ActionStackAddress;   /* TIpe Indeks tabel */
 
 ///////////////////////////
