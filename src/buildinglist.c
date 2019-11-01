@@ -216,12 +216,11 @@ int BuildingListNbElmt(BuildingList L)
     if (!IsBuildingListEmpty(L))
     {
         BuildingListAddress P = BuildingListFirstAddress(L);
-        do
+        while ((P) != BuildingListNil)
         {
             count++;
             P = BuildingListElementNext(P);
-        } while (BuildingListElementNext(P) != BuildingListNil);
-        return count + 1;
+        }
     }
     return count;
 }

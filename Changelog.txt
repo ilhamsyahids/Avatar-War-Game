@@ -199,3 +199,9 @@ See naming convention for details
 	[UPDATE] update program main flow, game flow, setup flow termination
 	[UPDATE] added levelup flow and move flow (attack and skill are to be made)
 
+<1/11/2019 21:44> by Ilham
+1. buildinglist.c
+	[UPDATE] BuildingListNbElmt
+
+2. .gitignore
+	[NEW] /.vscode
