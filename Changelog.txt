@@ -172,3 +172,17 @@ See naming convention for details
 <1/11/2019 09:07> by Gunawan
 1. buildinglist.h buildinglist.c
 	[UPDATE] definisi BuildingListPrintInfo
+
+<1/11/2019 10:40> by Gunawan
+1. actionstackt.h
+	[UPDATE] change stack element to GameMap
+
+2. gamemap.h
+	[NEW] untuk menyatukan BuildingArray MapMatrix Player dan BuildingRelationship
+
+3. diagrams Folder
+	[NEW] Seluruh flow di game akan dijabarkan di sini
+	[UPDATE] Added Hierarchy ADT, Program Main FLow, Setup FLow, and Game Flow
+
+4. FlowAlstrukdat.drawio
+	[NEW] Diagram raw untuk flow
