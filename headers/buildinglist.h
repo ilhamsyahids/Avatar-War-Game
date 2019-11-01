@@ -118,12 +118,16 @@ void ListDeleteValue(BuildingList *L, BuildingListInfotype X);
 /* Jika tidak ada elemen list dengan BuildingListElementInfo(P)=X, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
 
-void BuildingListPrintInfo(BuildingList L);
+void BuildingListPrintInfo(BuildingList L, BuildingArray BL);
 /* I.S. List mungkin kosong */
-/* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-/* Jika list kosong : menulis [] */
-/* Dengan tambahan enter di akhir */
+/* F.S. Jika list tidak kosong, list dicetak ke bawah */
+/* Elemen list adalah index yang merujuk pada index building di Building Array */
+/* Setiap elemen list dicetak building yang berkorespondensi */
+/* Misal elemen list : 1 -> 3 -> 5 */
+/* maka cetak building dengan index ke 1 3 dan 5 dari BuildingArray, dengan format */
+/* 1. PrintBuilding1
+   2. PrintBuilding3
+   3. PrintBuilding5 */
 
 int BuildingListNbElmt(BuildingList L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
