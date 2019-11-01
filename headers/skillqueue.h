@@ -25,10 +25,10 @@
 ///////////////////////////////////
 //		  CONST & TYPEDEF	 	 //
 ///////////////////////////////////
-#define SkillQueueNil 0;
+#define SkillQueueNil 0
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
-#define SkillQueueMaximumElement 10;
+#define SkillQueueMaximumElement 10
 /* Konstanta untuk maksimum jumlah elemen SkillQueue */
 
 typedef Skill SkillQueueInfotype; 	/* Tipe Elemen tabel */
@@ -63,7 +63,7 @@ typedef struct
 ///////////////////////////
 // 		CONSTRUCTOR 	 //
 ///////////////////////////
-void SkillQueueCreateEmpty(SkillQueue *Q, int Max);
+void SkillQueueCreateEmpty(SkillQueue *Q);
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
@@ -105,6 +105,11 @@ void SkillQueueDelSkill(SkillQueue *Q, SkillQueueInfotype *X);
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
 
+void PrintQueueSkill(SkillQueue Q);
+/* Proses: Mencetak seluruh Skill pada QueueSkill dengan aturan FIFO */
+/* I.S. Sembarang */
+/* F.S. Tercetak ke layar daftar skill yang ada dengan "SKILL : [skill], [skill], [skill]", 
+    apabila QueueSkill kosong maka akan tercetak ke layar "SKILL : Tidak Ada Skill Tersedia"*/
 
 
 // Gonna still be added
