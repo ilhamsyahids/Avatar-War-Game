@@ -187,6 +187,10 @@ See naming convention for details
 4. FlowAlstrukdat.drawio
 	[NEW] Diagram raw untuk flow
 
+<1/11/2019 11:18> by Ilham
+1. buildinglist.c
+	[NEW] Implements BuildingListPrintInfo and BuildingListNbElmt
+
 <1/11/2019 11:22> by Gunawan
 1. building.h
 	[UPDATE] change definition of BuildingResetStatus
@@ -194,3 +198,4 @@ See naming convention for details
 2. diagrams
 	[UPDATE] update program main flow, game flow, setup flow termination
 	[UPDATE] added levelup flow and move flow (attack and skill is to be made)
+
