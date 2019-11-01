@@ -168,3 +168,7 @@ See naming convention for details
 
 5. point.c
 	[UPDATE] change name tipe data input & absis, ordinat
+
+<1/11/2019 09:07> by Gunawan
+1. buildinglist.h buildinglist.c
+	[UPDATE] definisi BuildingListPrintInfo
