@@ -1,29 +1,55 @@
-/* File: mesinkar.h */
-/* Definisi Mesin Karakter */
+//==============================================//
+//                                              //
+//                 MesinKarakter                //
+//                                              //
+//----------------------------------------------//
+// File : mesinkar.h */                      	//
+//----------------------------------------------//
+// Definisi Mesin Karakter 		        		//
+// Digunakan untuk membaca file	luar			//
+//==============================================//
 
-#ifndef __MESIN_KAR_H_
-#define __MESIN_KAR_H_
+#ifndef _MESIN_KAR_H_
+#define _MESIN_KAR_H_
 
+///////////////////////////
+//		  INCLUDE	 	 //
+///////////////////////////
 #include "boolean.h"
 
-#define MARK '.'
-/* State Mesin */
+///////////////////////////////////
+//		  CONST & TYPEDEF	 	 //
+///////////////////////////////////
 extern char CC;
+extern int X;
 extern boolean EOP;
 
-void START();
-/* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
-   Karakter pertama yang ada pada pita posisinya adalah pada jendela.
-   I.S. : sembarang
-   F.S. : CC adalah karakter pertama pada pita
-          Jika CC != MARK maka EOP akan padam (false)
-          Jika CC = MARK maka EOP akan menyala (true) */
+///////////////////////////////////
+// 	     MESINKAR OPERATIONS 	 //
+///////////////////////////////////
+void OpenFile(char* filename);
+/* Menyiapkan file untuk dibaca */
+/* I.S : pita masih kosong */
+/* F.S : pita sudah berisi file yang siap dibaca */
 
-void ADV();
-/* Pita dimajukan satu karakter.
-   I.S. : Karakter pada jendela = CC, CC != MARK
-   F.S. : CC adalah karakter berikutnya dari CC yang lama,
-          CC mungkin = MARK
-          Jika  CC = MARK maka EOP akan menyala (true) */
+void CloseFile();
+/* Menutup file agar tidak bisa dibaca lagi */
+/* I.S : pita siap dibaca */
+/* F.S : pita menjadi kosong lagi */
+
+void AdvChar();
+/* File dimajukan satu karakter */
+/* I.S : CC adalah karakter sembarang */
+/* F.S : CC adalah karakter berikutnya */
+
+void AdvInt();
+/* File dimajukan satu integer */
+/* I.S : X adalah integer sembarang */
+/* F.S : X adalah integer berikutnya */
+
+void AdvLine();
+/* File dimajukan satu baris */
+/* I.S : CC adalah karakter sembarang */
+/* F.S : CC adalah karakter newline ('\n')*/
 
 #endif

@@ -205,3 +205,16 @@ See naming convention for details
 
 2. .gitignore
 	[NEW] /.vscode
+
+<1/11/2019 10:40> by Gunawan
+1. mesinkar.h mesinkar.c mesinkata.h mesinkata.c mesintoken.h mesintoken.c
+	[DEPRECATED] diganti dengan mesinkar.h dan mesinkar.c yang baru
+
+2. mesinkar.h mesinkar.c
+	[NEW] Memperbarui definisi Mesin Karakter untuk menyesuaikan dengan pembacaan file konfigurasi
+
+3. gamemap.h
+	[UPDATE] Mengubah deklarasi method GameMapCreate
+
+4. fileloader.h fileloader.c
+	[NEW] Memulai pembuatan modul untuk membaca file konfigurasi, akan dilanjutkan setelah ADT Graph dibuat

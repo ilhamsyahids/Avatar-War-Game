@@ -43,14 +43,14 @@ typedef struct
 //////////////////////////
 /* ********* AKSES (Selektor) ********* */
 /* Jika M adalah GameMap, maka akses elemen : */
-#define BuildingMap(M) 			(M).BuildingMap
-#define BuildingRecord(M) 		(M).BuildingRecord
-#define CurrentPlayer(M)		(M).currentPlayer
+#define BuildingMap(G) 			(G).BuildingMap
+#define BuildingRecord(G) 		(G).BuildingRecord
+#define CurrentPlayer(G)		(G).currentPlayer
 
 ///////////////////////////
 // 		CONSTRUCTOR 	 //
 ///////////////////////////
-void GameMapCreate(MapMatrix map, BuildingArray record, Player currentPlayer);
+void GameMapCreate(GameMap *G, MapMatrix map, BuildingArray record, Player currentPlayer);
 /* Membentuk sebuah GameMap yang berisi BuildingMap, BuildingRecord dan currentPlayer */
 /* I.S. map, record, dan currentPlayer diinisiasi di luar method sebelum dimasukkan sebagai parameter */
 /* F.S. Terbentuk GameMap yang berisi keadaan game pada saat itu*/

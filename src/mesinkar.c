@@ -1,45 +1,54 @@
-// ILHAM SYAHID S
-// 13518028
+//==============================================//
+//                                              //
+//                 MesinKarakter                //
+//                                              //
+//----------------------------------------------//
+// File : mesinkar.h */                      	//
+//----------------------------------------------//
+// Definisi Mesin Karakter 		        		//
+// Digunakan untuk membaca file	luar			//
+//==============================================//
 
-/* File: mesinkar.c */
-/* Implementasi Mesin Karakter */
-
+///////////////////////////
+//		  INCLUDE	 	 //
+///////////////////////////
 #include "mesinkar.h"
 #include <stdio.h>
 
+///////////////////////////////////
+//		  CONST & TYPEDEF	 	 //
+///////////////////////////////////
 char CC;
+int X;
 boolean EOP;
 
 static FILE *pita;
 static int retval;
 
-void START()
-{
-    /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
-   Karakter pertama yang ada pada pita posisinya adalah pada jendela.
-   I.S. : sembarang
-   F.S. : CC adalah karakter pertama pada pita. Jika CC != MARK maka EOP akan padam (false).
-          Jika CC = MARK maka EOP akan menyala (true) */
-
-    /* Algoritma */
-    pita = fopen("pitakar.txt", "r");
-    ADV();
+///////////////////////////////////
+// 	     MESINKAR OPERATIONS 	 //
+///////////////////////////////////
+void OpenFile(char* filename){
+    pita = fopen(filename, "r");
 }
 
-void ADV()
-{
-    /* Pita dimajukan satu karakter.
-   I.S. : Karakter pada jendela =
-          CC, CC != MARK
-   F.S. : CC adalah karakter berikutnya dari CC yang lama,
-          CC mungkin = MARK.
-          Jika  CC = MARK maka EOP akan menyala (true) */
+void CloseFile(){
+    fclose(pita);
+}
 
-    /* Algoritma */
+
+void AdvChar(){
     retval = fscanf(pita, "%c", &CC);
-    EOP = (CC == MARK);
-    if (EOP)
-    {
-        fclose(pita);
-    }
 }
+
+void AdvInt(){
+    retval = fscanf(pita, "%d", &X);
+}
+
+void AdvLine(){
+    retval = fscanf(pita, "\n", &CC);
+}
+
+
+
+
