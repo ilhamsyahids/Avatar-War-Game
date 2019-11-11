@@ -206,7 +206,7 @@ See naming convention for details
 2. .gitignore
 	[NEW] /.vscode
 
-<1/11/2019 10:40> by Gunawan
+<12/11/2019 01:21> by Gunawan
 1. mesinkar.h mesinkar.c mesinkata.h mesinkata.c mesintoken.h mesintoken.c
 	[DEPRECATED] diganti dengan mesinkar.h dan mesinkar.c yang baru
 
