@@ -29,6 +29,7 @@ GameMap G;
 MapMatrix Map;
 BuildingArray Record;
 Player CurrentPlayer;
+BuildingRelationGraph BuildingRelation;
 
 ///////////////////////////////////
 // 	     FILELOADER OPERATIONS 	 //
@@ -50,7 +51,7 @@ void LoadingSequence()
 	LoadMapSize();
 	LoadBuildingCount();
 	LoadBuildingList();
-	LoadBuildingRelationship();
+	LoadBuildingRelation();
 }
 
 void LoadMapSize()
@@ -79,11 +80,17 @@ void LoadBuildingCount()
 /* F.S : Ukuran maksimum Record terdefinisi */
 {
 	int BuildingCount;
+	int i;
 
 	AdvInt();
 	BuildingCount = X;
 
 	BuildingArrayCreateEmpty(&Record, BuildingCount);
+	BuildingRelationGraphCreateEmpty(&BuildingRelation);
+
+	for(i = 1; i <= BuildingCount; i++){
+		BuildingRelationGraphInsertVertex(&BuildingRelation, i);
+	}
 
 	AdvLine();
 }
@@ -141,17 +148,31 @@ void LoadBuildingList()
 	}
 }
 
-void LoadBuildingRelationship()
+void LoadBuildingRelation()
 /* Menangani pembacaan hubungan antar bangunan pada peta */
 /* I.S : */
 /* F.S : */
 {
+	int i;
+	int j;
+	BuildingRelationGraphAddress V;
+	AdjacentBuildingRelationGraphAddress P;
 
+	for(i = 1; i <= BuildingArrayNeff(Record); i++){
+		V = BuildingRelationGraphAddressSearch(BuildingRelation, i);
+		for(j = 1; j <= BuildingArrayNeff(Record); j++){
+			AdvInt();
+			if(X == 1){
+				BuildingRelationGraphInsertAdjacentVertex(V, j);
+			}
+		}
+		AdvLine();
+	}
 }
 
 void CompleteFileLoad()
 /* Mengembalikan GameMap yang sudah berisi data lengkap dari file */
 {
-	GameMapCreate(&G, Map, Record, CurrentPlayer);
+	GameMapCreate(&G, Map, Record, CurrentPlayer, BuildingRelation);
 }
 #endif

@@ -28,6 +28,7 @@ extern GameMap G;
 extern MapMatrix Map;
 extern BuildingArray Record;
 extern Player CurrentPlayer;
+extern BuildingRelationGraph BuildingRelation;
 
 ///////////////////////////////////
 // 	     FILELOADER OPERATIONS 	 //
@@ -57,7 +58,7 @@ void LoadBuildingList();
 /* I.S : Ukuran maksimum Record terdefinisi */
 /* F.S : Record berisi seluruh bangunan yang ada di file */
 
-void LoadBuildingRelationship();
+void LoadBuildingRelation();
 /* Menangani pembacaan hubungan antar bangunan pada peta */
 /* I.S : */
 /* F.S : */

@@ -21,6 +21,7 @@
 #include "mapmatrix.h"
 #include "buildingarray.h"
 #include "player.h"
+#include "buildingrelationgraph.h"
 
 ///////////////////////////////////
 //		  CONST & TYPEDEF	 	 //
@@ -33,9 +34,10 @@
 ///////////////////////////////
 typedef struct
 {
-    MapMatrix BuildingMap;			/* Matrix peta untuk bangunan */	
-    BuildingArray BuildingRecord;	/* Daftar seluruh bangunan di peta */
-    Player currentPlayer;	   		/* Player yang sedang menjalankan turn saat itu */
+    MapMatrix BuildingMap;					/* Matrix peta untuk bangunan */	
+    BuildingArray BuildingRecord;			/* Daftar seluruh bangunan di peta */
+    Player CurrentPlayer;	   				/* Player yang sedang menjalankan turn saat itu */
+    BuildingRelationGraph BuildingRelation;	/* Relasi antar bangunan pada peta */
 } GameMap;
 
 //////////////////////////
@@ -45,12 +47,13 @@ typedef struct
 /* Jika M adalah GameMap, maka akses elemen : */
 #define BuildingMap(G) 			(G).BuildingMap
 #define BuildingRecord(G) 		(G).BuildingRecord
-#define CurrentPlayer(G)		(G).currentPlayer
+#define CurrentPlayer(G)		(G).CurrentPlayer
+#define BuildingRelation(G)		(G).BuildingRelation
 
 ///////////////////////////
 // 		CONSTRUCTOR 	 //
 ///////////////////////////
-void GameMapCreate(GameMap *G, MapMatrix map, BuildingArray record, Player currentPlayer);
+void GameMapCreate(GameMap *G, MapMatrix map, BuildingArray record, Player CurrentPlayer, BuildingRelationGraph BuildingRelation);
 /* Membentuk sebuah GameMap yang berisi BuildingMap, BuildingRecord dan currentPlayer */
 /* I.S. map, record, dan currentPlayer diinisiasi di luar method sebelum dimasukkan sebagai parameter */
 /* F.S. Terbentuk GameMap yang berisi keadaan game pada saat itu*/

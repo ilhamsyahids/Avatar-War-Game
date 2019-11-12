@@ -218,3 +218,25 @@ See naming convention for details
 
 4. fileloader.h fileloader.c
 	[NEW] Memulai pembuatan modul untuk membaca file konfigurasi, akan dilanjutkan setelah ADT Graph dibuat
+
+<13/11/2019 > by Gunawan
+1. graph.h graph.c
+	[NEW] Definisi dan Implementasi ADT Graph, telah dilengkapi dengan method-method dasar yang sekiranya diperlukan
+
+2. graph_driver.c
+	[NEW] Driver untuk mengetes graph.c, semua bagian sudah diperiksa dan berjalan dengan baik
+
+3. buildingrelationgraph.h buildingrelationgraph.c
+	[NEW] Definisi dan Implementasi ADT BuildingRelationGraph. ADT didasari pada ADT Graph yang sudah dibuat. Telah dilengkapi dengan method-method dasar yang sekiranya diperlukan
+
+4. buildingrelationshipgraph_driver.c
+	[NEW] Driver untuk mengetes buildingrelationgraph.c, semua bagian sudah diperiksa dan berjalan dengan baik
+
+5. gamemap.h
+	[UPDATE] Menambahkan atribut BuildingRelationGraph pada definisi tipe GameMap
+	[UPDATE] Penggantian penulisan currentPlayer menjadi CurrentPlayer
+	[UPDATE] Penggantian definisi GameMapCreate menjadi bertambah parameter BuildingRelationGraph
+
+6. fileloader.c fileloader.h
+	[UPDATE] Merubah definisi fungsi yang mengandung "relationship" menjadi "relation" saja
+	[UPDATE] Implementasi LoadBuildingRelation()
