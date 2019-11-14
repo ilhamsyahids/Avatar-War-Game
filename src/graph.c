@@ -36,9 +36,10 @@ GraphAddress GraphVertexAlokasi(GraphInfotype X)
 {
 	GraphAddress V;
 
-	V = (GraphAddress) malloc (1* sizeof(GraphVertex));
+	V = (GraphAddress)malloc(1 * sizeof(GraphVertex));
 
-	if(V){
+	if (V)
+	{
 		GraphVertexInfo(V) = X;
 		GraphVertexNext(V) = GraphNil;
 		GraphVertexFirstAdjacent(V) = GraphNil;
@@ -54,10 +55,11 @@ AdjacentGraphAddress GraphAdjacentVertexAlokasi(GraphInfotype X)
 {
 	AdjacentGraphAddress P;
 
-	P = (AdjacentGraphAddress) malloc (1* sizeof(GraphAdjacentVertex));
+	P = (AdjacentGraphAddress)malloc(1 * sizeof(GraphAdjacentVertex));
 
-	if(P){
-		GraphAdjacentVertexInfo(P)  = X;
+	if (P)
+	{
+		GraphAdjacentVertexInfo(P) = X;
 		GraphAdjacentVertexNextAdjacent(P) = GraphNil;
 	}
 
@@ -100,17 +102,21 @@ boolean IsAdjacentGraphEmpty(GraphAddress V)
 
 boolean IsVertexInGraph(Graph G, GraphInfotype X)
 /* Mengirim true jika vertex dengan info X ada pada Graph */
-{	
+{
 	GraphAddress V;
 	boolean found;
 
 	found = false;
-	if(IsGraphEmpty(G)){
+	if (IsGraphEmpty(G))
+	{
 		return found;
-	} else{
+	}
+	else
+	{
 		V = GraphFirstAddress(G);
 		found = (GraphVertexInfo(V) == X);
-		while((GraphVertexNext(V) != GraphNil) && (!found)){
+		while ((GraphVertexNext(V) != GraphNil) && (!found))
+		{
 			V = GraphVertexNext(V);
 			found = (GraphVertexInfo(V) == X);
 		}
@@ -119,18 +125,22 @@ boolean IsVertexInGraph(Graph G, GraphInfotype X)
 }
 
 boolean IsAdjacentWithVertex(GraphAddress V, GraphInfotype X)
-/* Mengirim true jika vertex dengan info X adalah tetagga dengan Vertex dengan address V */ 
+/* Mengirim true jika vertex dengan info X adalah tetagga dengan Vertex dengan address V */
 {
 	AdjacentGraphAddress P;
 	boolean found;
 
 	found = false;
-	if(IsAdjacentGraphEmpty(V)){
+	if (IsAdjacentGraphEmpty(V))
+	{
 		return found;
-	} else{
+	}
+	else
+	{
 		P = GraphVertexFirstAdjacent(V);
 		found = (GraphAdjacentVertexInfo(P) == X);
-		while((GraphAdjacentVertexNextAdjacent(P) != GraphNil) && (!found)){
+		while ((GraphAdjacentVertexNextAdjacent(P) != GraphNil) && (!found))
+		{
 			P = GraphAdjacentVertexNextAdjacent(P);
 			found = (GraphAdjacentVertexInfo(P) == X);
 		}
@@ -152,16 +162,21 @@ GraphAddress GraphAddressSearch(Graph G, GraphInfotype X)
 	V = GraphNil;
 	found = false;
 
-	if(IsGraphEmpty(G)){
+	if (IsGraphEmpty(G))
+	{
 		return V;
-	} else{
+	}
+	else
+	{
 		V = GraphFirstAddress(G);
 		found = (GraphVertexInfo(V) == X);
-		while((GraphVertexNext(V) != GraphNil) && (!found)){
+		while ((GraphVertexNext(V) != GraphNil) && (!found))
+		{
 			V = GraphVertexNext(V);
 			found = (GraphVertexInfo(V) == X);
 		}
-		if(GraphVertexInfo(V) != X){
+		if (GraphVertexInfo(V) != X)
+		{
 			V = GraphNil;
 		}
 		return V;
@@ -178,16 +193,21 @@ AdjacentGraphAddress GraphAdjacentAddressSearch(GraphAddress V, GraphInfotype X)
 	P = GraphNil;
 	found = false;
 
-	if(IsAdjacentGraphEmpty(V)){
+	if (IsAdjacentGraphEmpty(V))
+	{
 		return P;
-	} else{
+	}
+	else
+	{
 		P = GraphVertexFirstAdjacent(V);
 		found = (GraphAdjacentVertexInfo(P) == X);
-		while((GraphAdjacentVertexNextAdjacent(P) != GraphNil) && (!found)){
+		while ((GraphAdjacentVertexNextAdjacent(P) != GraphNil) && (!found))
+		{
 			P = GraphAdjacentVertexNextAdjacent(P);
 			found = (GraphAdjacentVertexInfo(P) == X);
 		}
-		if(GraphAdjacentVertexInfo(P) != X){
+		if (GraphAdjacentVertexInfo(P) != X)
+		{
 			P = GraphNil;
 		}
 		return P;
@@ -205,12 +225,17 @@ void GraphInsertVertex(Graph *G, GraphInfotype X)
 
 	V = GraphVertexAlokasi(X);
 
-	if(IsGraphEmpty(*G)){
+	if (IsGraphEmpty(*G))
+	{
 		GraphFirstAddress(*G) = V;
-	} else{
-		if(!IsVertexInGraph(*G, X)){
+	}
+	else
+	{
+		if (!IsVertexInGraph(*G, X))
+		{
 			VLast = GraphFirstAddress(*G);
-			while(GraphVertexNext(VLast) != GraphNil){
+			while (GraphVertexNext(VLast) != GraphNil)
+			{
 				VLast = GraphVertexNext(VLast);
 			}
 			GraphVertexNext(VLast) = V;
@@ -228,12 +253,17 @@ void GraphInsertAdjacentVertex(GraphAddress V, GraphInfotype X)
 	AdjacentGraphAddress PLast;
 
 	P = GraphAdjacentVertexAlokasi(X);
-	if(IsAdjacentGraphEmpty(V)){
+	if (IsAdjacentGraphEmpty(V))
+	{
 		GraphVertexFirstAdjacent(V) = P;
-	} else{
-		if(!IsAdjacentWithVertex(V, X)){
+	}
+	else
+	{
+		if (!IsAdjacentWithVertex(V, X))
+		{
 			PLast = GraphVertexFirstAdjacent(V);
-			while(GraphAdjacentVertexNextAdjacent(PLast) != GraphNil){
+			while (GraphAdjacentVertexNextAdjacent(PLast) != GraphNil)
+			{
 				PLast = GraphAdjacentVertexNextAdjacent(PLast);
 			}
 			GraphAdjacentVertexNextAdjacent(PLast) = P;
@@ -253,15 +283,20 @@ void GraphDeleteAdjacentVertex(GraphAddress V, GraphInfotype X)
 	AdjacentGraphAddress PSucc;
 	AdjacentGraphAddress PDel;
 
-	if(IsAdjacentWithVertex(V, X)){
+	if (IsAdjacentWithVertex(V, X))
+	{
 		P = GraphAdjacentAddressSearch(V, X);
-		if (P == GraphVertexFirstAdjacent(V)){ // First Element
+		if (P == GraphVertexFirstAdjacent(V))
+		{ // First Element
 			PDel = P;
 			GraphVertexFirstAdjacent(V) = GraphAdjacentVertexNextAdjacent(P);
 			GraphAdjacentVertexDealokasi(PDel);
-		} else{
+		}
+		else
+		{
 			PPrec = GraphVertexFirstAdjacent(V);
-			while(GraphAdjacentVertexNextAdjacent(PPrec) != P){
+			while (GraphAdjacentVertexNextAdjacent(PPrec) != P)
+			{
 				PPrec = GraphAdjacentVertexNextAdjacent(PPrec);
 			}
 			PDel = P;
@@ -269,8 +304,7 @@ void GraphDeleteAdjacentVertex(GraphAddress V, GraphInfotype X)
 			GraphAdjacentVertexNextAdjacent(PPrec) = PSucc;
 			GraphAdjacentVertexDealokasi(PDel);
 		}
-
-	} 
+	}
 }
 
 void GraphDeleteVertex(Graph *G, GraphInfotype X)
@@ -287,15 +321,20 @@ void GraphDeleteVertex(Graph *G, GraphInfotype X)
 	GraphAddress VSucc;
 	GraphAddress VDel;
 
-	if(IsVertexInGraph(*G, X)){
+	if (IsVertexInGraph(*G, X))
+	{
 		V = GraphAddressSearch(*G, X);
-		if(V == GraphFirstAddress(*G)){ // First Element
+		if (V == GraphFirstAddress(*G))
+		{ // First Element
 			VDel = V;
 			GraphFirstAddress(*G) = GraphVertexNext(V);
 			GraphVertexDealokasi(VDel);
-		} else{
+		}
+		else
+		{
 			VPrec = GraphFirstAddress(*G);
-			while(GraphVertexNext(VPrec) != V){
+			while (GraphVertexNext(VPrec) != V)
+			{
 				VPrec = GraphVertexNext(VPrec);
 			}
 			VDel = V;
@@ -305,13 +344,16 @@ void GraphDeleteVertex(Graph *G, GraphInfotype X)
 		}
 		// Deleting others adjacency
 		V = GraphFirstAddress(*G);
-		if(IsAdjacentWithVertex(V, X)){
-			GraphDeleteAdjacentVertex(V,X);
+		if (IsAdjacentWithVertex(V, X))
+		{
+			GraphDeleteAdjacentVertex(V, X);
 		}
-		while(GraphVertexNext(V) != GraphNil){
+		while (GraphVertexNext(V) != GraphNil)
+		{
 			V = GraphVertexNext(V);
-			if(IsAdjacentWithVertex(V, X)){
-				GraphDeleteAdjacentVertex(V,X);
+			if (IsAdjacentWithVertex(V, X))
+			{
+				GraphDeleteAdjacentVertex(V, X);
 			}
 		}
 	}
@@ -325,12 +367,16 @@ int GraphNbElmt(Graph G)
 
 	count = 0;
 
-	if(IsGraphEmpty(G)){
+	if (IsGraphEmpty(G))
+	{
 		return count;
-	} else{
+	}
+	else
+	{
 		V = GraphFirstAddress(G);
 		count += 1;
-		while(GraphVertexNext(V) != GraphNil){
+		while (GraphVertexNext(V) != GraphNil)
+		{
 			V = GraphVertexNext(V);
 			count += 1;
 		}
@@ -349,32 +395,38 @@ void GraphPrintInfo(Graph G)
 	GraphAddress V;
 	AdjacentGraphAddress P;
 
-	if(!IsGraphEmpty(G)){
+	if (!IsGraphEmpty(G))
+	{
 		V = GraphFirstAddress(G);
-		printf("%d berhubungan dengan",GraphVertexInfo(V));
+		printf("%d berhubungan dengan", GraphVertexInfo(V));
 
-		if(!IsAdjacentGraphEmpty(V)){
+		if (!IsAdjacentGraphEmpty(V))
+		{
 			P = GraphVertexFirstAdjacent(V);
-			printf(" %d",GraphAdjacentVertexInfo(P));
-			
-			while(GraphAdjacentVertexNextAdjacent(P) != GraphNil){
+			printf(" %d", GraphAdjacentVertexInfo(P));
+
+			while (GraphAdjacentVertexNextAdjacent(P) != GraphNil)
+			{
 				P = GraphAdjacentVertexNextAdjacent(P);
-				printf(" %d",GraphAdjacentVertexInfo(P));
+				printf(" %d", GraphAdjacentVertexInfo(P));
 			}
 		}
 		printf("\n");
-		while(GraphVertexNext(V) != GraphNil){
+		while (GraphVertexNext(V) != GraphNil)
+		{
 			V = GraphVertexNext(V);
-			printf("%d berhubungan dengan",GraphVertexInfo(V));
-			if(!IsAdjacentGraphEmpty(V)){
+			printf("%d berhubungan dengan", GraphVertexInfo(V));
+			if (!IsAdjacentGraphEmpty(V))
+			{
 				P = GraphVertexFirstAdjacent(V);
-				printf(" %d",GraphAdjacentVertexInfo(P));
-				while(GraphAdjacentVertexNextAdjacent(P) != GraphNil){
+				printf(" %d", GraphAdjacentVertexInfo(P));
+				while (GraphAdjacentVertexNextAdjacent(P) != GraphNil)
+				{
 					P = GraphAdjacentVertexNextAdjacent(P);
-					printf(" %d",GraphAdjacentVertexInfo(P));
+					printf(" %d", GraphAdjacentVertexInfo(P));
 				}
 			}
 			printf("\n");
 		}
-	} 
+	}
 }

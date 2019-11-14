@@ -36,9 +36,10 @@ BuildingRelationGraphAddress BuildingRelationGraphVertexAlokasi(BuildingRelation
 {
 	BuildingRelationGraphAddress V;
 
-	V = (BuildingRelationGraphAddress) malloc (1* sizeof(BuildingRelationGraphVertex));
+	V = (BuildingRelationGraphAddress)malloc(1 * sizeof(BuildingRelationGraphVertex));
 
-	if(V){
+	if (V)
+	{
 		BuildingRelationGraphVertexInfo(V) = X;
 		BuildingRelationGraphVertexNext(V) = BuildingRelationGraphNil;
 		BuildingRelationGraphVertexFirstAdjacent(V) = BuildingRelationGraphNil;
@@ -54,10 +55,11 @@ AdjacentBuildingRelationGraphAddress BuildingRelationGraphAdjacentVertexAlokasi(
 {
 	AdjacentBuildingRelationGraphAddress P;
 
-	P = (AdjacentBuildingRelationGraphAddress) malloc (1* sizeof(BuildingRelationGraphAdjacentVertex));
+	P = (AdjacentBuildingRelationGraphAddress)malloc(1 * sizeof(BuildingRelationGraphAdjacentVertex));
 
-	if(P){
-		BuildingRelationGraphAdjacentVertexInfo(P)  = X;
+	if (P)
+	{
+		BuildingRelationGraphAdjacentVertexInfo(P) = X;
 		BuildingRelationGraphAdjacentVertexNextAdjacent(P) = BuildingRelationGraphNil;
 	}
 
@@ -100,17 +102,21 @@ boolean IsAdjacentBuildingRelationGraphEmpty(BuildingRelationGraphAddress V)
 
 boolean IsVertexInBuildingRelationGraph(BuildingRelationGraph G, BuildingRelationGraphInfotype X)
 /* Mengirim true jika vertex dengan info X ada pada BuildingRelationGraph */
-{	
+{
 	BuildingRelationGraphAddress V;
 	boolean found;
 
 	found = false;
-	if(IsBuildingRelationGraphEmpty(G)){
+	if (IsBuildingRelationGraphEmpty(G))
+	{
 		return found;
-	} else{
+	}
+	else
+	{
 		V = BuildingRelationGraphFirstAddress(G);
 		found = (BuildingRelationGraphVertexInfo(V) == X);
-		while((BuildingRelationGraphVertexNext(V) != BuildingRelationGraphNil) && (!found)){
+		while ((BuildingRelationGraphVertexNext(V) != BuildingRelationGraphNil) && (!found))
+		{
 			V = BuildingRelationGraphVertexNext(V);
 			found = (BuildingRelationGraphVertexInfo(V) == X);
 		}
@@ -119,18 +125,22 @@ boolean IsVertexInBuildingRelationGraph(BuildingRelationGraph G, BuildingRelatio
 }
 
 boolean IsAdjacentWithVertex(BuildingRelationGraphAddress V, BuildingRelationGraphInfotype X)
-/* Mengirim true jika vertex dengan info X adalah tetagga dengan Vertex dengan address V */ 
+/* Mengirim true jika vertex dengan info X adalah tetagga dengan Vertex dengan address V */
 {
 	AdjacentBuildingRelationGraphAddress P;
 	boolean found;
 
 	found = false;
-	if(IsAdjacentBuildingRelationGraphEmpty(V)){
+	if (IsAdjacentBuildingRelationGraphEmpty(V))
+	{
 		return found;
-	} else{
+	}
+	else
+	{
 		P = BuildingRelationGraphVertexFirstAdjacent(V);
 		found = (BuildingRelationGraphAdjacentVertexInfo(P) == X);
-		while((BuildingRelationGraphAdjacentVertexNextAdjacent(P) != BuildingRelationGraphNil) && (!found)){
+		while ((BuildingRelationGraphAdjacentVertexNextAdjacent(P) != BuildingRelationGraphNil) && (!found))
+		{
 			P = BuildingRelationGraphAdjacentVertexNextAdjacent(P);
 			found = (BuildingRelationGraphAdjacentVertexInfo(P) == X);
 		}
@@ -152,16 +162,21 @@ BuildingRelationGraphAddress BuildingRelationGraphAddressSearch(BuildingRelation
 	V = BuildingRelationGraphNil;
 	found = false;
 
-	if(IsBuildingRelationGraphEmpty(G)){
+	if (IsBuildingRelationGraphEmpty(G))
+	{
 		return V;
-	} else{
+	}
+	else
+	{
 		V = BuildingRelationGraphFirstAddress(G);
 		found = (BuildingRelationGraphVertexInfo(V) == X);
-		while((BuildingRelationGraphVertexNext(V) != BuildingRelationGraphNil) && (!found)){
+		while ((BuildingRelationGraphVertexNext(V) != BuildingRelationGraphNil) && (!found))
+		{
 			V = BuildingRelationGraphVertexNext(V);
 			found = (BuildingRelationGraphVertexInfo(V) == X);
 		}
-		if(BuildingRelationGraphVertexInfo(V) != X){
+		if (BuildingRelationGraphVertexInfo(V) != X)
+		{
 			V = BuildingRelationGraphNil;
 		}
 		return V;
@@ -178,16 +193,21 @@ AdjacentBuildingRelationGraphAddress BuildingRelationGraphAdjacentAddressSearch(
 	P = BuildingRelationGraphNil;
 	found = false;
 
-	if(IsAdjacentBuildingRelationGraphEmpty(V)){
+	if (IsAdjacentBuildingRelationGraphEmpty(V))
+	{
 		return P;
-	} else{
+	}
+	else
+	{
 		P = BuildingRelationGraphVertexFirstAdjacent(V);
 		found = (BuildingRelationGraphAdjacentVertexInfo(P) == X);
-		while((BuildingRelationGraphAdjacentVertexNextAdjacent(P) != BuildingRelationGraphNil) && (!found)){
+		while ((BuildingRelationGraphAdjacentVertexNextAdjacent(P) != BuildingRelationGraphNil) && (!found))
+		{
 			P = BuildingRelationGraphAdjacentVertexNextAdjacent(P);
 			found = (BuildingRelationGraphAdjacentVertexInfo(P) == X);
 		}
-		if(BuildingRelationGraphAdjacentVertexInfo(P) != X){
+		if (BuildingRelationGraphAdjacentVertexInfo(P) != X)
+		{
 			P = BuildingRelationGraphNil;
 		}
 		return P;
@@ -205,12 +225,17 @@ void BuildingRelationGraphInsertVertex(BuildingRelationGraph *G, BuildingRelatio
 
 	V = BuildingRelationGraphVertexAlokasi(X);
 
-	if(IsBuildingRelationGraphEmpty(*G)){
+	if (IsBuildingRelationGraphEmpty(*G))
+	{
 		BuildingRelationGraphFirstAddress(*G) = V;
-	} else{
-		if(!IsVertexInBuildingRelationGraph(*G, X)){
+	}
+	else
+	{
+		if (!IsVertexInBuildingRelationGraph(*G, X))
+		{
 			VLast = BuildingRelationGraphFirstAddress(*G);
-			while(BuildingRelationGraphVertexNext(VLast) != BuildingRelationGraphNil){
+			while (BuildingRelationGraphVertexNext(VLast) != BuildingRelationGraphNil)
+			{
 				VLast = BuildingRelationGraphVertexNext(VLast);
 			}
 			BuildingRelationGraphVertexNext(VLast) = V;
@@ -228,12 +253,17 @@ void BuildingRelationGraphInsertAdjacentVertex(BuildingRelationGraphAddress V, B
 	AdjacentBuildingRelationGraphAddress PLast;
 
 	P = BuildingRelationGraphAdjacentVertexAlokasi(X);
-	if(IsAdjacentBuildingRelationGraphEmpty(V)){
+	if (IsAdjacentBuildingRelationGraphEmpty(V))
+	{
 		BuildingRelationGraphVertexFirstAdjacent(V) = P;
-	} else{
-		if(!IsAdjacentWithVertex(V, X)){
+	}
+	else
+	{
+		if (!IsAdjacentWithVertex(V, X))
+		{
 			PLast = BuildingRelationGraphVertexFirstAdjacent(V);
-			while(BuildingRelationGraphAdjacentVertexNextAdjacent(PLast) != BuildingRelationGraphNil){
+			while (BuildingRelationGraphAdjacentVertexNextAdjacent(PLast) != BuildingRelationGraphNil)
+			{
 				PLast = BuildingRelationGraphAdjacentVertexNextAdjacent(PLast);
 			}
 			BuildingRelationGraphAdjacentVertexNextAdjacent(PLast) = P;
@@ -253,15 +283,20 @@ void BuildingRelationGraphDeleteAdjacentVertex(BuildingRelationGraphAddress V, B
 	AdjacentBuildingRelationGraphAddress PSucc;
 	AdjacentBuildingRelationGraphAddress PDel;
 
-	if(IsAdjacentWithVertex(V, X)){
+	if (IsAdjacentWithVertex(V, X))
+	{
 		P = BuildingRelationGraphAdjacentAddressSearch(V, X);
-		if (P == BuildingRelationGraphVertexFirstAdjacent(V)){ // First Element
+		if (P == BuildingRelationGraphVertexFirstAdjacent(V))
+		{ // First Element
 			PDel = P;
 			BuildingRelationGraphVertexFirstAdjacent(V) = BuildingRelationGraphAdjacentVertexNextAdjacent(P);
 			BuildingRelationGraphAdjacentVertexDealokasi(PDel);
-		} else{
+		}
+		else
+		{
 			PPrec = BuildingRelationGraphVertexFirstAdjacent(V);
-			while(BuildingRelationGraphAdjacentVertexNextAdjacent(PPrec) != P){
+			while (BuildingRelationGraphAdjacentVertexNextAdjacent(PPrec) != P)
+			{
 				PPrec = BuildingRelationGraphAdjacentVertexNextAdjacent(PPrec);
 			}
 			PDel = P;
@@ -269,8 +304,7 @@ void BuildingRelationGraphDeleteAdjacentVertex(BuildingRelationGraphAddress V, B
 			BuildingRelationGraphAdjacentVertexNextAdjacent(PPrec) = PSucc;
 			BuildingRelationGraphAdjacentVertexDealokasi(PDel);
 		}
-
-	} 
+	}
 }
 
 void BuildingRelationGraphDeleteVertex(BuildingRelationGraph *G, BuildingRelationGraphInfotype X)
@@ -287,15 +321,20 @@ void BuildingRelationGraphDeleteVertex(BuildingRelationGraph *G, BuildingRelatio
 	BuildingRelationGraphAddress VSucc;
 	BuildingRelationGraphAddress VDel;
 
-	if(IsVertexInBuildingRelationGraph(*G, X)){
+	if (IsVertexInBuildingRelationGraph(*G, X))
+	{
 		V = BuildingRelationGraphAddressSearch(*G, X);
-		if(V == BuildingRelationGraphFirstAddress(*G)){ // First Element
+		if (V == BuildingRelationGraphFirstAddress(*G))
+		{ // First Element
 			VDel = V;
 			BuildingRelationGraphFirstAddress(*G) = BuildingRelationGraphVertexNext(V);
 			BuildingRelationGraphVertexDealokasi(VDel);
-		} else{
+		}
+		else
+		{
 			VPrec = BuildingRelationGraphFirstAddress(*G);
-			while(BuildingRelationGraphVertexNext(VPrec) != V){
+			while (BuildingRelationGraphVertexNext(VPrec) != V)
+			{
 				VPrec = BuildingRelationGraphVertexNext(VPrec);
 			}
 			VDel = V;
@@ -305,13 +344,16 @@ void BuildingRelationGraphDeleteVertex(BuildingRelationGraph *G, BuildingRelatio
 		}
 		// Deleting others adjacency
 		V = BuildingRelationGraphFirstAddress(*G);
-		if(IsAdjacentWithVertex(V, X)){
-			BuildingRelationGraphDeleteAdjacentVertex(V,X);
+		if (IsAdjacentWithVertex(V, X))
+		{
+			BuildingRelationGraphDeleteAdjacentVertex(V, X);
 		}
-		while(BuildingRelationGraphVertexNext(V) != BuildingRelationGraphNil){
+		while (BuildingRelationGraphVertexNext(V) != BuildingRelationGraphNil)
+		{
 			V = BuildingRelationGraphVertexNext(V);
-			if(IsAdjacentWithVertex(V, X)){
-				BuildingRelationGraphDeleteAdjacentVertex(V,X);
+			if (IsAdjacentWithVertex(V, X))
+			{
+				BuildingRelationGraphDeleteAdjacentVertex(V, X);
 			}
 		}
 	}
@@ -325,12 +367,16 @@ int BuildingRelationGraphNbElmt(BuildingRelationGraph G)
 
 	count = 0;
 
-	if(IsBuildingRelationGraphEmpty(G)){
+	if (IsBuildingRelationGraphEmpty(G))
+	{
 		return count;
-	} else{
+	}
+	else
+	{
 		V = BuildingRelationGraphFirstAddress(G);
 		count += 1;
-		while(BuildingRelationGraphVertexNext(V) != BuildingRelationGraphNil){
+		while (BuildingRelationGraphVertexNext(V) != BuildingRelationGraphNil)
+		{
 			V = BuildingRelationGraphVertexNext(V);
 			count += 1;
 		}
@@ -349,32 +395,38 @@ void BuildingRelationGraphPrintInfo(BuildingRelationGraph G)
 	BuildingRelationGraphAddress V;
 	AdjacentBuildingRelationGraphAddress P;
 
-	if(!IsBuildingRelationGraphEmpty(G)){
+	if (!IsBuildingRelationGraphEmpty(G))
+	{
 		V = BuildingRelationGraphFirstAddress(G);
-		printf("%d berhubungan dengan",BuildingRelationGraphVertexInfo(V));
+		printf("%d berhubungan dengan", BuildingRelationGraphVertexInfo(V));
 
-		if(!IsAdjacentBuildingRelationGraphEmpty(V)){
+		if (!IsAdjacentBuildingRelationGraphEmpty(V))
+		{
 			P = BuildingRelationGraphVertexFirstAdjacent(V);
-			printf(" %d",BuildingRelationGraphAdjacentVertexInfo(P));
-			
-			while(BuildingRelationGraphAdjacentVertexNextAdjacent(P) != BuildingRelationGraphNil){
+			printf(" %d", BuildingRelationGraphAdjacentVertexInfo(P));
+
+			while (BuildingRelationGraphAdjacentVertexNextAdjacent(P) != BuildingRelationGraphNil)
+			{
 				P = BuildingRelationGraphAdjacentVertexNextAdjacent(P);
-				printf(" %d",BuildingRelationGraphAdjacentVertexInfo(P));
+				printf(" %d", BuildingRelationGraphAdjacentVertexInfo(P));
 			}
 		}
 		printf("\n");
-		while(BuildingRelationGraphVertexNext(V) != BuildingRelationGraphNil){
+		while (BuildingRelationGraphVertexNext(V) != BuildingRelationGraphNil)
+		{
 			V = BuildingRelationGraphVertexNext(V);
-			printf("%d berhubungan dengan",BuildingRelationGraphVertexInfo(V));
-			if(!IsAdjacentBuildingRelationGraphEmpty(V)){
+			printf("%d berhubungan dengan", BuildingRelationGraphVertexInfo(V));
+			if (!IsAdjacentBuildingRelationGraphEmpty(V))
+			{
 				P = BuildingRelationGraphVertexFirstAdjacent(V);
-				printf(" %d",BuildingRelationGraphAdjacentVertexInfo(P));
-				while(BuildingRelationGraphAdjacentVertexNextAdjacent(P) != BuildingRelationGraphNil){
+				printf(" %d", BuildingRelationGraphAdjacentVertexInfo(P));
+				while (BuildingRelationGraphAdjacentVertexNextAdjacent(P) != BuildingRelationGraphNil)
+				{
 					P = BuildingRelationGraphAdjacentVertexNextAdjacent(P);
-					printf(" %d",BuildingRelationGraphAdjacentVertexInfo(P));
+					printf(" %d", BuildingRelationGraphAdjacentVertexInfo(P));
 				}
 			}
 			printf("\n");
 		}
-	} 
+	}
 }

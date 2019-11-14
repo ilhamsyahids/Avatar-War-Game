@@ -36,7 +36,6 @@ void CloseFile(){
     fclose(pita);
 }
 
-
 void AdvChar(){
     retval = fscanf(pita, "%c", &CC);
 }
@@ -48,7 +47,3 @@ void AdvInt(){
 void AdvLine(){
     retval = fscanf(pita, "\n", &CC);
 }
-
-
-
-
