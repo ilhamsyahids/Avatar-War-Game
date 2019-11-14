@@ -32,23 +32,23 @@ void level_up(Player P, BuildingArray T);
 /* 	F.S. Jika pasukan yang dimiliki cukup, level bangunan bertambah 1. */
 /*	Jika pasukan yang dimiliki kurang, level bangunan tetap. */
 
-void skill;
+void skill();
 /* 	Digunakan untuk memakai skill yang sedang dimiliki oleh pemain. */
 
-void undo;
+void undo();
 /* 	Digunakan untuk membatalkan perintah terakhir. */
 /* 	Pemain hanya dapat melakukan UNDO hingga command sesudah END_TURN/SKILL. 
 	Artinya, setelah command END_TURN/SKILL, pemain tidak dapat melakukan UNDO lagi. */
 
-void end_turn;
+void end_turn();
 /* 	Digunakan untuk mengakhiri giliran dari pemain. */
 
-void move;
+void move();
 /* 	Digunakan untuk memindahkan pasukan dari suatu bangunan ke bangunan lain 
 	milik pemain yang terhubung dengan bangunan tersebut. 
 	MOVE hanya dapat dilakukan sekali untuk tiap bangunan pada tiap gilirannya. */
 
-void exit;
+void exit();
 /* 	Digunakan untuk keluar dari permainan/program. */
 
 #endif
