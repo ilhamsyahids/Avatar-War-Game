@@ -109,6 +109,23 @@ void SkillQueueDelSkill(SkillQueue *Q, SkillQueueInfotype *X){
 }
 
 
+SkillQueueInfotype UseSkill(SkillQueue *Q){
+/* Proses: Menghapus X pada Q dengan aturan FIFO */
+/* I.S. Q tidak mungkin kosong */
+/* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
+        Q mungkin kosong */
+    SkillQueueInfotype X;
+    X = SkillQueueInfoHead(*Q);
+    if (SkillQueueHead(*Q) == SkillQueueTail(*Q)){
+        SkillQueueHead(*Q) = SkillQueueNil;
+        SkillQueueTail(*Q) = SkillQueueNil;
+    }
+    else{
+        SkillQueueHead(*Q) = (SkillQueueHead(*Q) % SkillQueueMaxElement(*Q)) + 1;
+    }
+    return X;
+}
+
 void PrintQueueSkill(SkillQueue Q){
 /* Proses: Mencetak seluruh Skill pada QueueSkill dengan aturan FIFO */
 /* I.S. Sembarang */
