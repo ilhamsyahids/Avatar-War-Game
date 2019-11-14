@@ -231,7 +231,7 @@ void BuildingRelationGraphInsertAdjacentVertex(BuildingRelationGraphAddress V, B
 	if(IsAdjacentBuildingRelationGraphEmpty(V)){
 		BuildingRelationGraphVertexFirstAdjacent(V) = P;
 	} else{
-		if(!IsAdjacentWithVertex(*G, X)){
+		if(!IsAdjacentWithVertex(V, X)){
 			PLast = BuildingRelationGraphVertexFirstAdjacent(V);
 			while(BuildingRelationGraphAdjacentVertexNextAdjacent(PLast) != BuildingRelationGraphNil){
 				PLast = BuildingRelationGraphAdjacentVertexNextAdjacent(PLast);
