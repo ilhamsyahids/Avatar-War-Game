@@ -68,7 +68,7 @@ void LoadMapSize()
 	AdvInt();
 	MapRow = X;
 
-	MapMatrixCreateEmpty(&Map, MapRow, MapCol);
+	//MapMatrixCreateEmpty(&Map, MapRow, MapCol);
 
 	AdvLine();
 
@@ -127,7 +127,7 @@ void LoadBuildingList()
 	AdvLine();
 
 	// Load Other Buildings
-	for(i = 1, i <= BuildingArrayMaxElement(Record) - 2, i++){
+	for(i = 1; i <= BuildingArrayMaxElement(Record) - 2; i++){
 		AdvChar();
 		if(CC == 'C'){
 			kind = 1;
@@ -175,4 +175,5 @@ void CompleteFileLoad()
 {
 	GameMapCreate(&G, Map, Record, CurrentPlayer, BuildingRelation);
 }
+
 #endif
