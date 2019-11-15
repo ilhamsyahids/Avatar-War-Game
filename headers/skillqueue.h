@@ -104,6 +104,10 @@ void SkillQueueDelSkill(SkillQueue *Q, SkillQueueInfotype *X);
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
+SkillQueueInfotype SkillUseSkill(SkillQueue *Q);
+/* Mengeluarkan HEAD dari Q yang berisi Skill menghapusnya dari Q dengan aturan FIFO */
+/* X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer setelah
+    penghapusan Q mungkin kosong */
 
 void PrintQueueSkill(SkillQueue Q);
 /* Proses: Mencetak seluruh Skill pada QueueSkill dengan aturan FIFO */

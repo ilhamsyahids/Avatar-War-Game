@@ -109,20 +109,12 @@ void SkillQueueDelSkill(SkillQueue *Q, SkillQueueInfotype *X){
 }
 
 
-SkillQueueInfotype UseSkill(SkillQueue *Q){
-/* Proses: Menghapus X pada Q dengan aturan FIFO */
-/* I.S. Q tidak mungkin kosong */
-/* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
-        Q mungkin kosong */
+SkillQueueInfotype SkillUseSkill(SkillQueue *Q){
+/* Mengeluarkan HEAD dari Q yang berisi Skill menghapusnya dari Q dengan aturan FIFO */
+/* X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer setelah
+    penghapusan Q mungkin kosong */
     SkillQueueInfotype X;
-    X = SkillQueueInfoHead(*Q);
-    if (SkillQueueHead(*Q) == SkillQueueTail(*Q)){
-        SkillQueueHead(*Q) = SkillQueueNil;
-        SkillQueueTail(*Q) = SkillQueueNil;
-    }
-    else{
-        SkillQueueHead(*Q) = (SkillQueueHead(*Q) % SkillQueueMaxElement(*Q)) + 1;
-    }
+    SkillQueueDelSkill(Q,&X);
     return X;
 }
 
@@ -139,8 +131,8 @@ void PrintQueueSkill(SkillQueue Q){
     }else{
         printf("SKILL : ");
         while (!IsSkillQueueEmpty(Q)){
-            printf("%s",SkillGetName(SkillKind(SkillQueueInfoHead(Q))));
 			SkillQueueDelSkill(&Q,&tempDel);
+            printf("%s",SkillGetName(SkillKind(tempDel)));
 			if(!IsSkillQueueEmpty(Q)){
 				printf(", ");
 			}
