@@ -244,3 +244,7 @@ See naming convention for details
 <14/11/2019 17:45> by Ilham
 1. buildingrelationgraph.c, graph.c mesinkar.c
 	[UPDATE] styled
+
+<15/11/2019 16:35> by Ilham
+1. GameMap.c
+	[NEW] added
