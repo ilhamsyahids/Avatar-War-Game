@@ -200,10 +200,13 @@ void BuildingListPrintInfo(BuildingList L, BuildingArray BL)
 {
     if (!IsBuildingListEmpty(L))
     {
+        int count = 0;
         BuildingListAddress P = BuildingListFirstAddress(L);
-        while (BuildingListElementNext(P) != BuildingListNil)
+        while (P != BuildingListNil)
         {
+            printf("%d ", count);
             BuildingPrintInfo(BuildingArrayElement(BL, BuildingListElementInfo(P)));
+            printf("\n");
             P = BuildingListElementNext(P);
         }
     }
