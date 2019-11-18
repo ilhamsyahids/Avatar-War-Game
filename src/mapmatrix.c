@@ -4,6 +4,8 @@
 #include "boolean.h"
 #include "point.h"
 #include "buildingarray.h"
+#include "mapmatrix.h"
+#include "player.h"
 
 /*#include "matrix.h"
 ///////////////////////////////////
@@ -34,12 +36,12 @@ void MapMatrixCreateEmpty(MapMatrix *M, int row, int col){
     MapMatrixNBrsEff(*M) = row;
 	MapMatrixNKolEff(*M) = col;
 	int i,j;
+    Point P;
 	for (i = 1; i <= row; i++)
 		for (j = 1; j <= col; j++)
-			Elmt(*M,i,j) = 0;
-    /*
-    MatrixCreateEmpty(*M, row, col); 
-    */
+            PointX(P)=0;
+            PointY(P)=0;
+			MapMatrixElement(*M,P) = 0;
 }
 /* Membentuk sebuah MapMatrix "kosong" yang siap diisi berukuran row x column di "ujung kiri" memori */
 /* I.S. row dan col adalah valid untuk memori matriks yang dibuat */
@@ -50,12 +52,12 @@ void MapMatrixCreateEmpty(MapMatrix *M, int row, int col){
 // 		 PREDIKAT		 //
 ///////////////////////////
 boolean IsMapMatrixIdxValid(MapMatrixIdxType index){
-    return index >= MapMatrixBarisMinimum && index <= MapMatrixBarisMaximum && index >= MapMatrixKolomMinimimum && index <= MapMatrixKolomMaximum;
+    return (PointX(index) >= MapMatrixBarisMinimum) && (PointX(index) <= MapMatrixBarisMaximum) && (PointY(index) >= MapMatrixKolomMinimimum) && (PointY(index) <= MapMatrixKolomMaximum);
 }
 /* Mengirimkan true jika PointX(index), PointY(index) adalah indeks yang valid untuk matrix apa pun */
 
 boolean IsMapMatrixIdxEff(MapMatrix M, MapMatrixIdxType index){
-    return ((MapMatrixBarisMinimum<=index) && (index<=MapMatrixNBrsEff(M)) && ((MapMatrixKolomMinimimum<=index) && (index<=MapMatrixNKolEff(M))));
+    return ((MapMatrixBarisMinimum<=PointX(index)) && (PointX(index)<=MapMatrixNBrsEff(M)) && ((MapMatrixKolomMinimimum<=PointY(index)) && (PointY(index)<=MapMatrixNKolEff(M))));
 }
 /* Mengirimkan true jika PointX(index), PointY(index) adalah indeks efektif bagi M */
 
@@ -64,9 +66,6 @@ boolean IsMapMatrixIdxEff(MapMatrix M, MapMatrixIdxType index){
 ///////////////////////////////////
 int MapMatrixNBElmt(MapMatrix M){
     return MapMatrixNBrsEff(M) * MapMatrixNKolEff(M);
-    /*
-    NBElmt(M);
-    */
 }
 /* Mengirimkan banyaknya elemen M */
 
@@ -90,7 +89,37 @@ int MapMatrixLastIdxKolom(MapMatrix M){
 }
 /* Mengirimkan indeks kolom terbesar M */
 
-void MapMatrixPrintMap(MapMatrix M);
+/*void MapMatrix(MapMatrix *M, BuildingArray N){
+    Point p;
+    for (i = 1; i <= BuildingArrayNeff(T); i++)
+    {
+        p = BuildingPosition(BuildingArrayElement(N, i));
+        MapMatrixElement(*M,p);
+    }
+}*/
+
+
+void MapMatrixPrintMap(MapMatrix M){
+    int i,j;
+    for (i=MapMatrixFirstIdxBaris(M); i<=MapMatrixLastIdxBaris(M); i++){
+        for (j=MapMatrixFirstIdxKolom(M); j<=MapMatrixLastIdxKolom(M); j++){
+            if (i==1 || i==MapMatrixLastIdxBaris || j==1 || j==MapMatrixLastIdxKolom){          
+                printf("*");}          
+            else{
+                printf(" ");}
+        }
+    }
+}    
+            /*switch (MapMatrixElement(M,i,j)){
+				case 'P' : printf(COLOR_LGREEN "%c " COLOR_RESET, Elmt(M,i,j));break;
+				case 'M' : printf(COLOR_WHITE "%c " COLOR_RESET, Elmt(M,i,j));break;
+				default : printf("%c ",Elmt(M,i,j));break;
+			}
+        }
+        printf("\n");
+    }
+}
+}*/
 /* I.S. M terdefinisi */
 /* F.S. Map dicetak ke layar dengan format 
 *********
@@ -106,5 +135,21 @@ Tidak ada spasi antara bangunan 1 dengan yang lain
 Ada enter di setiap akhir baris 
 */
 
-Building MapMatrixGetBuilding(MapMatrix M, MapMatrixIdxType pos, BuildingArray T);
+Building MapMatrixGetBuilding(MapMatrix M, MapMatrixElType nomorbuildingarray, BuildingArray T){
+    Point p;
+    int i = 1;
+    int j = 1;
+    bool found = false;
+    while(i <= MapMatrixBarisMaximum(M) && j <= MapMatrixKolomMaximum(M) && !found){
+        PointX(p) = i;
+        PointY(p) = j;
+        if (MapMatrixElement(M,p) == nomorbuildingarray){
+            found = true;
+        }
+    }
+    return BuildingArrayElement(T,nomorbuildingarray);
+}
 /* Mengembalikan building pada point pos */
+
+//procedure func(input a, output b, input/output c)
+// procedure func(a, *b, *c)
