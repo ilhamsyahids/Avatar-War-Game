@@ -23,21 +23,13 @@
 #include "gamemap.h"
 
 ///////////////////////////////////
-//		  CONST & TYPEDEF	 	 //
-///////////////////////////////////
-GameMap G;
-MapMatrix Map;
-BuildingArray Record;
-Player CurrentPlayer;
-BuildingRelationGraph BuildingRelation;
-
-///////////////////////////////////
 // 	     FILELOADER OPERATIONS 	 //
 ///////////////////////////////////
 void CompleteFileLoad()
 /* Mengembalikan GameMap yang sudah berisi data lengkap dari file */
 {
-	GameMapCreate(&G, Map, Record, CurrentPlayer, BuildingRelation);
+	CurrentPlayer = Player1;
+	GameMapCreate(&GameState, Map, Record, CurrentPlayer, BuildingRelation);
 }
 
 
@@ -76,6 +68,7 @@ void LoadBuildingList()
 	int PositionX;
 	int PositionY;
 	Building B;
+	Point P;
 
 	// Load Player 1's Castle
 	AdvChar();
@@ -83,18 +76,25 @@ void LoadBuildingList()
 	PositionX = X;
 	AdvInt();
 	PositionY = X;
-	B = BuildingCreate(1, 1, PointCreate(PositionX, PositionY));
+	P = PointCreate(PositionX, PositionY);
+	B = BuildingCreate(1, 1, P);
+	printf("%d\n", BuildingArrayNeff(Record));
+	printf("%d\n", BuildingArrayMaxElement(Record));
 	BuildingArrayAddAsLastElement(&Record, B);
+	MapMatrixElement(Map, P) = 1;
 	AdvLine();
 
+	
 	// Load Player 2's Castle
 	AdvChar();
 	AdvInt();
 	PositionX = X;
 	AdvInt();
 	PositionY = X;
-	B = BuildingCreate(1, 2, PointCreate(PositionX, PositionY));
+	P = PointCreate(PositionX, PositionY);
+	B = BuildingCreate(1, 2, P);
 	BuildingArrayAddAsLastElement(&Record, B);
+	MapMatrixElement(Map, P) = 2;
 	AdvLine();
 
 	// Load Other Buildings
@@ -113,8 +113,10 @@ void LoadBuildingList()
 		PositionX = X;
 		AdvInt();
 		PositionY = X;
-		B = BuildingCreate(kind, 0, PointCreate(PositionX, PositionY));
+		P = PointCreate(PositionX, PositionY);
+		B = BuildingCreate(kind, 0, P);
 		BuildingArrayAddAsLastElement(&Record, B);
+		MapMatrixElement(Map, P) = i + 2;
 		AdvLine();
 	}
 }
@@ -152,12 +154,12 @@ void LoadMapSize()
 	int MapRow;
 
 	AdvInt();
-	MapCol = X;
-
-	AdvInt();
 	MapRow = X;
 
-	//MapMatrixCreateEmpty(&Map, MapRow, MapCol);
+	AdvInt();
+	MapCol = X;
+
+	MapMatrixCreateEmpty(&Map, MapRow, MapCol);
 
 	AdvLine();
 
@@ -181,6 +183,8 @@ void StartLoading(char* filename)
 /* F.S : File siap dibaca dan sekuens pembacaan dimulai */
 {
 	OpenFile(filename);
+	Player1 = PlayerCreate(1, 'b');
+	Player2 = PlayerCreate(2, 'r');
 	LoadingSequence();
 }
 

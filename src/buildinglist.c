@@ -35,7 +35,7 @@ BuildingListAddress BuildingListElementAlokasi(BuildingListInfotype X)
 /* menghasilkan P, maka BuildingListElementInfo(P)=X, BuildingListElementNext(P)=Nil */
 /* Jika alokasi gagal, mengirimkan Nil */
 {
-    BuildingListElement *P = (BuildingListElement *)malloc(sizeof(BuildingListElement));
+    BuildingListAddress P = (BuildingListAddress)malloc(sizeof(BuildingListElement));
 
     if (P != BuildingListNil)
     {
@@ -49,12 +49,12 @@ BuildingListAddress BuildingListElementAlokasi(BuildingListInfotype X)
 ///////////////////////////
 //       DESTRUCTOR      //
 ///////////////////////////
-void BuildingListElementDealokasi(BuildingListAddress *P)
+void BuildingListElementDealokasi(BuildingListAddress P)
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian address P */
 {
-    free(*P);
+    free(P);
 }
 
 ///////////////////////////
@@ -134,11 +134,11 @@ void BuildingListDeleteValueFirst(BuildingList *L, BuildingListInfotype *X)
 /* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen pertama di-dealokasi */
 {
-    BuildingListAddress *P = BuildingListFirstAddress(*L);
-    BuildingListFirstAddress(*L) = BuildingListElementNext(*P);
-    (*X) = BuildingListElementInfo(*P);
-    BuildingListElementNext(*P) = BuildingListNil;
-    BuildingArrayDealokasi(*P);
+    BuildingListAddress P = BuildingListFirstAddress(*L);
+    BuildingListFirstAddress(*L) = BuildingListElementNext(P);
+    (*X) = BuildingListElementInfo(P);
+    BuildingListElementNext(P) = BuildingListNil;
+    BuildingListElementDealokasi(P);
 }
 
 void BuildingListDeleteValueLast(BuildingList *L, BuildingListInfotype *X)
@@ -146,19 +146,19 @@ void BuildingListDeleteValueLast(BuildingList *L, BuildingListInfotype *X)
 /* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen terakhir di-dealokasi */
 {
-    BuildingListAddress *P = BuildingListFirstAddress(*L);
-    if (*P == BuildingListNil)
+    BuildingListAddress P = BuildingListFirstAddress(*L);
+    if (P == BuildingListNil)
         BuildingListCreateEmpty(L);
     else
     {
-        BuildingListAddress last = *P;
+        BuildingListAddress last = P;
         while (BuildingListElementNext(BuildingListElementNext(last)) != BuildingListNil)
             last = BuildingListElementNext(last);
         last = BuildingListElementNext(last);
-        (*P) = BuildingListElementNext(last);
-        (*X) = BuildingListElementInfo(*P);
+        (P) = BuildingListElementNext(last);
+        (*X) = BuildingListElementInfo(P);
         BuildingListElementNext(last) = BuildingListNil;
-        BuildingArrayDealokasi(*P);
+        BuildingListElementDealokasi(P);
     }
 }
 
@@ -171,15 +171,15 @@ void BuildingListDeleteValue(BuildingList *L, BuildingListInfotype X)
 /* Jika tidak ada elemen list dengan BuildingListElementInfo(P)=X, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
 {
-    BuildingListAddress *P = BuildingListAddressSearch(*L, X);
-    if (*P = BuildingListNil)
+    BuildingListAddress P = BuildingListAddressSearch(*L, X);
+    if (P = BuildingListNil)
     {
         BuildingListAddress prev = BuildingListFirstAddress(*L);
         if (prev == P)
             BuildingListDeleteValueFirst(L, &X);
         else
         {
-            while (BuildingListElementNext(prev) != *P)
+            while (BuildingListElementNext(prev) != P)
                 prev = BuildingListElementNext(prev);
             BuildingListElementNext(prev) = BuildingListElementNext(BuildingListElementNext(prev));
         }

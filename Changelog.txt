@@ -276,8 +276,33 @@ See naming convention for details
 	[UPDATE] implementation AddAsLastElement
 
 9. player.c
-	[NEW] full implementation
+	[NEW] half implementation
 
 10. point.c
 	[UPDATE] Change MakePoint to PointCreate
 	[UPDATE] Reimplementation of method that needed MakePoint
+
+<19/11/2019 09:21> by Gunawan
+1. player.c
+	[UPDATE] full implementation
+
+2. fileloader.c fileloader .h
+	[UPDATE] delete extern variable
+	[UPDATE] fix bugs
+
+3. gamemap.c gamemap.h
+	[UPDATE] add extern variables from fileloader
+
+4. buildinglist.c buildinglist.h
+	[UPDATE] redefinition of BuildingListElementDealokasi
+	[UPDATE] adjustment for methods needing BuildingListElementDealokasi
+	[UPDATE] reimplementation of BuildingListElementAlokasi
+
+5. skillqueue.c
+	[UPDATE] edit printskillqueue
+
+6. pitakar.txt
+	[NEW] Copy configuration from pdf
+
+7. main.c (not in src)
+	[NEW] base for file loading

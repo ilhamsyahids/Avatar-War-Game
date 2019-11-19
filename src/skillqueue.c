@@ -129,7 +129,7 @@ void PrintQueueSkill(SkillQueue Q){
     if (IsSkillQueueEmpty(Q)){
         printf("Tidak Ada Skill Tersedia\n");
     }else{
-        printf("SKILL : ");
+        printf("Skill Available :\n");
         while (!IsSkillQueueEmpty(Q)){
 			SkillQueueDelSkill(&Q,&tempDel);
             printf("%s",SkillGetName(SkillKind(tempDel)));

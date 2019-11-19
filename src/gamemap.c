@@ -21,6 +21,17 @@
 #include "buildingrelationgraph.h"
 #include "gamemap.h"
 
+///////////////////////////////////
+//		  CONST & TYPEDEF	 	 //
+///////////////////////////////////
+GameMap GameState;
+MapMatrix Map;
+BuildingArray Record;
+Player CurrentPlayer;
+Player Player1;
+Player Player2;
+BuildingRelationGraph BuildingRelation;
+
 ///////////////////////////
 // 		CONSTRUCTOR 	 //
 ///////////////////////////
@@ -68,6 +79,6 @@ void GameMapPrintInfo(GameMap G)
 
 */
 {
-	MapMatrixPrintMap(BuildingMap(G));
+	MapMatrixPrintMap(BuildingMap(G), BuildingRecord(G));
 	BuildingListPrintInfo(PlayerOwnedBuildingList(CurrentPlayer(G)), BuildingRecord(G));
 }

@@ -69,7 +69,7 @@ BuildingListAddress BuildingListElementAlokasi(BuildingListInfotype X);
 ///////////////////////////
 //       DESTRUCTOR      //
 ///////////////////////////
-void BuildingListElementDealokasi(BuildingListAddress *P);
+void BuildingListElementDealokasi(BuildingListAddress P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian address P */

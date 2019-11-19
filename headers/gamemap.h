@@ -23,10 +23,6 @@
 #include "player.h"
 #include "buildingrelationgraph.h"
 
-///////////////////////////////////
-//		  CONST & TYPEDEF	 	 //
-///////////////////////////////////
-
 ///////////////////////////////
 // 		Definisi GameMap  	 //
 ///////////////////////////////
@@ -37,6 +33,17 @@ typedef struct
 	Player CurrentPlayer;					/* Player yang sedang menjalankan turn saat itu */
 	BuildingRelationGraph BuildingRelation; /* Relasi antar bangunan pada peta */
 } GameMap;
+
+///////////////////////////////////
+//		  CONST & TYPEDEF	 	 //
+///////////////////////////////////
+extern GameMap GameState;
+extern MapMatrix Map;
+extern BuildingArray Record;
+extern Player CurrentPlayer;
+extern Player Player1;
+extern Player Player2;
+extern BuildingRelationGraph BuildingRelation;
 
 //////////////////////////
 //        SELECTOR      //

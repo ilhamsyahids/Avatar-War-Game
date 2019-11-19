@@ -48,7 +48,7 @@ void PlayerInitialize(Player *P, BuildingArray T)
 {
     BuildingList BL;
     SkillQueue S;
-    totalSoldier total;
+    int total;
 
     // Create Building List and Skill queue
     BuildingListCreateEmpty(&BL);
@@ -90,8 +90,6 @@ Skill Available : <Skill Name>
 {
     printf("Player %d\n", PlayerRole(P));
     PlayerPrintOwnedBuilding(P, T);
-    printf("Skill Available : \n");
-    printf("%s\n", )
     PrintQueueSkill(PlayerCurrentSkillQueue(P));
     printf("\n");
 }
@@ -117,7 +115,7 @@ void PlayerPrintOwnedBuilding(Player P, BuildingArray T)
     if(V){
         Building B = BuildingArrayElement(T,BuildingListElementInfo(V));
         printf("%d. ", i);
-        char* name = BuildingGetName(B);
+        char* name = BuildingGetName(BuildingKind(B));
         printf("%s ", name);
         PointPrint(BuildingPosition(B));
         printf(" %d ", BuildingSoldierCount(B));
@@ -129,7 +127,7 @@ void PlayerPrintOwnedBuilding(Player P, BuildingArray T)
         V = BuildingListElementNext(V);
         Building B = BuildingArrayElement(T,BuildingListElementInfo(V));
         printf("%d. ", i);
-        char* name = BuildingGetName(B);
+        char* name = BuildingGetName(BuildingKind(B));
         printf("%s ", name);
         PointPrint(BuildingPosition(B));
         printf(" %d ", BuildingSoldierCount(B));
@@ -147,7 +145,8 @@ kemudian menghitung kembali total pasukan */
             Setelah T selesai diiterasi, hitung jumlah seluruh pasukan */
 {
     BuildingList BL;
-    totalSoldier total;
+    int total;
+    SkillQueue S;
 
     // Create Building List and Skill queue
     BuildingListCreateEmpty(&BL);
@@ -169,11 +168,11 @@ kemudian menghitung kembali total pasukan */
 int PlayerBuildingCount(Player P)
 /* Mengembalikan berapa banyak bangunan yang dimiliki player */
 {
-    
+    return BuildingListNbElmt(PlayerOwnedBuildingList(P));
 }
 
 int PlayerSoldierCount(Player P)
 /* Mengembalikan total berapa banyak pasukan yang dimiliki player */
 {
-    
+    return PlayerTotalSoldier(P);
 }

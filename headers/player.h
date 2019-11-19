@@ -59,7 +59,7 @@ typedef struct {
 Player PlayerCreate(int role, int color);
 /* Mengembalikan Player yang baru diset role dan colornya saja */
 
-void PlayerInitialize(Player *P);
+void PlayerInitialize(Player *P, BuildingArray T);
 /* Menginisialisasi atribut lain dari P yang belum diset */
 /* I.S. P sudah dibuat dengan PlayerCreate */
 /* F.S. playerBuildingList, totalSoldier, dan playerSkillQueue diset */
@@ -72,7 +72,7 @@ void PlayerInitialize(Player *P);
 //////////////////////////////////
 //      PLAYER OPERATIONS       //
 //////////////////////////////////
-void PlayerPrintCurrentStatus(Player P);
+void PlayerPrintCurrentStatus(Player P, BuildingArray T);
 /* Mencetak status player sekarang ke layar */
 /* I.S. P terdefinisi */
 /* F.S. P tercetak ke layar dengan format:
@@ -95,7 +95,7 @@ void PlayerPrintOwnedBuilding(Player P, BuildingArray T);
             BuildingArray, maka untuk setiap index pada list ambil bangunan yang
             berkorespondensi pada T */
 
-void PlayerRefreshStatus(Player P, BuildingArray T);
+void PlayerRefreshStatus(Player *P, BuildingArray T);
 /* Memperbarui PlayerOwnedBuildingList dengan BuildingArray terbaru,
 kemudian menghitung kembali total pasukan */
 /* I.S. P dan T terdefinisi */

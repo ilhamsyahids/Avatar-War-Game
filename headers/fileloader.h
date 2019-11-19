@@ -22,15 +22,6 @@
 #include "gamemap.h"
 
 ///////////////////////////////////
-//		  CONST & TYPEDEF	 	 //
-///////////////////////////////////
-extern GameMap G;
-extern MapMatrix Map;
-extern BuildingArray Record;
-extern Player CurrentPlayer;
-extern BuildingRelationGraph BuildingRelation;
-
-///////////////////////////////////
 // 	     FILELOADER OPERATIONS 	 //
 ///////////////////////////////////
 void LoadingSequence();
