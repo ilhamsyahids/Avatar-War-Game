@@ -248,3 +248,36 @@ See naming convention for details
 <15/11/2019 16:35> by Ilham
 1. GameMap.c
 	[NEW] added
+
+<19/11/2019 07:49> by Gunawan
+1. mapmatrix.h
+	[UPDATE] redefinition of printmapmatrix
+
+2. mapmatrix.c
+	[UPDATE] reimplementation Create, Print, GetBuilding
+
+3. mapmatrix_driver.c
+	[NEW] make a new driver for mapmatrix, can already print map but without color
+
+4. building.h
+	[UPDATE] new method BuildingGetAcronym to get acronym of each building kind
+
+5. building.c
+	[UPDATE] implementation of BuildingGetAcronym
+
+6. fileloader.h
+	[UPDATE] add Relationgraph as variable
+
+7. fileloader.c
+	[UPDATE] full implementation
+
+8. buildingarray.c
+	[UPDATE] fix createempty where previous malloc is size of BuildingArray
+	[UPDATE] implementation AddAsLastElement
+
+9. player.c
+	[NEW] full implementation
+
+10. point.c
+	[UPDATE] Change MakePoint to PointCreate
+	[UPDATE] Reimplementation of method that needed MakePoint
