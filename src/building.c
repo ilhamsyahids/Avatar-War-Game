@@ -286,6 +286,20 @@ boolean BuildingGetP(int kind, int level)
     return value;
 }
 
+char BuildingGetAcronym(int kind)
+/* Mengirimkan akronim nama building untuk kind tertentu */
+{
+    char Acronym;
+    if (kind == 1)
+        Acronym = 'C';
+    else if (kind == 2)
+        Acronym = 'T';
+    else if (kind == 3)
+        Acronym = 'F';
+    else
+        Acronym = 'V';
+    return Acronym;
+}
 char *BuildingGetName(int kind)
 {
     /* Mengirimkan nama building dengan kind tertentu */

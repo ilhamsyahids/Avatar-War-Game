@@ -1,10 +1,38 @@
+//==============================================//
+//                                              //
+//                   Point                      //
+//                                              //
+//----------------------------------------------//
+// File : point.h */                            //
+//----------------------------------------------//
+// Definisi ADT Point                           //
+// Point adalah representasi titik di koordinat //
+// 2 dimensi dengan titik seperti index matrix  //
+//==============================================//
+
+//----------------------------------------------//
+//            Contoh Visualisasi titik          //
+//----------------------------------------------//
+//                   A  .  .                    //
+//                   .  .  .                    //
+//                   .  B  .                    //
+//                                              //
+// Ruang 3x3 di atas adalah bidang koordinat 2D //
+// A menempati Point (1,1)                      //
+// B menempati Point (3,2)                      //
+//----------------------------------------------//
+
+///////////////////////////
+//        INCLUDE        //
+///////////////////////////
 #include "point.h"
 #include <stdio.h>
 
-#define PI 3.14159265358979323846
 
-/* *** Konstruktor membentuk Point *** */
-Point MakePoint(int X, int Y)
+///////////////////////////
+//       CONSTRUCTOR     //
+///////////////////////////
+Point PointCreate(int X, int Y)
 /* Membentuk sebuah Point dari komponen-komponennya */
 {
     // KAMUS
@@ -16,6 +44,18 @@ Point MakePoint(int X, int Y)
     return P;
 }
 
+///////////////////////////
+//        PREDIKAT       //
+///////////////////////////
+boolean PointEQ(Point P1, Point P2)
+/* Mengirimkan true jika P1 = P2 : absis dan ordinatnya sama */
+{
+    return ((PointX(P1) == PointX(P2) && (PointY(P1) == PointY(P2))));
+}
+
+//////////////////////////////////
+//      POINT OPERATIONS        //
+//////////////////////////////////
 /* *** KELOMPOK Interaksi dengan I/O device, BACA/TULIS  *** */
 void PointRead(Point *P)
 /* Membaca nilai absis dan ordinat dari keyboard dan membentuk
@@ -29,7 +69,7 @@ void PointRead(Point *P)
     int x, y;
     scanf("%d", &x);
     scanf("%d", &y);
-    *P = MakePoint(x, y);
+    *P = PointCreate(x, y);
 }
 
 void PointPrint(Point P)
@@ -41,11 +81,4 @@ void PointPrint(Point P)
 /* F.S. P tertulis di layar dengan format "(X,Y)" */
 {
     printf("(%d,%d)", PointX(P), PointY(P));
-}
-
-/* *** Kelompok operasi relasional terhadap Point *** */
-boolean PointEQ(Point P1, Point P2)
-/* Mengirimkan true jika P1 = P2 : absis dan ordinatnya sama */
-{
-    return ((PointX(P1) == PointX(P2) && (PointY(P1) == PointY(P2))));
 }

@@ -98,7 +98,7 @@ int MapMatrixLastIdxBaris(MapMatrix M);
 int MapMatrixLastIdxKolom(MapMatrix M);
 /* Mengirimkan indeks kolom terbesar M */
 
-void MapMatrixPrintMap(MapMatrix M);
+void MapMatrixPrintMap(MapMatrix M, BuildingArray T);
 /* I.S. M terdefinisi */
 /* F.S. Map dicetak ke layar dengan format 
 *********

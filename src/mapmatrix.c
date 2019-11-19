@@ -38,10 +38,11 @@ void MapMatrixCreateEmpty(MapMatrix *M, int row, int col){
 	int i,j;
     Point P;
 	for (i = 1; i <= row; i++)
-		for (j = 1; j <= col; j++)
-            PointX(P)=0;
-            PointY(P)=0;
-			MapMatrixElement(*M,P) = 0;
+		for (j = 1; j <= col; j++){
+                    P = PointCreate(i, j);
+                    PointPrint(P);
+                    printf("\n");
+                    MapMatrixElement(*M,P) = 0;}
 }
 /* Membentuk sebuah MapMatrix "kosong" yang siap diisi berukuran row x column di "ujung kiri" memori */
 /* I.S. row dan col adalah valid untuk memori matriks yang dibuat */
@@ -99,7 +100,31 @@ int MapMatrixLastIdxKolom(MapMatrix M){
 }*/
 
 
-void MapMatrixPrintMap(MapMatrix M){
+void MapMatrixPrintMap(MapMatrix M, BuildingArray T){
+    int i;
+    int j;
+    Point P;
+    
+    for(i = 0; i <= MapMatrixLastIdxBaris(M) + 1; i++){
+        for(j = 0; j <= MapMatrixLastIdxKolom(M) + 1; j++){
+            if(i == 0 || i == MapMatrixLastIdxBaris(M) + 1){
+                printf("*");
+            } else{
+                if(j == 0 || j == MapMatrixLastIdxKolom(M) + 1){
+                    printf("*");
+                } else{
+                    P = PointCreate(i, j);
+                    if(MapMatrixElement(M, P) != 0){
+                        printf("%c", BuildingGetAcronym(BuildingKind(MapMatrixGetBuilding(M, P, T))));
+                    } else{
+                        printf(" ");
+                    }
+                }
+            }
+        }
+        printf("\n");
+    }
+    /*
     int i,j;
     for (i=MapMatrixFirstIdxBaris(M); i<=MapMatrixLastIdxBaris(M); i++){
         for (j=MapMatrixFirstIdxKolom(M); j<=MapMatrixLastIdxKolom(M); j++){
@@ -108,7 +133,7 @@ void MapMatrixPrintMap(MapMatrix M){
             else{
                 printf(" ");}
         }
-    }
+    }*/
 }    
             /*switch (MapMatrixElement(M,i,j)){
 				case 'P' : printf(COLOR_LGREEN "%c " COLOR_RESET, Elmt(M,i,j));break;
@@ -135,19 +160,20 @@ Tidak ada spasi antara bangunan 1 dengan yang lain
 Ada enter di setiap akhir baris 
 */
 
-Building MapMatrixGetBuilding(MapMatrix M, MapMatrixElType nomorbuildingarray, BuildingArray T){
-    Point p;
+Building MapMatrixGetBuilding(MapMatrix M, MapMatrixIdxType pos, BuildingArray T){
+    return BuildingArrayElement(T, MapMatrixElement(M,pos));
+    /*Point p;
     int i = 1;
     int j = 1;
-    bool found = false;
-    while(i <= MapMatrixBarisMaximum(M) && j <= MapMatrixKolomMaximum(M) && !found){
+    boolean found = false;
+    while(i <= MapMatrixBarisMaximum && j <= MapMatrixKolomMaximum && !found){
         PointX(p) = i;
         PointY(p) = j;
         if (MapMatrixElement(M,p) == nomorbuildingarray){
             found = true;
         }
     }
-    return BuildingArrayElement(T,nomorbuildingarray);
+    return BuildingArrayElement(T,nomorbuildingarray);*/
 }
 /* Mengembalikan building pada point pos */
 

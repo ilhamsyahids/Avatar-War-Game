@@ -113,6 +113,9 @@ int BuildingGetM(int kind, int level);
 boolean BuildingGetP(int kind, int level);
 /* Mengirimkan nilai P untuk kind dan level tertentu */
 
+char BuildingGetAcronym(int kind);
+/* Mengirimkan akronim nama building untuk kind tertentu */
+
 char *BuildingGetName(int kind);
 /* Mengirimkan nama building dengan kind tertentu */
 
@@ -156,6 +159,7 @@ void BuildingLevelUp(Building *B);
 /* Level bertambah 1 dan soldierCount berkurang sebesar M/2 */
 /* Atau : Level tetap karena sudah maksimum atau soldierCount kurang (berikan prompt) */
 /* Proses: Mengecek apakah levelup bisa dilakukan, jika bisa FS1 jika tidak FS2 */
+
 
 
 #endif

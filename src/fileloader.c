@@ -34,66 +34,37 @@ BuildingRelationGraph BuildingRelation;
 ///////////////////////////////////
 // 	     FILELOADER OPERATIONS 	 //
 ///////////////////////////////////
-void StartLoading(char* filename)
-/* Memulai pembacaan dari file konfigurasi */
-/* I.S : Pita file kosong */
-/* F.S : File siap dibaca dan sekuens pembacaan dimulai */
+void CompleteFileLoad()
+/* Mengembalikan GameMap yang sudah berisi data lengkap dari file */
 {
-	OpenFile(filename);
-	LoadingSequence();
+	GameMapCreate(&G, Map, Record, CurrentPlayer, BuildingRelation);
 }
 
-void LoadingSequence()
-/* Seluruh sekuens pembacaan dijalankan pada method ini */
-/* I.S : G, Map, Record, CurrentPlayer sembarang */
-/* F.S : Terbentuk G dengan atribut Map, Record dan CurrentPlayer sesuai file */
+
+
+void LoadBuildingRelation()
+/* Menangani pembacaan hubungan antar bangunan pada peta */
+/* I.S : */
+/* F.S : */
 {
-	LoadMapSize();
-	LoadBuildingCount();
-	LoadBuildingList();
-	LoadBuildingRelation();
-}
-
-void LoadMapSize()
-/* Menangani pembacaan ukuran peta dari file */
-/* I.S : Map sembarang */
-/* F.S : Ukuran Map efektif terdefinisi */
-{
-	int MapCol;
-	int MapRow;
-
-	AdvInt();
-	MapCol = X;
-
-	AdvInt();
-	MapRow = X;
-
-	//MapMatrixCreateEmpty(&Map, MapRow, MapCol);
-
-	AdvLine();
-
-}
-
-void LoadBuildingCount()
-/* Menangani pembacaan banyaknya bangunan pada peta dari file */
-/* I.S : Record sembarang */
-/* F.S : Ukuran maksimum Record terdefinisi */
-{
-	int BuildingCount;
 	int i;
+	int j;
+	BuildingRelationGraphAddress V;
+	AdjacentBuildingRelationGraphAddress P;
 
-	AdvInt();
-	BuildingCount = X;
-
-	BuildingArrayCreateEmpty(&Record, BuildingCount);
-	BuildingRelationGraphCreateEmpty(&BuildingRelation);
-
-	for(i = 1; i <= BuildingCount; i++){
-		BuildingRelationGraphInsertVertex(&BuildingRelation, i);
+	for(i = 1; i <= BuildingArrayNeff(Record); i++){
+		V = BuildingRelationGraphAddressSearch(BuildingRelation, i);
+		for(j = 1; j <= BuildingArrayNeff(Record); j++){
+			AdvInt();
+			if(X == 1){
+				BuildingRelationGraphInsertAdjacentVertex(V, j);
+			}
+		}
+		AdvLine();
 	}
-
-	AdvLine();
 }
+
+
 
 void LoadBuildingList()
 /* Menangani pembacaan daftar bangunan yang ada di peta */
@@ -148,32 +119,69 @@ void LoadBuildingList()
 	}
 }
 
-void LoadBuildingRelation()
-/* Menangani pembacaan hubungan antar bangunan pada peta */
-/* I.S : */
-/* F.S : */
-{
-	int i;
-	int j;
-	BuildingRelationGraphAddress V;
-	AdjacentBuildingRelationGraphAddress P;
 
-	for(i = 1; i <= BuildingArrayNeff(Record); i++){
-		V = BuildingRelationGraphAddressSearch(BuildingRelation, i);
-		for(j = 1; j <= BuildingArrayNeff(Record); j++){
-			AdvInt();
-			if(X == 1){
-				BuildingRelationGraphInsertAdjacentVertex(V, j);
-			}
-		}
-		AdvLine();
+void LoadBuildingCount()
+/* Menangani pembacaan banyaknya bangunan pada peta dari file */
+/* I.S : Record sembarang */
+/* F.S : Ukuran maksimum Record terdefinisi */
+{
+	int BuildingCount;
+	int i;
+
+	AdvInt();
+	BuildingCount = X;
+
+	BuildingArrayCreateEmpty(&Record, BuildingCount);
+	BuildingRelationGraphCreateEmpty(&BuildingRelation);
+
+	for(i = 1; i <= BuildingCount; i++){
+		BuildingRelationGraphInsertVertex(&BuildingRelation, i);
 	}
+
+	AdvLine();
 }
 
-void CompleteFileLoad()
-/* Mengembalikan GameMap yang sudah berisi data lengkap dari file */
+
+
+void LoadMapSize()
+/* Menangani pembacaan ukuran peta dari file */
+/* I.S : Map sembarang */
+/* F.S : Ukuran Map efektif terdefinisi */
 {
-	GameMapCreate(&G, Map, Record, CurrentPlayer, BuildingRelation);
+	int MapCol;
+	int MapRow;
+
+	AdvInt();
+	MapCol = X;
+
+	AdvInt();
+	MapRow = X;
+
+	//MapMatrixCreateEmpty(&Map, MapRow, MapCol);
+
+	AdvLine();
+
+}
+
+void LoadingSequence()
+/* Seluruh sekuens pembacaan dijalankan pada method ini */
+/* I.S : G, Map, Record, CurrentPlayer sembarang */
+/* F.S : Terbentuk G dengan atribut Map, Record dan CurrentPlayer sesuai file */
+{
+	LoadMapSize();
+	LoadBuildingCount();
+	LoadBuildingList();
+	LoadBuildingRelation();
+}
+
+
+void StartLoading(char* filename)
+/* Memulai pembacaan dari file konfigurasi */
+/* I.S : Pita file kosong */
+/* F.S : File siap dibaca dan sekuens pembacaan dimulai */
+{
+	OpenFile(filename);
+	LoadingSequence();
 }
 
 #endif

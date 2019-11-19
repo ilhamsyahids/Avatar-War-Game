@@ -33,15 +33,15 @@ extern BuildingRelationGraph BuildingRelation;
 ///////////////////////////////////
 // 	     FILELOADER OPERATIONS 	 //
 ///////////////////////////////////
+void LoadingSequence();
+/* Seluruh sekuens pembacaan dijalankan pada method ini */
+/* I.S : G, Map, Record, CurrentPlayer sembarang */
+/* F.S : Terbentuk G dengan atribut Map, Record dan CurrentPlayer sesuai file */
 void StartLoading(char* filename);
 /* Memulai pembacaan dari file konfigurasi */
 /* I.S : Pita file kosong */
 /* F.S : File siap dibaca dan sekuens pembacaan dimulai */
 
-void LoadingSequence();
-/* Seluruh sekuens pembacaan dijalankan pada method ini */
-/* I.S : G, Map, Record, CurrentPlayer sembarang */
-/* F.S : Terbentuk G dengan atribut Map, Record dan CurrentPlayer sesuai file */
 
 void LoadMapSize();
 /* Menangani pembacaan ukuran peta dari file */

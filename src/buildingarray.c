@@ -27,7 +27,7 @@ void BuildingArrayCreateEmpty(BuildingArray *T, int maxel)
 /* F.S. Terbentuk tabel T kosong dengan kapasitas maxel + 1 */
 /* Setiap elemen diisi dengan elemen dummy building (ValUndef) */
 {
-  BuildingArrayTab(*T) = (BuildingArrayElType *)malloc((maxel + 1) * sizeof(BuildingArray));
+  BuildingArrayTab(*T) = (BuildingArrayElType *)malloc((maxel + 1) * sizeof(BuildingArrayElType));
   BuildingArrayMaxElement(*T) = maxel;
   BuildingArrayNeff(*T) = 0;
 }
@@ -90,7 +90,18 @@ BuildingArrayIdxType BuildingArrayGetLastIdx(BuildingArray T)
   return BuildingArrayNeff(T) - BuildingArrayGetFirstIdx(T) + 1;
 }
 
-void BuildingArrayAddAsLastElement(BuildingArray *T, BuildingArrayElType X);
+void BuildingArrayAddAsLastElement(BuildingArray *T, BuildingArrayElType X)
 /* Proses: Menambahkan X sebagai elemen terakhir tabel */
 /* I.S. Tabel T boleh kosong, tetapi tidak penuh */
 /* F.S. X adalah elemen terakhir T yang baru */
+{
+  if(IsBuildingArrayEmpty(*T)){
+    BuildingArrayElement((*T), 1) = X;
+    BuildingArrayNeff(*T) =  BuildingArrayNeff(*T) + 1;
+  } else{
+    if(!IsBuildingArrayFull(*T)){
+    BuildingArrayElement((*T), BuildingArrayNeff(*T) + 1) = X;
+    BuildingArrayNeff(*T) =  BuildingArrayNeff(*T) + 1;
+    }
+  } 
+}
