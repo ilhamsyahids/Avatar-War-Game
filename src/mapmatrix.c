@@ -116,9 +116,9 @@ void MapMatrixPrintMap(MapMatrix M, BuildingArray T){
                     P = PointCreate(i, j);
                     if(MapMatrixElement(M, P) != 0){
                         if (BuildingPlayer(B) == 1){
-                            print_red("%c", BuildingGetAcronym(BuildingKind(MapMatrixGetBuilding(M, P, T))));
+                            print_red(BuildingGetAcronym(BuildingKind(MapMatrixGetBuilding(M, P, T))));
                         } else if(BuildingPlayer(B) == 2){
-                            print_blue("%c", BuildingGetAcronym(BuildingKind(MapMatrixGetBuilding(M, P, T))));
+                            print_blue(BuildingGetAcronym(BuildingKind(MapMatrixGetBuilding(M, P, T))));
                         } else{
                             printf("%c", BuildingGetAcronym(BuildingKind(MapMatrixGetBuilding(M, P, T))));
                         }
