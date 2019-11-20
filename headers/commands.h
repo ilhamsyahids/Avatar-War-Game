@@ -2,7 +2,7 @@
 /* Berisi list command yang bisa dilakukan pemain pada suatu turn */
 
 #ifndef _COMMANDS_H
-#define _COMMANDS_H
+#define _COMMANDS_HS
 
 ///////////////////////////
 //        INCLUDE        //
