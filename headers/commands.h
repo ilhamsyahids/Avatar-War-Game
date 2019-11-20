@@ -40,15 +40,15 @@ void undo();
 /* 	Pemain hanya dapat melakukan UNDO hingga command sesudah END_TURN/SKILL. 
 	Artinya, setelah command END_TURN/SKILL, pemain tidak dapat melakukan UNDO lagi. */
 
-void end_turn();
+// void end_turn();
 /* 	Digunakan untuk mengakhiri giliran dari pemain. */
 
-void move();
+void move(Player P, BuildingArray T);
 /* 	Digunakan untuk memindahkan pasukan dari suatu bangunan ke bangunan lain 
 	milik pemain yang terhubung dengan bangunan tersebut. 
 	MOVE hanya dapat dilakukan sekali untuk tiap bangunan pada tiap gilirannya. */
 
-void exit();
+// void exit();
 /* 	Digunakan untuk keluar dari permainan/program. */
 
 #endif
