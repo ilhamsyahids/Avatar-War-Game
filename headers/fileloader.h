@@ -28,7 +28,8 @@ void LoadingSequence();
 /* Seluruh sekuens pembacaan dijalankan pada method ini */
 /* I.S : G, Map, Record, CurrentPlayer sembarang */
 /* F.S : Terbentuk G dengan atribut Map, Record dan CurrentPlayer sesuai file */
-void StartLoading(char* filename);
+
+void StartLoading(char* filename, char Player1Color, char Player2Color);
 /* Memulai pembacaan dari file konfigurasi */
 /* I.S : Pita file kosong */
 /* F.S : File siap dibaca dan sekuens pembacaan dimulai */
@@ -54,7 +55,7 @@ void LoadBuildingRelation();
 /* I.S : */
 /* F.S : */
 
-GameMap CompleteFileLoad();
+void CompleteFileLoad(GameMap *G);
 /* Mengembalikan GameMap yang sudah berisi data lengkap dari file */
 
 #endif

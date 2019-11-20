@@ -85,8 +85,7 @@ void SkillQueueAddSkill(SkillQueue *Q, SkillQueueInfotype X){
         SkillQueueHead(*Q) = 1;
         SkillQueueTail(*Q) = 1;
         SkillQueueInfoTail(*Q) = X;
-    }
-    else{
+    } else if(!IsSkillQueueFull(*Q)){
         SkillQueueTail(*Q) = (SkillQueueTail(*Q) % SkillQueueMaxElement(*Q) + 1);
         SkillQueueInfoTail(*Q) = X;
     }
@@ -129,13 +128,19 @@ void PrintQueueSkill(SkillQueue Q){
     if (IsSkillQueueEmpty(Q)){
         printf("Tidak Ada Skill Tersedia\n");
     }else{
+        int count = 1;
         printf("Skill Available :\n");
         while (!IsSkillQueueEmpty(Q)){
 			SkillQueueDelSkill(&Q,&tempDel);
+            printf("%d. ", count);
             printf("%s",SkillGetName(SkillKind(tempDel)));
-			if(!IsSkillQueueEmpty(Q)){
-				printf(", ");
+			if(count == 1){
+                printf("  <=== Can be used");
+            }
+            if(!IsSkillQueueEmpty(Q)){
+				printf("\n");
 			}
+            count += 1;
         }
 		printf("\n");
     }

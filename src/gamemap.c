@@ -21,34 +21,48 @@
 #include "buildingrelationgraph.h"
 #include "gamemap.h"
 
-///////////////////////////////////
-//		  CONST & TYPEDEF	 	 //
-///////////////////////////////////
-GameMap GameState;
-MapMatrix Map;
-BuildingArray Record;
-Player CurrentPlayer;
-Player Player1;
-Player Player2;
-BuildingRelationGraph BuildingRelation;
-
 ///////////////////////////
 // 		CONSTRUCTOR 	 //
 ///////////////////////////
-void GameMapCreate(GameMap *G, MapMatrix map, BuildingArray record, Player CurrentPlayer, BuildingRelationGraph BuildingRelation)
+void GameMapCreate(GameMap *G, MapMatrix map, BuildingArray record, Player Player1, Player Player2, BuildingRelationGraph BuildingRelation)
 /* Membentuk sebuah GameMap yang berisi BuildingMap, BuildingRecord dan currentPlayer */
-/* I.S. map, record, dan currentPlayer diinisiasi di luar method sebelum dimasukkan sebagai parameter */
+/* I.S. map, record, Player1, Player2 diinisiasi di luar method sebelum dimasukkan sebagai parameter */
 /* F.S. Terbentuk GameMap yang berisi keadaan game pada saat itu*/
 {
 	BuildingMap(*G) = map;
 	BuildingRecord(*G) = record;
-	CurrentPlayer(*G) = CurrentPlayer;
+	Player1(*G) = Player1;
+	Player2(*G) = Player2;
 	BuildingRelation(*G) = BuildingRelation;
 }
 
 ///////////////////////////////////
 // 	    MAP MATRIX OPERATIONS 	 //
 ///////////////////////////////////
+void GameMapSetCurrentPlayer(GameMap *G, int role)
+/* Mengeset CurrentPlayer menjadi sesuai role */
+/* I.S. CurrentPlayer sembarang */
+/* F.S. CurrentPlayer menjadi Player1 (jika role 1) dan sebaliknya */
+{
+	if(role == 1){
+		CurrentPlayer(*G) = Player1(*G);
+	} else{
+		CurrentPlayer(*G) = Player2(*G);
+	}
+}
+void GameMapInitializeAllComponents(GameMap *G)
+/* Menginisialisasi semua komponen pada GameMap kecuali CurrentPlayer */
+/* I.S. BuildingMap, BuildingRecord, Player1, Player2, BuildingRelation belum diinisialisasi */
+/* F.S. Semua komponen kecuali CurrentPlayer terinisialisasi dan siap pakai */
+{
+	// Initialize Building
+	BuildingArrayInitializeAllBuilding(&BuildingRecord(*G));
+	
+	// Initialize Player
+	PlayerInitialize(&(Player1(*G)),BuildingRecord(*G));
+	PlayerInitialize(&(Player2(*G)),BuildingRecord(*G));
+}
+
 void GameMapChangePlayer(GameMap *G)
 /* Menukar currentPlayer dengan player yang lain */
 /* I.S currentPlayer GameMap adalah 1/2 */
@@ -56,9 +70,9 @@ void GameMapChangePlayer(GameMap *G)
 {
 
 	if (CurrentPlayer(*G).role == 1)
-		CurrentPlayer(*G).role = 2;
+		CurrentPlayer(*G) = Player2(*G);
 	else
-		CurrentPlayer(*G).role = 1;
+		CurrentPlayer(*G) = Player1(*G);
 }
 
 void GameMapPrintInfo(GameMap G)
@@ -81,4 +95,5 @@ void GameMapPrintInfo(GameMap G)
 {
 	MapMatrixPrintMap(BuildingMap(G), BuildingRecord(G));
 	BuildingListPrintInfo(PlayerOwnedBuildingList(CurrentPlayer(G)), BuildingRecord(G));
+	PrintQueueSkill(PlayerCurrentSkillQueue(CurrentPlayer(G)));
 }

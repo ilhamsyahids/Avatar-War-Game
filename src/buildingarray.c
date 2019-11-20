@@ -105,3 +105,23 @@ void BuildingArrayAddAsLastElement(BuildingArray *T, BuildingArrayElType X)
     }
   } 
 }
+
+void BuildingArrayInitializeAllBuilding(BuildingArray *T)
+/* Menginisialisasi seluruh Building pada Array dengan BuildingInitialize */
+/* I.S. T berisi Building yang hanya sudah diCreate */
+/* F.S. T berisi Building yang seluruhnya sudah terinisialisasi */
+{
+  for(int i = 1; i <= BuildingArrayNeff(*T); i++){
+    BuildingInitialize(&(BuildingArrayElement((*T), i)));
+  }
+}
+
+void BuildingArrayRefreshAllBuilding(BuildingArray *T)
+/* Merefresh seluruh Building pada Array dengan BuildingRefreshStatus */
+/* I.S. T berisi Building yang sudah terinisialisasi */
+/* F.S. Building pada T direfresh */
+{
+  for(int i = 1; i <= BuildingArrayNeff(*T); i++){
+    BuildingRefreshStatus(&(BuildingArrayElement((*T), i)));
+  }
+}

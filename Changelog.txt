@@ -306,3 +306,41 @@ See naming convention for details
 
 7. main.c (not in src)
 	[NEW] base for file loading
+
+<20/11/2019 11:00> by Gunawan
+1. mesinkata.h mesinkata.c
+	[NEW] Make new ADT to read input of word
+
+2. mesinkar.h mesinkar.c
+	[UPDATE] Add 2 new Extern Variables for word processing
+	[UPDATE] Add AdvStringChar to process word
+	[UPDATE] AdvStringChar Implementation
+
+3. gamemap.h gamemap.c
+	[UPDATE] Add Player1 and Player2 to definition of GameMap
+	[UPDATE] Update selectors
+	[UPDATE] Delete Extern Variables
+	[UPDATE] Add GameMapInitializeAllComponents
+	[UPDATE] Implementation of GameMapInitializeAllComponents
+
+4. fileloader.h fileloader.c
+	[UPDATE] Delete Extern Variables
+	[UPDATE] Added class variables (just to be used in the class)
+	[UPDATE] Adjust Implementation
+
+5. buildingarray.h buildingarray.c
+	[UPDATE] Add BuildingArrayInitializeAllBuilding to initialize all buildings in the array
+	[UPDATE] Add BuildingArrayRefreshAllBuilding to refresh all buildings in the array
+
+6. building.c
+	[UPDATE] BuildingChangePlayer readjustment
+
+7. buildinglist.c
+	[UPDATE] BuildingListPrintInfo readjustment
+
+8. skillqueue.c
+	[UPDATE] PrintQueueSkill readjustment
+
+9. mesinkata_driver.c
+	[NEW] driver for mesinkata (all working good)
+

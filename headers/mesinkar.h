@@ -6,7 +6,7 @@
 // File : mesinkar.h */                      	//
 //----------------------------------------------//
 // Definisi Mesin Karakter 		        		//
-// Digunakan untuk membaca file	luar			//
+// Digunakan untuk membaca file	luar dan input	//
 //==============================================//
 
 #ifndef _MESIN_KAR_H_
@@ -23,6 +23,8 @@
 extern char CC;
 extern int X;
 extern boolean EOP;
+extern int StringIndex;
+extern char* StringInput;
 
 ///////////////////////////////////
 // 	     MESINKAR OPERATIONS 	 //
@@ -37,19 +39,24 @@ void CloseFile();
 /* I.S : pita siap dibaca */
 /* F.S : pita menjadi kosong lagi */
 
-void AdvChar();
+void AdvFileChar();
 /* File dimajukan satu karakter */
 /* I.S : CC adalah karakter sembarang */
 /* F.S : CC adalah karakter berikutnya */
 
-void AdvInt();
+void AdvFileInt();
 /* File dimajukan satu integer */
 /* I.S : X adalah integer sembarang */
 /* F.S : X adalah integer berikutnya */
 
-void AdvLine();
+void AdvFileLine();
 /* File dimajukan satu baris */
 /* I.S : CC adalah karakter sembarang */
 /* F.S : CC adalah karakter newline ('\n')*/
+
+void AdvStringChar();
+/* String dimajukan satu karakter */
+/* I.S : CC adalah karakter sembarang */
+/* F.S : CC adalah karakter berikutnya */
 
 #endif

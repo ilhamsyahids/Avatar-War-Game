@@ -22,14 +22,20 @@
 #include "mesinkar.h"
 #include "gamemap.h"
 
+MapMatrix Map;
+BuildingArray Record;
+Player Player1;
+Player Player2;
+BuildingRelationGraph BuildingRelation;
+
 ///////////////////////////////////
 // 	     FILELOADER OPERATIONS 	 //
 ///////////////////////////////////
-void CompleteFileLoad()
+void CompleteFileLoad(GameMap *G)
 /* Mengembalikan GameMap yang sudah berisi data lengkap dari file */
 {
-	CurrentPlayer = Player1;
-	GameMapCreate(&GameState, Map, Record, CurrentPlayer, BuildingRelation);
+	GameMapCreate(G, Map, Record, Player1, Player2, BuildingRelation);
+	CurrentPlayer(*G) = Player1(*G);
 }
 
 
@@ -47,12 +53,12 @@ void LoadBuildingRelation()
 	for(i = 1; i <= BuildingArrayNeff(Record); i++){
 		V = BuildingRelationGraphAddressSearch(BuildingRelation, i);
 		for(j = 1; j <= BuildingArrayNeff(Record); j++){
-			AdvInt();
+			AdvFileInt();
 			if(X == 1){
 				BuildingRelationGraphInsertAdjacentVertex(V, j);
 			}
 		}
-		AdvLine();
+		AdvFileLine();
 	}
 }
 
@@ -71,35 +77,33 @@ void LoadBuildingList()
 	Point P;
 
 	// Load Player 1's Castle
-	AdvChar();
-	AdvInt();
+	AdvFileChar();
+	AdvFileInt();
 	PositionX = X;
-	AdvInt();
+	AdvFileInt();
 	PositionY = X;
 	P = PointCreate(PositionX, PositionY);
 	B = BuildingCreate(1, 1, P);
-	printf("%d\n", BuildingArrayNeff(Record));
-	printf("%d\n", BuildingArrayMaxElement(Record));
 	BuildingArrayAddAsLastElement(&Record, B);
 	MapMatrixElement(Map, P) = 1;
-	AdvLine();
+	AdvFileLine();
 
 	
 	// Load Player 2's Castle
-	AdvChar();
-	AdvInt();
+	AdvFileChar();
+	AdvFileInt();
 	PositionX = X;
-	AdvInt();
+	AdvFileInt();
 	PositionY = X;
 	P = PointCreate(PositionX, PositionY);
 	B = BuildingCreate(1, 2, P);
 	BuildingArrayAddAsLastElement(&Record, B);
 	MapMatrixElement(Map, P) = 2;
-	AdvLine();
+	AdvFileLine();
 
 	// Load Other Buildings
 	for(i = 1; i <= BuildingArrayMaxElement(Record) - 2; i++){
-		AdvChar();
+		AdvFileChar();
 		if(CC == 'C'){
 			kind = 1;
 		} else if(CC == 'T'){
@@ -109,15 +113,15 @@ void LoadBuildingList()
 		} else if(CC == 'V'){
 			kind = 4;
 		}
-		AdvInt();
+		AdvFileInt();
 		PositionX = X;
-		AdvInt();
+		AdvFileInt();
 		PositionY = X;
 		P = PointCreate(PositionX, PositionY);
 		B = BuildingCreate(kind, 0, P);
 		BuildingArrayAddAsLastElement(&Record, B);
 		MapMatrixElement(Map, P) = i + 2;
-		AdvLine();
+		AdvFileLine();
 	}
 }
 
@@ -130,7 +134,7 @@ void LoadBuildingCount()
 	int BuildingCount;
 	int i;
 
-	AdvInt();
+	AdvFileInt();
 	BuildingCount = X;
 
 	BuildingArrayCreateEmpty(&Record, BuildingCount);
@@ -140,7 +144,7 @@ void LoadBuildingCount()
 		BuildingRelationGraphInsertVertex(&BuildingRelation, i);
 	}
 
-	AdvLine();
+	AdvFileLine();
 }
 
 
@@ -153,15 +157,15 @@ void LoadMapSize()
 	int MapCol;
 	int MapRow;
 
-	AdvInt();
+	AdvFileInt();
 	MapRow = X;
 
-	AdvInt();
+	AdvFileInt();
 	MapCol = X;
 
 	MapMatrixCreateEmpty(&Map, MapRow, MapCol);
 
-	AdvLine();
+	AdvFileLine();
 
 }
 
@@ -177,14 +181,14 @@ void LoadingSequence()
 }
 
 
-void StartLoading(char* filename)
+void StartLoading(char* filename, char Player1Color, char Player2Color)
 /* Memulai pembacaan dari file konfigurasi */
-/* I.S : Pita file kosong */
-/* F.S : File siap dibaca dan sekuens pembacaan dimulai */
+/* I.S : Pita file kosong, GameMap belum siap diload */
+/* F.S : File siap dibaca, GameMap siap diload, dan sekuens pembacaan dimulai */
 {
 	OpenFile(filename);
-	Player1 = PlayerCreate(1, 'b');
-	Player2 = PlayerCreate(2, 'r');
+	Player1 = PlayerCreate(1, Player1Color);
+	Player2 = PlayerCreate(2, Player2Color);
 	LoadingSequence();
 }
 
