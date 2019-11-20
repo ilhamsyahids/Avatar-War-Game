@@ -104,7 +104,7 @@ void MapMatrixPrintMap(MapMatrix M, BuildingArray T){
     int i;
     int j;
     Point P;
-    
+    Building B;
     for(i = 0; i <= MapMatrixLastIdxBaris(M) + 1; i++){
         for(j = 0; j <= MapMatrixLastIdxKolom(M) + 1; j++){
             if(i == 0 || i == MapMatrixLastIdxBaris(M) + 1){
@@ -115,7 +115,13 @@ void MapMatrixPrintMap(MapMatrix M, BuildingArray T){
                 } else{
                     P = PointCreate(i, j);
                     if(MapMatrixElement(M, P) != 0){
-                        printf("%c", BuildingGetAcronym(BuildingKind(MapMatrixGetBuilding(M, P, T))));
+                        if (BuildingPlayer(B) == 1){
+                            print_red("%c", BuildingGetAcronym(BuildingKind(MapMatrixGetBuilding(M, P, T))));
+                        } else if(BuildingPlayer(B) == 2){
+                            print_blue("%c", BuildingGetAcronym(BuildingKind(MapMatrixGetBuilding(M, P, T))));
+                        } else{
+                            printf("%c", BuildingGetAcronym(BuildingKind(MapMatrixGetBuilding(M, P, T))));
+                        }
                     } else{
                         printf(" ");
                     }
@@ -124,17 +130,7 @@ void MapMatrixPrintMap(MapMatrix M, BuildingArray T){
         }
         printf("\n");
     }
-    /*
-    int i,j;
-    for (i=MapMatrixFirstIdxBaris(M); i<=MapMatrixLastIdxBaris(M); i++){
-        for (j=MapMatrixFirstIdxKolom(M); j<=MapMatrixLastIdxKolom(M); j++){
-            if (i==1 || i==MapMatrixLastIdxBaris || j==1 || j==MapMatrixLastIdxKolom){          
-                printf("*");}          
-            else{
-                printf(" ");}
-        }
-    }*/
-}    
+    
             /*switch (MapMatrixElement(M,i,j)){
 				case 'P' : printf(COLOR_LGREEN "%c " COLOR_RESET, Elmt(M,i,j));break;
 				case 'M' : printf(COLOR_WHITE "%c " COLOR_RESET, Elmt(M,i,j));break;
@@ -162,18 +158,7 @@ Ada enter di setiap akhir baris
 
 Building MapMatrixGetBuilding(MapMatrix M, MapMatrixIdxType pos, BuildingArray T){
     return BuildingArrayElement(T, MapMatrixElement(M,pos));
-    /*Point p;
-    int i = 1;
-    int j = 1;
-    boolean found = false;
-    while(i <= MapMatrixBarisMaximum && j <= MapMatrixKolomMaximum && !found){
-        PointX(p) = i;
-        PointY(p) = j;
-        if (MapMatrixElement(M,p) == nomorbuildingarray){
-            found = true;
-        }
-    }
-    return BuildingArrayElement(T,nomorbuildingarray);*/
+    
 }
 /* Mengembalikan building pada point pos */
 
