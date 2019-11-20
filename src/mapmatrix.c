@@ -130,6 +130,7 @@ void MapMatrixPrintMap(MapMatrix M, BuildingArray T){
         }
         printf("\n");
     }
+}
     
             /*switch (MapMatrixElement(M,i,j)){
 				case 'P' : printf(COLOR_LGREEN "%c " COLOR_RESET, Elmt(M,i,j));break;
