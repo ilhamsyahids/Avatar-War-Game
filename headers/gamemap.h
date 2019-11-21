@@ -93,4 +93,7 @@ void GameMapPrintInfo(GameMap G);
 	Available Skill: IU
 
 */
+
+Player GameMapGetCurrentPlayer(GameMap G);
+/* Mengembalikan player yang sedang menjalani turnnya dari GameMap */
 #endif

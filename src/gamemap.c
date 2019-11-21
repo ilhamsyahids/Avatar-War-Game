@@ -104,3 +104,13 @@ void GameMapPrintInfo(GameMap G)
 	BuildingListPrintInfo(PlayerOwnedBuildingList(CurrentPlayer(G)), BuildingRecord(G));
 	PrintQueueSkill(PlayerCurrentSkillQueue(CurrentPlayer(G)));
 }
+
+Player GameMapGetCurrentPlayer(GameMap G)
+/* Mengembalikan player yang sedang menjalani turnnya dari GameMap */
+{
+	if(CurrentPlayer(G) == 1){
+		return Player1(G);
+	} else if (CurrentPlayer(G) == 2){
+		return Player2(G);
+	}
+}
