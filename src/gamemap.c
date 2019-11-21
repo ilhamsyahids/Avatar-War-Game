@@ -45,9 +45,9 @@ void GameMapSetCurrentPlayer(GameMap *G, int role)
 /* F.S. CurrentPlayer menjadi Player1 (jika role 1) dan sebaliknya */
 {
 	if(role == 1){
-		CurrentPlayer(*G) = Player1(*G);
+		CurrentPlayer(*G) = 1;
 	} else{
-		CurrentPlayer(*G) = Player2(*G);
+		CurrentPlayer(*G) = 2;
 	}
 }
 void GameMapInitializeAllComponents(GameMap *G)
@@ -70,9 +70,9 @@ void GameMapChangePlayer(GameMap *G)
 {
 
 	if (CurrentPlayer(*G).role == 1)
-		CurrentPlayer(*G) = Player2(*G);
+		CurrentPlayer(*G) = 2;
 	else
-		CurrentPlayer(*G) = Player1(*G);
+		CurrentPlayer(*G) = 1;
 }
 
 void GameMapPrintInfo(GameMap G)
@@ -92,8 +92,25 @@ void GameMapPrintInfo(GameMap G)
 	Available Skill: IU
 
 */
-{
+{	
+	printf("======================================\n");
+	if(PlayerRole(CurrentPlayer(G)) == 1){
+		printf("====          Player 1 Turn        ===\n");
+	} else{
+		printf("====          Player 2 Turn        ===\n");
+	}
+	printf("======================================\n");
 	MapMatrixPrintMap(BuildingMap(G), BuildingRecord(G));
 	BuildingListPrintInfo(PlayerOwnedBuildingList(CurrentPlayer(G)), BuildingRecord(G));
 	PrintQueueSkill(PlayerCurrentSkillQueue(CurrentPlayer(G)));
+}
+
+Player GameMapGetCurrentPlayer(GameMap G)
+/* Mengembalikan player yang sedang menjalani turnnya dari GameMap */
+{
+	if(CurrentPlayer(G) == 1){
+		return Player1(G);
+	} else if (CurrentPlayer(G) == 2){
+		return Player2(G);
+	}
 }

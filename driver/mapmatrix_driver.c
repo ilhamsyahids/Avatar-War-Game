@@ -26,7 +26,7 @@ int main(){
 	printf("%d",MapMatrixElement(M, PointCreate(1,1)));
 	
 	
-	BB = BuildingCreate(2, 1, PointCreate(2,3));
+	BB = BuildingCreate(2, 0, PointCreate(2,3));
 	BuildingArrayAddAsLastElement(&B, BB);
 	MapMatrixElement(M,PointCreate(2,3)) = 2;
 

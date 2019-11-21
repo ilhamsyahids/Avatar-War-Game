@@ -7,9 +7,8 @@
 #include "mapmatrix.h"
 #include "player.h"
 
-/*#include "matrix.h"
 ///////////////////////////////////
-//		  CONST & TYPEDEF	 	 //
+//  	CONST & TYPEDEF		//
 ///////////////////////////////////
 /* Ukuran minimum dan maksimum baris dan kolom */
 #define MapMatrixBarisMinimum 1
@@ -30,7 +29,7 @@
 #define MapMatrixElement(M,P) 		(M).Mem[(PointX(P))][(PointY(P))]
 
 ///////////////////////////
-// 		CONSTRUCTOR 	 //
+// 	CONSTRUCTOR 	 //
 ///////////////////////////
 void MapMatrixCreateEmpty(MapMatrix *M, int row, int col){
     MapMatrixNBrsEff(*M) = row;
@@ -90,14 +89,6 @@ int MapMatrixLastIdxKolom(MapMatrix M){
 }
 /* Mengirimkan indeks kolom terbesar M */
 
-/*void MapMatrix(MapMatrix *M, BuildingArray N){
-    Point p;
-    for (i = 1; i <= BuildingArrayNeff(T); i++)
-    {
-        p = BuildingPosition(BuildingArrayElement(N, i));
-        MapMatrixElement(*M,p);
-    }
-}*/
 
 
 void MapMatrixPrintMap(MapMatrix M, BuildingArray T){
@@ -115,6 +106,7 @@ void MapMatrixPrintMap(MapMatrix M, BuildingArray T){
                 } else{
                     P = PointCreate(i, j);
                     if(MapMatrixElement(M, P) != 0){
+                        B= MapMatrixGetBuilding(M,P,T);
                         if (BuildingPlayer(B) == 1){
                             print_red(BuildingGetAcronym(BuildingKind(MapMatrixGetBuilding(M, P, T))));
                         } else if(BuildingPlayer(B) == 2){
@@ -130,18 +122,8 @@ void MapMatrixPrintMap(MapMatrix M, BuildingArray T){
         }
         printf("\n");
     }
-}
-    
-            /*switch (MapMatrixElement(M,i,j)){
-				case 'P' : printf(COLOR_LGREEN "%c " COLOR_RESET, Elmt(M,i,j));break;
-				case 'M' : printf(COLOR_WHITE "%c " COLOR_RESET, Elmt(M,i,j));break;
-				default : printf("%c ",Elmt(M,i,j));break;
-			}
-        }
-        printf("\n");
-    }
-}
-}*/
+}    
+   
 /* I.S. M terdefinisi */
 /* F.S. Map dicetak ke layar dengan format 
 *********
@@ -159,9 +141,5 @@ Ada enter di setiap akhir baris
 
 Building MapMatrixGetBuilding(MapMatrix M, MapMatrixIdxType pos, BuildingArray T){
     return BuildingArrayElement(T, MapMatrixElement(M,pos));
-    
 }
 /* Mengembalikan building pada point pos */
-
-//procedure func(input a, output b, input/output c)
-// procedure func(a, *b, *c)

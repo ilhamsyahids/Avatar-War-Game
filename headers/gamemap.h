@@ -30,7 +30,7 @@ typedef struct
 {
 	MapMatrix BuildingMap;					/* Matrix peta untuk bangunan */
 	BuildingArray BuildingRecord;			/* Daftar seluruh bangunan di peta */
-	Player CurrentPlayer;					/* Player yang sedang menjalankan turn saat itu */
+	int CurrentPlayer;						/* Player yang sedang menjalankan turn saat itu */
 	Player Player1;							/* Detail player 1 pada game */
 	Player Player2;							/* Detail player 2 pada game */
 	BuildingRelationGraph BuildingRelation; /* Relasi antar bangunan pada peta */
@@ -93,4 +93,7 @@ void GameMapPrintInfo(GameMap G);
 	Available Skill: IU
 
 */
+
+Player GameMapGetCurrentPlayer(GameMap G);
+/* Mengembalikan player yang sedang menjalani turnnya dari GameMap */
 #endif
