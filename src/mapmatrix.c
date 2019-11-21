@@ -7,9 +7,8 @@
 #include "mapmatrix.h"
 #include "player.h"
 
-/*#include "matrix.h"
 ///////////////////////////////////
-//		  CONST & TYPEDEF	 	 //
+//  	CONST & TYPEDEF		//
 ///////////////////////////////////
 /* Ukuran minimum dan maksimum baris dan kolom */
 #define MapMatrixBarisMinimum 1
@@ -30,7 +29,7 @@
 #define MapMatrixElement(M,P) 		(M).Mem[(PointX(P))][(PointY(P))]
 
 ///////////////////////////
-// 		CONSTRUCTOR 	 //
+// 	CONSTRUCTOR 	 //
 ///////////////////////////
 void MapMatrixCreateEmpty(MapMatrix *M, int row, int col){
     MapMatrixNBrsEff(*M) = row;
@@ -90,14 +89,6 @@ int MapMatrixLastIdxKolom(MapMatrix M){
 }
 /* Mengirimkan indeks kolom terbesar M */
 
-/*void MapMatrix(MapMatrix *M, BuildingArray N){
-    Point p;
-    for (i = 1; i <= BuildingArrayNeff(T); i++)
-    {
-        p = BuildingPosition(BuildingArrayElement(N, i));
-        MapMatrixElement(*M,p);
-    }
-}*/
 
 
 void MapMatrixPrintMap(MapMatrix M, BuildingArray T){
