@@ -35,7 +35,7 @@ void CompleteFileLoad(GameMap *G)
 /* Mengembalikan GameMap yang sudah berisi data lengkap dari file */
 {
 	GameMapCreate(G, Map, Record, Player1, Player2, BuildingRelation);
-	CurrentPlayer(*G) = Player1(*G);
+	CurrentPlayer(*G) = 1;
 }
 
 
