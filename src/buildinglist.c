@@ -227,19 +227,19 @@ int BuildingListNbElmt(BuildingList L)
     return count;
 }
 
-BuildingList CopyBuildingList(BuildingList *BL)
+BuildingList CopyBuildingList(BuildingList BL)
 /* Mengirimkan salinan BuildingList BL (menjadi BuildingList baru) */
 {
-    if (IsBuildingListEmpty(*BL))
+    BuildingList B;
+    BuildingListCreateEmpty(&B);
+    if (!IsBuildingListEmpty(BL))
     {
-        BuildingList B;
-        BuildingListCreateEmpty(&B);
-        BuildingListAddress P = BuildingListFirstAddress(*BL);
-        while (BuildingListElementNext(P) != BuildingListNil)
+        BuildingListAddress P = BuildingListFirstAddress(BL);
+        while ((P) != BuildingListNil)
         {
             BuildingListInsertValueLast(&B, BuildingListElementInfo(P));
             P = BuildingListElementNext(P);
         }
-        return B;
     }
+    return B;
 }

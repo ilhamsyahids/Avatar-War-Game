@@ -132,7 +132,7 @@ void BuildingListPrintInfo(BuildingList L, BuildingArray BL);
 int BuildingListNbElmt(BuildingList L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
-BuildingList CopyBuildingList(BuildingList *BL);
+BuildingList CopyBuildingList(BuildingList BL);
 /* Mengirimkan salinan BuildingList BL (menjadi BuildingList baru) */
 
 #endif

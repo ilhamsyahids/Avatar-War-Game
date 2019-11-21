@@ -39,6 +39,7 @@ int main()
         BuildingArrayAddAsLastElement(&B, BB);
         MapMatrixElement(M, PointCreate(3, 2)) = 3;
 
+        BuildingListInsertValueLast(&L, 2);
         BuildingListPrintInfo(L, B);
         BuildingListDeleteValue(&L, 2);
         printf("\n");
@@ -49,6 +50,9 @@ int main()
         BuildingPrintInfo(BuildingArrayElement(B, x));
         printf("\n");
         BuildingListPrintInfo(L, B);
+
+        BuildingList LL = CopyBuildingList(L);
+        BuildingListPrintInfo(LL, B);
     }
 
     return 0;
