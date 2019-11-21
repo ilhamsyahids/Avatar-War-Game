@@ -109,7 +109,7 @@ void BuildingListDeleteValueLast(BuildingList *L, BuildingListInfotype *X);
 /* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen terakhir di-dealokasi */
 
-void ListDeleteValue(BuildingList *L, BuildingListInfotype X);
+void BuildingListDeleteValue(BuildingList *L, BuildingListInfotype X);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddress P, dengan BuildingListElementInfo(P)=X  */
 /* Maka P dihapus dari list dan di-dealokasi */
@@ -131,5 +131,8 @@ void BuildingListPrintInfo(BuildingList L, BuildingArray BL);
 
 int BuildingListNbElmt(BuildingList L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
+
+BuildingList CopyBuildingList(BuildingList *BL);
+/* Mengirimkan salinan BuildingList BL (menjadi BuildingList baru) */
 
 #endif

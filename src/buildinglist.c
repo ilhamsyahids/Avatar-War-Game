@@ -147,7 +147,7 @@ void BuildingListDeleteValueLast(BuildingList *L, BuildingListInfotype *X)
 /*      dan alamat elemen terakhir di-dealokasi */
 {
     BuildingListAddress P = BuildingListFirstAddress(*L);
-    if (P == BuildingListNil)
+    if (BuildingListElementNext(P) == BuildingListNil)
         BuildingListCreateEmpty(L);
     else
     {
@@ -156,23 +156,21 @@ void BuildingListDeleteValueLast(BuildingList *L, BuildingListInfotype *X)
             last = BuildingListElementNext(last);
         last = BuildingListElementNext(last);
         (P) = BuildingListElementNext(last);
-        (*X) = BuildingListElementInfo(P);
         BuildingListElementNext(last) = BuildingListNil;
         BuildingListElementDealokasi(P);
     }
+    (*X) = BuildingListElementInfo(P);
 }
 
 void BuildingListDeleteValue(BuildingList *L, BuildingListInfotype X)
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddress P, dengan BuildingListElementInfo(P)=X  */
 /* Maka P dihapus dari list dan di-dealokasi */
-/* Jika ada lebih dari satu elemen list dengan Info bernilai X */
-/* maka yang dihapus hanya elemen pertama dengan Info = X */
 /* Jika tidak ada elemen list dengan BuildingListElementInfo(P)=X, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
 {
     BuildingListAddress P = BuildingListAddressSearch(*L, X);
-    if (P = BuildingListNil)
+    if (P != BuildingListNil)
     {
         BuildingListAddress prev = BuildingListFirstAddress(*L);
         if (prev == P)
@@ -208,6 +206,7 @@ void BuildingListPrintInfo(BuildingList L, BuildingArray BL)
             BuildingPrintInfo(BuildingArrayElement(BL, BuildingListElementInfo(P)));
             printf("\n");
             P = BuildingListElementNext(P);
+            count++;
         }
     }
 }
@@ -226,4 +225,21 @@ int BuildingListNbElmt(BuildingList L)
         }
     }
     return count;
+}
+
+BuildingList CopyBuildingList(BuildingList *BL)
+/* Mengirimkan salinan BuildingList BL (menjadi BuildingList baru) */
+{
+    if (IsBuildingListEmpty(*BL))
+    {
+        BuildingList B;
+        BuildingListCreateEmpty(&B);
+        BuildingListAddress P = BuildingListFirstAddress(*BL);
+        while (BuildingListElementNext(P) != BuildingListNil)
+        {
+            BuildingListInsertValueLast(&B, BuildingListElementInfo(P));
+            P = BuildingListElementNext(P);
+        }
+        return B;
+    }
 }

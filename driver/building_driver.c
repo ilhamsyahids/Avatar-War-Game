@@ -6,7 +6,7 @@
 int main()
 {
     Building B;
-    POINT P;
+    Point P;
     P = MakePOINT(5, 4);
     B = BuildingCreate(1, 2, P);
     BuildingInitialize(&B);
