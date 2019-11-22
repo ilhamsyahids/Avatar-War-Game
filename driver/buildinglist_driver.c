@@ -51,32 +51,25 @@ int main()
         BuildingPrintInfo(BuildingArrayElement(B, x));
         printf("\n");
         BuildingListPrintInfo(L, B);
+        printf("\n");
 
-        printf("Kind 1 : %d\n", BuildingListNbElmtKind(L, B, 1));
-        printf("Kind 2 : %d\n", BuildingListNbElmtKind(L, B, 2));
-        printf("Kind 3 : %d\n", BuildingListNbElmtKind(L, B, 3));
-        printf("Kind 4 : %d\n", BuildingListNbElmtKind(L, B, 4));
-
-        printf("Level 4 all : %d\n", IsBuildingListAllLevel4(L, B));
-
-        BuildingLevel(BuildingArrayElement(B, 1)) = 4;
-        BuildingLevel(BuildingArrayElement(B, 2)) = 4;
-        BuildingLevel(BuildingArrayElement(B, 3)) = 4; 
-
+        BuildingList LL = CopyBuildingList(L);
+        BuildingListPrintInfo(LL, B);
+        printf("%d\n", BuildingListNbElmt(LL));
+        BuildingListDeleteValueLast(&LL, &x);
+        printf("%d\n", x);
+        BuildingListPrintInfo(LL, B);
+        printf("\n");
         BuildingListPrintInfo(L, B);
-
-        printf("Level 4 all : %d\n", IsBuildingListAllLevel4(L, B));
-        
-        // di bawah ini ga lewat
-        BuildingListDeleteValueLast(&L, &X);
-        
-        //printf("1\n");
-        //BuildingListDeleteValueLast(&L, &X);
-        //printf("2\n");
-        //BuildingListDeleteValueLast(&L, &X);
-        //printf("3\n");
-        //BuildingListDeleteValueLast(&L, &X);
-        //printf("4\n");
+        printf("\n");
+        BuildingListDeleteValue(&L, 3);
+        BuildingListPrintInfo(L, B);
+        printf("\n");
+        BuildingListInsertValueFirst(&L, 3);
+        BuildingListPrintInfo(L, B);
+        printf("\n");
+        BuildingListInsertValueLast(&L, 3);
+        BuildingListPrintInfo(L, B);
     }
 
     return 0;
