@@ -11,8 +11,9 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
-#include "buildinglist.h"
+#include <boolean.h>
+#include <player.h>
+#include <buildinglist.h>
 
 void attack(Player P, BuildingArray T);
 /* 	Digunakan untuk melakukan serangan ke bangunan lain. */

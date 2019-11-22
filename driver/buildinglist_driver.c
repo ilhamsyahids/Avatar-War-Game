@@ -47,12 +47,11 @@ int main()
         BuildingListPrintInfo(L, B);
         printf("\n");
         BuildingListInfotype x;
-        //BuildingListDeleteValueFirst(&L, &x);
+        BuildingListDeleteValueFirst(&L, &x);
         BuildingPrintInfo(BuildingArrayElement(B, x));
         printf("\n");
         BuildingListPrintInfo(L, B);
         printf("\n");
-
 
         BuildingListDeleteValueLast(&L, &X);
         //Dari sini ga lewat

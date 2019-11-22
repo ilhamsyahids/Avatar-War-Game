@@ -392,7 +392,7 @@ void BuildingChangePlayer(Building *B)
     /* F.S. Bangunan ke-index BL berubah kepemilikan menjadi player yang lain */
     /* Proses: Mengganti nilai atribut player pada Building dan kembali inisialisasi Building. */
     int player = (BuildingPlayer(*B) == 1) ? 2 : 1;
-    BuildingInitialize(B);
+    BuildingLevel(*B) = 1;
     BuildingPlayer(*B) = player;
 }
 
