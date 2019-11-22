@@ -154,11 +154,10 @@ void BuildingListDeleteValueLast(BuildingList *L, BuildingListInfotype *X)
         BuildingListAddress last = P;
         while (BuildingListElementNext(BuildingListElementNext(last)) != BuildingListNil)
             last = BuildingListElementNext(last);
-        last = BuildingListElementNext(last);
         (P) = BuildingListElementNext(last);
         BuildingListElementNext(last) = BuildingListNil;
-        BuildingListElementDealokasi(P);
     }
+    BuildingListElementDealokasi(P);
     (*X) = BuildingListElementInfo(P);
 }
 
@@ -180,8 +179,9 @@ void BuildingListDeleteValue(BuildingList *L, BuildingListInfotype X)
             while (BuildingListElementNext(prev) != P)
                 prev = BuildingListElementNext(prev);
             BuildingListElementNext(prev) = BuildingListElementNext(BuildingListElementNext(prev));
+            BuildingListElementDealokasi(P);
         }
-        BuildingListElementDealokasi(P);
+        
     }
 }
 
