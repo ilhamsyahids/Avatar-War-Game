@@ -100,8 +100,8 @@ void BuildingArrayAddAsLastElement(BuildingArray *T, BuildingArrayElType X)
     BuildingArrayNeff(*T) =  BuildingArrayNeff(*T) + 1;
   } else{
     if(!IsBuildingArrayFull(*T)){
-    BuildingArrayElement((*T), BuildingArrayNeff(*T) + 1) = X;
-    BuildingArrayNeff(*T) =  BuildingArrayNeff(*T) + 1;
+      BuildingArrayElement((*T), BuildingArrayNeff(*T) + 1) = X;
+      BuildingArrayNeff(*T) =  BuildingArrayNeff(*T) + 1;
     }
   } 
 }
@@ -124,4 +124,33 @@ void BuildingArrayRefreshAllBuilding(BuildingArray *T)
   for(int i = 1; i <= BuildingArrayNeff(*T); i++){
     BuildingRefreshStatus(&(BuildingArrayElement((*T), i)));
   }
+}
+
+void BuildingArrayIncreaseOwnedPasukanBuilding(BuildingArray *T)
+/* Menambahkan Pasukan pada semua bangunan yang ada kepemilikan player */
+/* Penambahan dilakukan jika bertemu kasus awal turn */
+/* I.S. T berisi building dengan SoldierCount sembarang */
+/* F.S. T berisi building dengan SoldierCount yang sudah ditambah sesuai dengan A */
+{
+  for(int i = 1; i <= BuildingArrayNeff(*T); i++){ 
+    if(BuildingPlayer(BuildingArrayElement((*T), i)) == 1 || BuildingPlayer(BuildingArrayElement((*T), i)) == 2){
+      BuildingIncreasePasukan(&(BuildingArrayElement((*T), i)), BuildingSoldierAddValue(BuildingArrayElement((*T), i)));
+      BuildingSoldierAddCount(BuildingArrayElement((*T), i)) += BuildingSoldierAddValue(BuildingArrayElement((*T), i));  
+    }
+  } 
+}
+
+BuildingArray BuildingArrayCopyArray(BuildingArray T)
+/* Mengirimkan salinan BuildingArray T menjadi BuildingArray baru */
+{
+
+  BuildingArray TNew;
+
+  BuildingArrayCreateEmpty(&TNew, BuildingArrayMaxElement(T));
+
+  for(int i = 1; i <= BuildingArrayNeff(T); i++){ 
+    BuildingArrayAddAsLastElement(&TNew, BuildingArrayElement(T,i));
+  } 
+
+  return TNew;
 }

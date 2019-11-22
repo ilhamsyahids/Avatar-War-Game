@@ -96,4 +96,11 @@ void GameMapPrintInfo(GameMap G);
 
 Player GameMapGetCurrentPlayer(GameMap G);
 /* Mengembalikan player yang sedang menjalani turnnya dari GameMap */
+
+///////////////////////////////
+// STILL BUGGING DONT USE!!! //
+///////////////////////////////
+GameMap GameMapCopyCurrentMap(GameMap G);
+/* Mengirimkan salinan dari GameMap G menjadi GameMap yang baru dan independen */
+
 #endif

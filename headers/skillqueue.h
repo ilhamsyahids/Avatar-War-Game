@@ -115,6 +115,8 @@ void PrintQueueSkill(SkillQueue Q);
 /* F.S. Tercetak ke layar daftar skill yang ada dengan "SKILL : [skill], [skill], [skill]", 
     apabila QueueSkill kosong maka akan tercetak ke layar "SKILL : Tidak Ada Skill Tersedia"*/
 
+SkillQueue SkillQueueCopySkillQueue(SkillQueue Q);
+/* Mengirimkan salinan dari SkillQueue Q menjadi SkillQueue baru */
 
 // Gonna still be added
 

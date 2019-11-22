@@ -110,4 +110,7 @@ int PlayerBuildingCount(Player P);
 int PlayerSoldierCount(Player P);
 /* Mengembalikan total berapa banyak pasukan yang dimiliki player */
 
+Player PlayerCopyPlayer(Player P, BuildingArray T);
+/* Mengirimkan salinan dari Player P menjadi Player yang baru */
+
 #endif

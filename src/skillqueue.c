@@ -146,4 +146,20 @@ void PrintQueueSkill(SkillQueue Q){
     }
 }
 
+
+SkillQueue SkillQueueCopySkillQueue(SkillQueue Q)
+/* Mengirimkan salinan dari SkillQueue Q menjadi SkillQueue baru */
+{
+    SkillQueue QCopy;
+    Skill STemp;
+
+    SkillQueueCreateEmpty(&QCopy);
+
+    while(!IsSkillQueueEmpty(Q)){
+        SkillQueueDelSkill(&Q, &STemp);
+        SkillQueueAddSkill(&QCopy, STemp);
+    }
+
+    return QCopy;
+}
 // Gonna still be added

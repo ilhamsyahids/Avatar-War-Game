@@ -30,8 +30,12 @@ void StartReadingKata(char* Input)
 /* I.S. CKata Sembarang */
 /* F.S. CKata berisi karakter pertama input */
 {
+	for(int i = 0; i < KataLength(CKata); i++){
+		KataArrayKarakter(CKata, i) = '#';
+	}
 	StringInput = Input;
 	StringIndex = 0;
+	KataLength(CKata) = 0;
 	AdvStringChar();		
 	AdvReadingKata();
 }

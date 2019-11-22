@@ -116,5 +116,14 @@ void BuildingArrayRefreshAllBuilding(BuildingArray *T);
 /* I.S. T berisi Building yang sudah terinisialisasi */
 /* F.S. Building pada T direfresh */
 
+void BuildingArrayIncreaseOwnedPasukanBuilding(BuildingArray *T);
+/* Menambahkan Pasukan pada semua bangunan yang ada kepemilikan player */
+/* Penambahan dilakukan jika bertemu kasus awal turn */
+/* I.S. T berisi building dengan SoldierCount sembarang */
+/* F.S. T berisi building dengan SoldierCount yang sudah ditambah sesuai dengan A */
+
+BuildingArray BuildingArrayCopyArray(BuildingArray T);
+/* Mengirimkan salinan BuildingArray T menjadi BuildingArray baru */
+
 // Gonna still be added
 #endif

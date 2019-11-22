@@ -3,7 +3,7 @@
 #include "skillqueue.h"
 
 Skill S,Sdel;
-SkillQueue Q;
+SkillQueue Q, QCopy;
 int x;
 
 
@@ -28,6 +28,8 @@ int main(){
         printf("NbElmt = %d\n",SkillQueueNBElmt(Q));
         PrintQueueSkill(Q);
     }while(x>=0 && x<=4);
+
+    /*
     do{
         SkillQueueDelSkill(&Q,&Sdel);
         printf("Dihapus %s\n",SkillGetName(SkillKind(Sdel)));
@@ -35,6 +37,24 @@ int main(){
         PrintQueueSkill(Q);
         printf("\n");
     }while(!IsSkillQueueEmpty(Q));
+    */
+    QCopy = SkillQueueCopyQueue(Q);
+    PrintQueueSkill(QCopy);
 
+    printf("\n");
+
+    SkillQueueAddSkill(&Q, SkillCreate(1));
+
+    PrintQueueSkill(Q);
+    printf("\n");
+    PrintQueueSkill(QCopy);
+
+    SkillKind(SkillQueueInfoHead(Q)) = 4; 
+
+    PrintQueueSkill(Q);
+    printf("\n");
+    PrintQueueSkill(QCopy);
+
+    
     printf("Selesai\n");
 }

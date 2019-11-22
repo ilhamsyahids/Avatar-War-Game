@@ -69,7 +69,7 @@ void GameMapChangePlayer(GameMap *G)
 /* F.S curretntPlayer GameMap menjadi 2/1 */
 {
 
-	if (CurrentPlayer(*G).role == 1)
+	if (CurrentPlayer(*G) == 1)
 		CurrentPlayer(*G) = 2;
 	else
 		CurrentPlayer(*G) = 1;
@@ -94,23 +94,53 @@ void GameMapPrintInfo(GameMap G)
 */
 {	
 	printf("======================================\n");
-	if(PlayerRole(CurrentPlayer(G)) == 1){
+	if((CurrentPlayer(G)) == 1){
 		printf("====          Player 1 Turn        ===\n");
 	} else{
 		printf("====          Player 2 Turn        ===\n");
 	}
 	printf("======================================\n");
 	MapMatrixPrintMap(BuildingMap(G), BuildingRecord(G));
-	BuildingListPrintInfo(PlayerOwnedBuildingList(CurrentPlayer(G)), BuildingRecord(G));
-	PrintQueueSkill(PlayerCurrentSkillQueue(CurrentPlayer(G)));
+	BuildingListPrintInfo(PlayerOwnedBuildingList(GameMapGetCurrentPlayer(G)), BuildingRecord(G));
+	PrintQueueSkill(PlayerCurrentSkillQueue(GameMapGetCurrentPlayer(G)));
 }
 
+GameMap GameMapCopyCurrentMap(GameMap G)
+/* Mengirimkan salinan dari GameMap G menjadi GameMap yang baru dan independen */
+{
+	GameMap GCopy;
+	MapMatrix MapCopy;
+	BuildingArray RecordCopy;
+	int CurrentPlayerCopy;
+	Player Player1Copy;
+	Player Player2Copy;
+	BuildingRelationGraph RelationCopy;
+
+	MapCopy = BuildingMap(G);
+	RecordCopy = BuildingArrayCopyArray(BuildingRecord(G));
+	CurrentPlayerCopy = CurrentPlayer(G);
+	Player1Copy = PlayerCopyPlayer(Player1(G), RecordCopy);
+	Player2Copy = PlayerCopyPlayer(Player2(G), RecordCopy);
+	RelationCopy = BuildingRelation(G);
+
+	GameMapCreate(&GCopy, MapCopy, RecordCopy, Player1Copy, Player2Copy, RelationCopy);
+	GameMapSetCurrentPlayer(&GCopy, CurrentPlayerCopy);
+
+	return GCopy;
+
+}
+
+///////////////////////////////
+// STILL BUGGING DONT USE!!! //
+///////////////////////////////
 Player GameMapGetCurrentPlayer(GameMap G)
 /* Mengembalikan player yang sedang menjalani turnnya dari GameMap */
 {
 	if(CurrentPlayer(G) == 1){
 		return Player1(G);
-	} else if (CurrentPlayer(G) == 2){
+	} else {
 		return Player2(G);
 	}
+	
 }
+

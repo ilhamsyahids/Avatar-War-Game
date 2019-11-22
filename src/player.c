@@ -176,3 +176,21 @@ int PlayerSoldierCount(Player P)
 {
     return PlayerTotalSoldier(P);
 }
+
+Player PlayerCopyPlayer(Player P, BuildingArray T)
+/* Mengirimkan salinan dari Player P menjadi Player yang baru */
+{
+    Player PlayerCopy;
+    int RoleCopy;
+    char ColorCopy;
+
+    RoleCopy = PlayerRole(P);
+    ColorCopy = PlayerColor(P);
+
+    PlayerCopy = PlayerCreate(RoleCopy, ColorCopy);
+
+    PlayerInitialize(&PlayerCopy, T);
+
+    return PlayerCopy;
+
+}
