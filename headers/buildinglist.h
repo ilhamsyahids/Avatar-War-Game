@@ -132,7 +132,12 @@ void BuildingListPrintInfo(BuildingList L, BuildingArray BL);
 int BuildingListNbElmt(BuildingList L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
-BuildingList CopyBuildingList(BuildingList BL);
+BuildingList BuildingListCopyBuildingList(BuildingList BL);
 /* Mengirimkan salinan BuildingList BL (menjadi BuildingList baru) */
 
+int BuildingListNbElmtKind(BuildingList BL, BuildingArray T, int kind);
+/* Mengirimkan jumlah building dalam BuildingList yang memiliki kind tertentu */
+
+boolean IsBuildingListAllLevel4(BuildingList BL, BuildingArray T);
+/* Mengirimkan apakah semua building dalam buildinglist BL berlevel 4 */
 #endif

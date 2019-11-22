@@ -154,10 +154,11 @@ void BuildingListDeleteValueLast(BuildingList *L, BuildingListInfotype *X)
         BuildingListAddress last = P;
         while (BuildingListElementNext(BuildingListElementNext(last)) != BuildingListNil)
             last = BuildingListElementNext(last);
+        last = BuildingListElementNext(last);
         (P) = BuildingListElementNext(last);
         BuildingListElementNext(last) = BuildingListNil;
+        BuildingListElementDealokasi(P);
     }
-    BuildingListElementDealokasi(P);
     (*X) = BuildingListElementInfo(P);
 }
 
@@ -176,14 +177,11 @@ void BuildingListDeleteValue(BuildingList *L, BuildingListInfotype X)
             BuildingListDeleteValueFirst(L, &X);
         else
         {
-
             while (BuildingListElementNext(prev) != P)
-            {
                 prev = BuildingListElementNext(prev);
-            }
             BuildingListElementNext(prev) = BuildingListElementNext(BuildingListElementNext(prev));
-            BuildingListElementDealokasi(P);
         }
+        BuildingListElementDealokasi(P);
     }
 }
 
@@ -229,7 +227,7 @@ int BuildingListNbElmt(BuildingList L)
     return count;
 }
 
-BuildingList CopyBuildingList(BuildingList BL)
+BuildingList BuildingListCopyBuildingList(BuildingList BL)
 /* Mengirimkan salinan BuildingList BL (menjadi BuildingList baru) */
 {
     BuildingList B;
@@ -244,4 +242,42 @@ BuildingList CopyBuildingList(BuildingList BL)
         }
     }
     return B;
+}
+
+int BuildingListNbElmtKind(BuildingList BL, BuildingArray T, int kind)
+/* Mengirimkan jumlah building dalam BuildingList yang memiliki kind tertentu */
+{
+    int count = 0;
+
+    if (!IsBuildingListEmpty(BL))
+    {
+        BuildingListAddress P = BuildingListFirstAddress(BL);
+        while ((P) != BuildingListNil)
+        {
+            if(BuildingKind(BuildingArrayElement(T, BuildingListElementInfo(P))) == kind){
+                count += 1;
+            }
+            P = BuildingListElementNext(P);
+        }
+    }
+
+    return count;
+}
+
+boolean IsBuildingListAllLevel4(BuildingList BL, BuildingArray T)
+/* Mengirimkan apakah semua building dalam buildinglist BL berlevel 4 */
+{
+    boolean AllLevel4 = true;
+
+    if (!IsBuildingListEmpty(BL))
+    {
+        BuildingListAddress P = BuildingListFirstAddress(BL);
+        while (((P) != BuildingListNil) && AllLevel4)
+        {
+            AllLevel4 = BuildingLevel(BuildingArrayElement(T, BuildingListElementInfo(P))) == 4;
+            P = BuildingListElementNext(P);
+        }
+    }
+
+    return AllLevel4;
 }

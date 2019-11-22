@@ -53,7 +53,11 @@ int main()
         BuildingListPrintInfo(L, B);
         printf("\n");
 
-        BuildingList LL = CopyBuildingList(L);
+
+        BuildingListDeleteValueLast(&L, &X);
+        //Dari sini ga lewat
+
+        BuildingList LL = BuildingListCopyBuildingList(L);
         BuildingListPrintInfo(LL, B);
         printf("%d\n", BuildingListNbElmt(LL));
         BuildingListDeleteValueLast(&LL, &x);
