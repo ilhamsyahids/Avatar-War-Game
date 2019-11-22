@@ -50,9 +50,25 @@ int main()
         BuildingPrintInfo(BuildingArrayElement(B, x));
         printf("\n");
         BuildingListPrintInfo(L, B);
+        printf("\n");
 
         BuildingList LL = CopyBuildingList(L);
         BuildingListPrintInfo(LL, B);
+        printf("%d\n", BuildingListNbElmt(LL));
+        BuildingListDeleteValueLast(&LL, &x);
+        printf("%d\n", x);
+        BuildingListPrintInfo(LL, B);
+        printf("\n");
+        BuildingListPrintInfo(L, B);
+        printf("\n");
+        BuildingListDeleteValue(&L, 3);
+        BuildingListPrintInfo(L, B);
+        printf("\n");
+        BuildingListInsertValueFirst(&L, 3);
+        BuildingListPrintInfo(L, B);
+        printf("\n");
+        BuildingListInsertValueLast(&L, 3);
+        BuildingListPrintInfo(L, B);
     }
 
     return 0;
