@@ -60,29 +60,18 @@ void ReadCommand(){
 	if(IsKataSame("Attack", 6)){
 		//Command(Attack);
 		printf("Attack");
-		BuildingListInsertValueLast(&PlayerOwnedBuildingList(Player2(GameState)), 9);
-		BuildingPlayer(BuildingArrayElement(BuildingRecord(GameState), 9)) = 2;
-		//BuildingListInsertValueLast(&PlayerOwnedBuildingList(Player1(GameState)), 10);
 		ActionStackPush(&GameStateStack, GameMapPush);
 	} else if(IsKataSame("LevelUp", 7)){
 		//Command(LevelUp);
 		printf("LevelUp");
-		//BuildingArrayIncreaseOwnedPasukanBuilding(&BuildingRecord(GameState));
-		if(BuildingLevel(BuildingArrayElement(BuildingRecord(GameState), 1)) != 4){
-			BuildingLevel(BuildingArrayElement(BuildingRecord(GameState), 1)) += 1;
-
-		}
 		ActionStackPush(&GameStateStack, GameMapPush);
 	} else if(IsKataSame("Move", 4)){
 		//Command(Move);
 		printf("Move");
-		BuildingListDeleteValue(&PlayerOwnedBuildingList(Player2(GameState)), 9);
 		ActionStackPush(&GameStateStack, GameMapPush);
 	} else if(IsKataSame("Skill", 5)){
 		//Command(Skill);
 		printf("Skill");
-		printf("%d\n", BuildingListElementInfo(BuildingListFirstAddress(PlayerOwnedBuildingList(Player2(GameState)))));
-		BuildingListDeleteValue(&PlayerOwnedBuildingList(Player2(GameState)), 2);
 		ActionStackEmpty(&GameStateStack);
 	} else if(IsKataSame("Undo", 4)){
 		if(IsActionStackEmpty(GameStateStack)){
@@ -92,8 +81,6 @@ void ReadCommand(){
 			printf("PopepdState\n");
 			ActionStackPop(&GameStateStack, &GameState);
 			GameMapPrintInfo(GameState);
-			printf("Castle Soldier : %d\n",
-				BuildingSoldierCount(BuildingArrayElement(BuildingRecord(GameState),1)));
 		}
 	} else if(IsKataSame("End_Turn", 8)){
 		printf("End_Turn");
