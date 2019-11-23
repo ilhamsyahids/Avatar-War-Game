@@ -36,6 +36,7 @@ void CompleteFileLoad(GameMap *G)
 {
 	GameMapCreate(G, Map, Record, Player1, Player2, BuildingRelation);
 	CurrentPlayer(*G) = 1;
+	NextPlayer(*G) = 2;
 }
 
 

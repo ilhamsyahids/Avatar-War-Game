@@ -31,6 +31,7 @@ typedef struct
 	MapMatrix BuildingMap;					/* Matrix peta untuk bangunan */
 	BuildingArray BuildingRecord;			/* Daftar seluruh bangunan di peta */
 	int CurrentPlayer;						/* Player yang sedang menjalankan turn saat itu */
+	int NextPlayer;							/* Player yang akan menjalankan turn selanjutnya */
 	Player Player1;							/* Detail player 1 pada game */
 	Player Player2;							/* Detail player 2 pada game */
 	BuildingRelationGraph BuildingRelation; /* Relasi antar bangunan pada peta */
@@ -43,9 +44,10 @@ typedef struct
 //////////////////////////
 /* ********* AKSES (Selektor) ********* */
 /* Jika M adalah GameMap, maka akses elemen : */
-#define BuildingMap(G) (G).BuildingMap
-#define BuildingRecord(G) (G).BuildingRecord
-#define CurrentPlayer(G) (G).CurrentPlayer
+#define BuildingMap(G) 		(G).BuildingMap
+#define BuildingRecord(G) 	(G).BuildingRecord
+#define CurrentPlayer(G) 	(G).CurrentPlayer
+#define NextPlayer(G)		(G).NextPlayer
 #define Player1(G)			(G).Player1
 #define Player2(G)			(G).Player2
 #define BuildingRelation(G) (G).BuildingRelation
@@ -65,6 +67,11 @@ void GameMapSetCurrentPlayer(GameMap *G, int role);
 /* Mengeset CurrentPlayer menjadi sesuai role */
 /* I.S. CurrentPlayer sembarang */
 /* F.S. CurrentPlayer menjadi Player1 (jika role 1) dan sebaliknya */
+
+void GameMapSetNextPlayer(GameMap *G, int role);
+/* Mengeset NextPlayer menjadi sesuai role */
+/* I.S. NextPlayer sembarang */
+/* F.S. NextPlayer menjadi Player1 (jika role 1) dan sebaliknya */
 
 void GameMapInitializeAllComponents(GameMap *G);
 /* Menginisialisasi semua komponen pada GameMap kecuali CurrentPlayer */
@@ -94,13 +101,14 @@ void GameMapPrintInfo(GameMap G);
 
 */
 
-Player GameMapGetCurrentPlayer(GameMap G);
-/* Mengembalikan player yang sedang menjalani turnnya dari GameMap */
+GameMap GameMapCopyCurrentMap(GameMap G);
+/* Mengirimkan salinan dari GameMap G menjadi GameMap yang baru dan independen */
+
 
 ///////////////////////////////
 // STILL BUGGING DONT USE!!! //
 ///////////////////////////////
-GameMap GameMapCopyCurrentMap(GameMap G);
-/* Mengirimkan salinan dari GameMap G menjadi GameMap yang baru dan independen */
+Player GameMapGetCurrentPlayer(GameMap G);
+/* Mengembalikan player yang sedang menjalani turnnya dari GameMap */
 
 #endif

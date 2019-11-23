@@ -46,10 +46,23 @@ void GameMapSetCurrentPlayer(GameMap *G, int role)
 {
 	if(role == 1){
 		CurrentPlayer(*G) = 1;
-	} else{
+	} else if(role == 2){
 		CurrentPlayer(*G) = 2;
 	}
 }
+
+void GameMapSetNextPlayer(GameMap *G, int role)
+/* Mengeset NextPlayer menjadi sesuai role */
+/* I.S. NextPlayer sembarang */
+/* F.S. NextPlayer menjadi Player1 (jika role 1) dan sebaliknya */
+{
+	if(role == 1){
+		NextPlayer(*G) = 1;
+	} else if(role == 2){
+		NextPlayer(*G) = 2;
+	}
+}
+
 void GameMapInitializeAllComponents(GameMap *G)
 /* Menginisialisasi semua komponen pada GameMap kecuali CurrentPlayer */
 /* I.S. BuildingMap, BuildingRecord, Player1, Player2, BuildingRelation belum diinisialisasi */
@@ -64,15 +77,19 @@ void GameMapInitializeAllComponents(GameMap *G)
 }
 
 void GameMapChangePlayer(GameMap *G)
-/* Menukar currentPlayer dengan player yang lain */
+/* Menukar currentPlayer dengan NextPlayer */
 /* I.S currentPlayer GameMap adalah 1/2 */
 /* F.S curretntPlayer GameMap menjadi 2/1 */
 {
 
-	if (CurrentPlayer(*G) == 1)
-		CurrentPlayer(*G) = 2;
-	else
+	if (NextPlayer(*G) == 1){
 		CurrentPlayer(*G) = 1;
+		NextPlayer(*G) = 2;
+	}
+	else if(NextPlayer(*G) == 2){
+		CurrentPlayer(*G) = 2;
+		NextPlayer(*G) = 1;
+	}
 }
 
 void GameMapPrintInfo(GameMap G)
@@ -112,6 +129,7 @@ GameMap GameMapCopyCurrentMap(GameMap G)
 	MapMatrix MapCopy;
 	BuildingArray RecordCopy;
 	int CurrentPlayerCopy;
+	int NextPlayerCopy;
 	Player Player1Copy;
 	Player Player2Copy;
 	BuildingRelationGraph RelationCopy;
@@ -119,6 +137,7 @@ GameMap GameMapCopyCurrentMap(GameMap G)
 	MapCopy = BuildingMap(G);
 	RecordCopy = BuildingArrayCopyArray(BuildingRecord(G));
 	CurrentPlayerCopy = CurrentPlayer(G);
+	NextPlayerCopy = NextPlayer(G);
 	Player1Copy = PlayerCopyPlayer(Player1(G), RecordCopy);
 	Player2Copy = PlayerCopyPlayer(Player2(G), RecordCopy);
 	RelationCopy = BuildingRelation(G);

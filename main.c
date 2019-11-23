@@ -72,6 +72,8 @@ void ReadCommand(){
 	} else if(IsKataSame("Skill", 5)){
 		//Command(Skill);
 		printf("Skill");
+		//BuildingListDeleteValueLast(&PlayerOwnedBuildingList(Player2(GameState)), &testint);
+		GameMapSetNextPlayer(&GameState, 1);
 		ActionStackEmpty(&GameStateStack);
 	} else if(IsKataSame("Undo", 4)){
 		if(IsActionStackEmpty(GameStateStack)){
@@ -137,7 +139,6 @@ void CheckAddFlags(){
 		}
 	} else if(AddIR == 1){
 		if(IsBuildingListAllLevel4(PlayerOwnedBuildingList(GameMapGetCurrentPlayer(GameState)), BuildingRecord(GameState))){
-			printf("MASUK");
 			AddIR = 2;
 		}		
 	}
@@ -207,53 +208,79 @@ void RefreshSkillFlags(){
 	RefreshTriggerFlags();
 }
 
+void CheckBattleCondition(){
+	InGame = (BuildingListNbElmt(PlayerOwnedBuildingList(Player1(GameState))) != 0 && BuildingListNbElmt(PlayerOwnedBuildingList(Player2(GameState))) != 0);
+}
+
 void PostTurn(int player){
-	if(InGame){
+	CheckBattleCondition();
+	if(InGame && BattlePhase == 3){
 		printf("PostTurn");
+		BattlePhase = 1;
 		GameMapChangePlayer(&GameState);
+	} else if (!InGame){
+		if(BuildingListNbElmt(PlayerOwnedBuildingList(Player1(GameState))) == 0){
+			printf("PLAYER 1 KALAH");
+		} else if (BuildingListNbElmt(PlayerOwnedBuildingList(Player2(GameState))) == 0){
+			printf("PLAYER 2 KALAH");
+		}
+		RefreshSkillFlags;
+		BattlePhase = 0;
 	}
 }
 void InTurn(int player){
 	while(InGame && BattlePhase == 2){
-		//ClearScreen();
+		ClearScreen();
 		CheckAddFlags();
 		GameMapPrintInfo(GameState);
+		printf("Enter Command: \n")
 		scanf("%s",&InputString);
 		StartReadingKata(InputString);
 		ReadCommand();
 		CheckAddFlags();
 		ExecuteAddFlags();
+		CheckBattleCondition();
 	}
-	printf("AAAAAAAA");
+	
 }
 
 
 void PreTurn(int player){
-	if(InGame){
-		if(BuildingListNbElmt(PlayerOwnedBuildingList(Player1(GameState))) != 0 && BuildingListNbElmt(PlayerOwnedBuildingList(Player2(GameState))) != 0){
-			ActionStackEmpty(&GameStateStack);
-			BuildingArrayRefreshAllBuilding(&BuildingRecord(GameState));
-			BuildingArrayIncreaseOwnedPasukanBuilding(&BuildingRecord(GameState));
-			RefreshSkillFlags();
-			CheckAddFlags();
-			BattlePhase = 2;
-		} else{
-			if(BuildingListNbElmt(PlayerOwnedBuildingList(Player1(GameState))) == 0){
-				//InGame = false;
-
-			} else if(BuildingListNbElmt(PlayerOwnedBuildingList(Player2(GameState))) == 0){
-
-			}
-			InGame = false;
-			BattlePhase = 0;
-		}
+	CheckBattleCondition();
+	if(InGame && BattlePhase == 1){
+		ActionStackEmpty(&GameStateStack);
+		BuildingArrayRefreshAllBuilding(&BuildingRecord(GameState));
+		BuildingArrayIncreaseOwnedPasukanBuilding(&BuildingRecord(GameState));
+		RefreshSkillFlags();
+		CheckAddFlags();
+		BattlePhase = 2;
 	}
 }
 
 void PrintWelcome(){
-	printf("###################################\n");
-	printf("##  WELCOME TO AVATAR WORLD WAR  ##\n");
-	printf("###################################\n");
+	printf("	  _______           _______ _________ _______  _______\n");                     
+	printf("	  (  ___  )|\\     /|(  ___  )\\__   __/(  ___  )(  ____ )\n" );                   
+	printf("	  | (   ) || )   ( || (   ) |   ) (   | (   ) || (    )|\n");                    
+	printf("	  | (___) || |   | || (___) |   | |   | (___) || (____)|\n");                   
+	printf("	  |  ___  |( (   ) )|  ___  |   | |   |  ___  ||     __)\n");                 
+	printf("	  | (   ) | \\ \\_/ / | (   ) |   | |   | (   ) || (\\ (\n");                      
+	printf("	  | )   ( |  \\   /  | )   ( |   | |   | )   ( || ) \\ \\__\n");                   
+	printf("	  |/     \\|   \\_/   |/     \\|   )_(   |/     \\||/   \\__/\n");                    
+	printf("\n");                                                                          
+	printf("          _______  _______  _        ______              _______  _______ \n");
+	printf("|\\     /|(  ___  )(  ____ )( \\      (  __  \\   |\\     /|(  ___  )(  ____ )\n");
+	printf("| )   ( || (   ) || (    )|| (      | (  \\  )  | )   ( || (   ) || (    )|\n");
+	printf("| | _ | || |   | || (____)|| |      | |   ) |  | | _ | || (___) || (____)|\n");
+	printf("| |( )| || |   | ||     __)| |      | |   | |  | |( )| ||  ___  ||     __)\n");
+	printf("| || || || |   | || (\\ (   | |      | |   ) |  | || || || (   ) || (\\ (   \n");
+	printf("| () () || (___) || ) \\ \\__| (____/\\| (__/  )  | () () || )   ( || ) \\ \\__\n");
+	printf("(_______)(_______)|/   \\__/(_______/(______/   (_______)|/     \\||/   \\__/\n");
+	printf("\n");
+	printf("	  	  ######################################\n");
+	printf("	  	  ##                 #                ##\n");
+	printf("	  	  ##      Start      #      Exit      ##\n");
+	printf("	  	  ##                 #                ##\n");
+	printf("	  	  ######################################\n");
 	printf("\n");
 }
 
@@ -270,6 +297,7 @@ void Setup(char* filename){
 	CompleteFileLoad(&GameState);
 	GameMapInitializeAllComponents(&GameState);
 	GameMapSetCurrentPlayer(&GameState, 1);
+	GameMapSetNextPlayer(&GameState, 2);
 	ActionStackCreateEmpty(&GameStateStack, 10);
 }
 
@@ -278,11 +306,14 @@ int main(){
 	Setup("pitakar.txt");
 	PrintWelcome();
 
+	printf("Enter Command:\n");
 	scanf("%s", InputString);
 	StartReadingKata(InputString);
 	if(IsKataSame("Start", 5)){
 		ClearScreen();
 		StartGame();
+	} else if(IsKataSame("Exit", 4)){
+		exit(0);
 	}
 	
 	while(InGame){

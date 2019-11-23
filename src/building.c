@@ -394,6 +394,7 @@ void BuildingChangePlayer(Building *B)
     int player = (BuildingPlayer(*B) == 1) ? 2 : 1;
     BuildingLevel(*B) = 1;
     BuildingPlayer(*B) = player;
+    BuildingRefreshStatus(B);
 }
 
 void BuildingLevelUp(Building *B)
