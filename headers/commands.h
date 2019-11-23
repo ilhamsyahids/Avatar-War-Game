@@ -2,7 +2,7 @@
 /* Berisi list command yang bisa dilakukan pemain pada suatu turn */
 
 #ifndef _COMMANDS_H
-#define _COMMANDS_HS
+#define _COMMANDS_H
 
 ///////////////////////////
 //        INCLUDE        //
@@ -15,7 +15,7 @@
 #include <player.h>
 #include <buildinglist.h>
 
-void attack(Player P, BuildingArray T);
+void Attack(GameMap G);
 /* 	Digunakan untuk melakukan serangan ke bangunan lain. */
 /* 	Jika X < Y, maka bangunan yang diserang tetap menjadi milik lawan, namun
 	berkurang jumlah pasukannya di bangunan itu menjadi Y - X. Jumlah pasukan di

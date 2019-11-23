@@ -17,6 +17,7 @@
 #include "fileloader.h"
 #include "mesinkata.h"
 #include "actionstackt.h"
+#include "commands.h"
 
 ///////////////////////////////////
 //		  CONST & TYPEDEF	 	 //
@@ -46,208 +47,275 @@ boolean TriggerBR;
 //////////////////////z/////////////
 // 	      MAIN FUNCTIONS 	 	 //
 ///////////////////////////////////
-void ClearScreen(){
+void ClearScreen()
+{
 	system("cls");
 }
 
-void ReadCommand(){
+void ReadCommand()
+{
 	GameMap GameMapPush;
 	GameMapPush = GameMapCopyCurrentMap(GameState);
 	BuildingRecord(GameMapPush) = BuildingArrayCopyArray(BuildingRecord(GameState));
-	
 
 	//CheckAddFlags();
-	if(IsKataSame("Attack", 6)){
-		//Command(Attack);
+	if (IsKataSame("Attack", 6))
+	{
 		printf("Attack");
+Attack(GameState);
 		ActionStackPush(&GameStateStack, GameMapPush);
-	} else if(IsKataSame("LevelUp", 7)){
+	}
+	else if (IsKataSame("LevelUp", 7))
+	{
 		//Command(LevelUp);
 		printf("LevelUp");
 		ActionStackPush(&GameStateStack, GameMapPush);
-	} else if(IsKataSame("Move", 4)){
+	}
+	else if (IsKataSame("Move", 4))
+	{
 		//Command(Move);
 		printf("Move");
 		ActionStackPush(&GameStateStack, GameMapPush);
-	} else if(IsKataSame("Skill", 5)){
+	}
+	else if (IsKataSame("Skill", 5))
+	{
 		//Command(Skill);
 		printf("Skill");
 		//BuildingListDeleteValueLast(&PlayerOwnedBuildingList(Player2(GameState)), &testint);
 		GameMapSetNextPlayer(&GameState, 1);
 		ActionStackEmpty(&GameStateStack);
-	} else if(IsKataSame("Undo", 4)){
-		if(IsActionStackEmpty(GameStateStack)){
+	}
+	else if (IsKataSame("Undo", 4))
+	{
+		if (IsActionStackEmpty(GameStateStack))
+		{
 			printf("Tidak ada Action yang dapat diundo!\n");
-		} else {
+		}
+		else
+		{
 			printf("Undo");
 			printf("PopepdState\n");
 			ActionStackPop(&GameStateStack, &GameState);
 			GameMapPrintInfo(GameState);
 		}
-	} else if(IsKataSame("End_Turn", 8)){
+	}
+	else if (IsKataSame("End_Turn", 8))
+	{
 		printf("End_Turn");
 		ActionStackEmpty(&GameStateStack);
 		BattlePhase = 3;
-	}  else if(IsKataSame("Exit", 4)){
+	}
+	else if (IsKataSame("Exit", 4))
+	{
 		printf("Exit");
-	}  else{
+	}
+	else
+	{
 		printf("Others");
-	} 
+	}
 	//CheckAddFlags();
 }
-void CheckAddFlags(){
+void CheckAddFlags()
+{
 	//ET
 	int player = CurrentPlayer(GameState);
 	int countFort = 0;
-	if(AddET == 0){
-		if(player == 1){
+	if (AddET == 0)
+	{
+		if (player == 1)
+		{
 			Player PlayerCurrent = Player2(GameState);
 			countFort = BuildingListNbElmtKind(PlayerOwnedBuildingList(PlayerCurrent), BuildingRecord(GameState), 3);
-			if(countFort > 0){
+			if (countFort > 0)
+			{
 				AddET = 1;
 			}
-			
-		} else if (player == 2){
+		}
+		else if (player == 2)
+		{
 			Player PlayerCurrent = Player1(GameState);
-			countFort = BuildingListNbElmtKind(PlayerOwnedBuildingList(PlayerCurrent),BuildingRecord(GameState), 3);
-			if(countFort > 0){
+			countFort = BuildingListNbElmtKind(PlayerOwnedBuildingList(PlayerCurrent), BuildingRecord(GameState), 3);
+			if (countFort > 0)
+			{
 				AddET = 1;
 			}
-		}	
-	} else if(AddET == 1){
-		if(player == 1){
+		}
+	}
+	else if (AddET == 1)
+	{
+		if (player == 1)
+		{
 			Player TopOfStackPlayer = Player2(ActionStackInfoTop(GameStateStack));
 			Player PlayerCurrent = Player2(GameState);
-			UniversalCounter = BuildingListNbElmtKind(PlayerOwnedBuildingList(TopOfStackPlayer),BuildingRecord(GameState), 3) - BuildingListNbElmtKind(PlayerOwnedBuildingList(PlayerCurrent), BuildingRecord(GameState), 3);
-			if(UniversalCounter > 0){
+			UniversalCounter = BuildingListNbElmtKind(PlayerOwnedBuildingList(TopOfStackPlayer), BuildingRecord(GameState), 3) - BuildingListNbElmtKind(PlayerOwnedBuildingList(PlayerCurrent), BuildingRecord(GameState), 3);
+			if (UniversalCounter > 0)
+			{
 				AddET = 2;
 			}
-		} else if(player == 2){
+		}
+		else if (player == 2)
+		{
 			Player TopOfStackPlayer = Player1(ActionStackInfoTop(GameStateStack));
 			Player PlayerCurrent = Player1(GameState);
 			UniversalCounter = BuildingListNbElmtKind(PlayerOwnedBuildingList(TopOfStackPlayer), BuildingRecord(GameState), 3) - BuildingListNbElmtKind(PlayerOwnedBuildingList(PlayerCurrent), BuildingRecord(GameState), 3);
-			if(UniversalCounter > 0){
+			if (UniversalCounter > 0)
+			{
 				AddET = 2;
 			}
-		} 
+		}
 	}
-	
+
 	//IR
-	if(AddIR == 0){
-		if(BuildingListNbElmt(PlayerOwnedBuildingList(GameMapGetCurrentPlayer(GameState))) != 0){
+	if (AddIR == 0)
+	{
+		if (BuildingListNbElmt(PlayerOwnedBuildingList(GameMapGetCurrentPlayer(GameState))) != 0)
+		{
 			AddIR = 1;
 		}
-	} else if(AddIR == 1){
-		if(IsBuildingListAllLevel4(PlayerOwnedBuildingList(GameMapGetCurrentPlayer(GameState)), BuildingRecord(GameState))){
-			AddIR = 2;
-		}		
 	}
-	
+	else if (AddIR == 1)
+	{
+		if (IsBuildingListAllLevel4(PlayerOwnedBuildingList(GameMapGetCurrentPlayer(GameState)), BuildingRecord(GameState)))
+		{
+			AddIR = 2;
+		}
+	}
+
 	//BR
-	if(AddBR == 0){
-		if(BuildingListNbElmt(PlayerOwnedBuildingList(GameMapGetCurrentPlayer(GameState))) == 9){
+	if (AddBR == 0)
+	{
+		if (BuildingListNbElmt(PlayerOwnedBuildingList(GameMapGetCurrentPlayer(GameState))) == 9)
+		{
 			AddBR = 1;
-		}	
-	} else if(AddBR == 1){
-		if(BuildingListNbElmt(PlayerOwnedBuildingList(GameMapGetCurrentPlayer(GameState))) == 10){
+		}
+	}
+	else if (AddBR == 1)
+	{
+		if (BuildingListNbElmt(PlayerOwnedBuildingList(GameMapGetCurrentPlayer(GameState))) == 10)
+		{
 			AddBR = 2;
 		}
 	}
 }
 
-void ExecuteAddFlags(){
+void ExecuteAddFlags()
+{
 	// IR
-	if(AddIR == 2){
+	if (AddIR == 2)
+	{
 		Skill AddSkill = SkillCreate(3);
-		if(CurrentPlayer(GameState) == 1){
+		if (CurrentPlayer(GameState) == 1)
+		{
 			SkillQueueAddSkill(&PlayerCurrentSkillQueue(Player1(GameState)), AddSkill);
-		} else if (CurrentPlayer(GameState) == 2){
-			SkillQueueAddSkill(&PlayerCurrentSkillQueue(Player2(GameState)), AddSkill);
-
 		}
-		
+		else if (CurrentPlayer(GameState) == 2)
+		{
+			SkillQueueAddSkill(&PlayerCurrentSkillQueue(Player2(GameState)), AddSkill);
+		}
+
 		AddIR = 0;
 	}
 
 	// BR
-	if(AddBR == 2){
+	if (AddBR == 2)
+	{
 		Skill AddSkill = SkillCreate(4);
-		if(CurrentPlayer(GameState) == 1){
+		if (CurrentPlayer(GameState) == 1)
+		{
 			SkillQueueAddSkill(&PlayerCurrentSkillQueue(Player2(GameState)), AddSkill);
-		} else if (CurrentPlayer(GameState) == 2){
+		}
+		else if (CurrentPlayer(GameState) == 2)
+		{
 			SkillQueueAddSkill(&PlayerCurrentSkillQueue(Player1(GameState)), AddSkill);
 		}
 		AddBR = 0;
 	}
 
 	// ET
-	if(AddET == 2){
+	if (AddET == 2)
+	{
 		Skill AddSkill = SkillCreate(2);
-		if(CurrentPlayer(GameState) == 1){
+		if (CurrentPlayer(GameState) == 1)
+		{
 			SkillQueueAddSkill(&PlayerCurrentSkillQueue(Player2(GameState)), AddSkill);
-		} else if (CurrentPlayer(GameState) == 2){
+		}
+		else if (CurrentPlayer(GameState) == 2)
+		{
 			SkillQueueAddSkill(&PlayerCurrentSkillQueue(Player1(GameState)), AddSkill);
 		}
 		AddET = 0;
 	}
 }
-void RefreshTriggerFlags(){
+void RefreshTriggerFlags()
+{
 	TriggerET = false;
 	TriggerIR = false;
 	TriggerBR = false;
 }
 
-void RefreshAddFlags(){
+void RefreshAddFlags()
+{
 	AddET = 0;
 	AddIR = 0;
 	AddBR = 0;
 }
 
-void RefreshSkillFlags(){
+void RefreshSkillFlags()
+{
 	RefreshAddFlags();
 	RefreshTriggerFlags();
 }
 
-void CheckBattleCondition(){
+void CheckBattleCondition()
+{
 	InGame = (BuildingListNbElmt(PlayerOwnedBuildingList(Player1(GameState))) != 0 && BuildingListNbElmt(PlayerOwnedBuildingList(Player2(GameState))) != 0);
 }
 
-void PostTurn(int player){
+void PostTurn(int player)
+{
 	CheckBattleCondition();
-	if(InGame && BattlePhase == 3){
+	if (InGame && BattlePhase == 3)
+	{
 		printf("PostTurn");
 		BattlePhase = 1;
 		GameMapChangePlayer(&GameState);
-	} else if (!InGame){
-		if(BuildingListNbElmt(PlayerOwnedBuildingList(Player1(GameState))) == 0){
+	}
+	else if (!InGame)
+	{
+		if (BuildingListNbElmt(PlayerOwnedBuildingList(Player1(GameState))) == 0)
+		{
 			printf("PLAYER 1 KALAH");
-		} else if (BuildingListNbElmt(PlayerOwnedBuildingList(Player2(GameState))) == 0){
+		}
+		else if (BuildingListNbElmt(PlayerOwnedBuildingList(Player2(GameState))) == 0)
+		{
 			printf("PLAYER 2 KALAH");
 		}
 		RefreshSkillFlags;
 		BattlePhase = 0;
 	}
 }
-void InTurn(int player){
-	while(InGame && BattlePhase == 2){
+void InTurn(int player)
+{
+	while (InGame && BattlePhase == 2)
+	{
 		ClearScreen();
 		CheckAddFlags();
 		GameMapPrintInfo(GameState);
-		printf("Enter Command: \n")
-		scanf("%s",&InputString);
+		printf("Enter Command: \n");
+		scanf("%s", &InputString);
 		StartReadingKata(InputString);
 		ReadCommand();
 		CheckAddFlags();
 		ExecuteAddFlags();
 		CheckBattleCondition();
 	}
-	
 }
 
-
-void PreTurn(int player){
+void PreTurn(int player)
+{
 	CheckBattleCondition();
-	if(InGame && BattlePhase == 1){
+	if (InGame && BattlePhase == 1)
+	{
 		ActionStackEmpty(&GameStateStack);
 		BuildingArrayRefreshAllBuilding(&BuildingRecord(GameState));
 		BuildingArrayIncreaseOwnedPasukanBuilding(&BuildingRecord(GameState));
@@ -257,16 +325,17 @@ void PreTurn(int player){
 	}
 }
 
-void PrintWelcome(){
-	printf("	  _______           _______ _________ _______  _______\n");                     
-	printf("	  (  ___  )|\\     /|(  ___  )\\__   __/(  ___  )(  ____ )\n" );                   
-	printf("	  | (   ) || )   ( || (   ) |   ) (   | (   ) || (    )|\n");                    
-	printf("	  | (___) || |   | || (___) |   | |   | (___) || (____)|\n");                   
-	printf("	  |  ___  |( (   ) )|  ___  |   | |   |  ___  ||     __)\n");                 
-	printf("	  | (   ) | \\ \\_/ / | (   ) |   | |   | (   ) || (\\ (\n");                      
-	printf("	  | )   ( |  \\   /  | )   ( |   | |   | )   ( || ) \\ \\__\n");                   
-	printf("	  |/     \\|   \\_/   |/     \\|   )_(   |/     \\||/   \\__/\n");                    
-	printf("\n");                                                                          
+void PrintWelcome()
+{
+	printf("	  _______           _______ _________ _______  _______\n");
+	printf("	  (  ___  )|\\     /|(  ___  )\\__   __/(  ___  )(  ____ )\n");
+	printf("	  | (   ) || )   ( || (   ) |   ) (   | (   ) || (    )|\n");
+	printf("	  | (___) || |   | || (___) |   | |   | (___) || (____)|\n");
+	printf("	  |  ___  |( (   ) )|  ___  |   | |   |  ___  ||     __)\n");
+	printf("	  | (   ) | \\ \\_/ / | (   ) |   | |   | (   ) || (\\ (\n");
+	printf("	  | )   ( |  \\   /  | )   ( |   | |   | )   ( || ) \\ \\__\n");
+	printf("	  |/     \\|   \\_/   |/     \\|   )_(   |/     \\||/   \\__/\n");
+	printf("\n");
 	printf("          _______  _______  _        ______              _______  _______ \n");
 	printf("|\\     /|(  ___  )(  ____ )( \\      (  __  \\   |\\     /|(  ___  )(  ____ )\n");
 	printf("| )   ( || (   ) || (    )|| (      | (  \\  )  | )   ( || (   ) || (    )|\n");
@@ -284,15 +353,17 @@ void PrintWelcome(){
 	printf("\n");
 }
 
-void StartGame(){
+void StartGame()
+{
 	InGame = true;
 	BattlePhase = 1;
 }
 
-void PreGame(){
-
+void PreGame()
+{
 }
-void Setup(char* filename){
+void Setup(char *filename)
+{
 	StartLoading(filename, 'b', 'r');
 	CompleteFileLoad(&GameState);
 	GameMapInitializeAllComponents(&GameState);
@@ -301,22 +372,26 @@ void Setup(char* filename){
 	ActionStackCreateEmpty(&GameStateStack, 10);
 }
 
-
-int main(){
+int main()
+{
 	Setup("pitakar.txt");
 	PrintWelcome();
 
 	printf("Enter Command:\n");
 	scanf("%s", InputString);
 	StartReadingKata(InputString);
-	if(IsKataSame("Start", 5)){
+	if (IsKataSame("Start", 5))
+	{
 		ClearScreen();
 		StartGame();
-	} else if(IsKataSame("Exit", 4)){
+	}
+	else if (IsKataSame("Exit", 4))
+	{
 		exit(0);
 	}
-	
-	while(InGame){
+
+	while (InGame)
+	{
 		int player = CurrentPlayer(GameState);
 		ClearScreen();
 		PreTurn(player);
@@ -327,6 +402,5 @@ int main(){
 
 	//BuildingRelationGraphPrintInfo(BuildingRelation(GameState));
 
-	
 	return 0;
 }
