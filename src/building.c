@@ -386,14 +386,14 @@ void BuildingDecreasePasukan(Building *B, int value)
     BuildingSoldierCount(*B) = count;
 }
 
-void BuildingChangePlayer(Building *B)
+void BuildingChangePlayer(Building *B, int role)
 {
     /* I.S. Bangunan ke-index BL terdefinisi milik salah satu player */
     /* F.S. Bangunan ke-index BL berubah kepemilikan menjadi player yang lain */
     /* Proses: Mengganti nilai atribut player pada Building dan kembali inisialisasi Building. */
-    int player = (BuildingPlayer(*B) == 1) ? 2 : 1;
+    //int player = (BuildingPlayer(*B) == 1) ? 2 : 1;
     BuildingLevel(*B) = 1;
-    BuildingPlayer(*B) = player;
+    BuildingPlayer(*B) = role;
     BuildingRefreshStatus(B);
 }
 

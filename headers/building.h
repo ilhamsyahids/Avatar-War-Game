@@ -98,6 +98,9 @@ boolean IsBuildingLevelMax(Building B);
 boolean CanBuildingAttack(Building B);
 /* Mengirimkan apakah building dapat menyerang */
 
+boolean CanBuildingLevelUp(Building B);
+/* Mengirimkan apakah building dapat level up */
+
 /////////////////////////////////////
 //       BUILDING OPERATIONS       //
 /////////////////////////////////////
@@ -148,7 +151,7 @@ void BuildingDecreasePasukan(Building *B, int value);
 /* Proses: Mengurangkan value pada soldierCount dari Building */
 /* Jika jumlah akhir kurang dari 0, soldierCount akan menjadi 0 */
 
-void BuildingChangePlayer(Building *B);
+void BuildingChangePlayer(Building *B, int role);
 /* I.S. Bangunan ke-index BL terdefinisi milik salah satu player */
 /* F.S. Bangunan ke-index BL berubah kepemilikan menjadi player yang lain */
 /* Proses: Mengganti nilai atribut player pada Building dan kembali inisialisasi Building. */
