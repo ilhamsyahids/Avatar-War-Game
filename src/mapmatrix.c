@@ -109,13 +109,13 @@ void MapMatrixPrintMap(MapMatrix M, BuildingArray T)
         {
             if (i == 0 || i == MapMatrixLastIdxBaris(M) + 1)
             {
-                printf("*");
+                print_yellow("=");
             }
             else
             {
                 if (j == 0 || j == MapMatrixLastIdxKolom(M) + 1)
                 {
-                    printf("*");
+                    print_yellow("|");
                 }
                 else
                 {
@@ -133,7 +133,7 @@ void MapMatrixPrintMap(MapMatrix M, BuildingArray T)
                         }
                         else
                         {
-                            printf("%c", BuildingGetAcronym(BuildingKind(MapMatrixGetBuilding(M, P, T))));
+                            printf("%s", BuildingGetAcronym(BuildingKind(MapMatrixGetBuilding(M, P, T))));
                         }
                     }
                     else

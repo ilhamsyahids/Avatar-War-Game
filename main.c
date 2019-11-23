@@ -301,7 +301,7 @@ void InTurn(int player)
 		//ClearScreen();
 		CheckAddFlags();
 		GameMapPrintInfo(GameState);
-		printf("Enter Command: \n");
+		print_magenta("Enter Command: \n");
 		scanf("%s", &InputString);
 		StartReadingKata(InputString);
 		ReadCommand();
@@ -327,30 +327,30 @@ void PreTurn(int player)
 
 void PrintWelcome()
 {
-	printf("	  _______           _______ _________ _______  _______\n");
-	printf("	  (  ___  )|\\     /|(  ___  )\\__   __/(  ___  )(  ____ )\n");
-	printf("	  | (   ) || )   ( || (   ) |   ) (   | (   ) || (    )|\n");
-	printf("	  | (___) || |   | || (___) |   | |   | (___) || (____)|\n");
-	printf("	  |  ___  |( (   ) )|  ___  |   | |   |  ___  ||     __)\n");
-	printf("	  | (   ) | \\ \\_/ / | (   ) |   | |   | (   ) || (\\ (\n");
-	printf("	  | )   ( |  \\   /  | )   ( |   | |   | )   ( || ) \\ \\__\n");
-	printf("	  |/     \\|   \\_/   |/     \\|   )_(   |/     \\||/   \\__/\n");
-	printf("\n");
-	printf("          _______  _______  _        ______              _______  _______ \n");
-	printf("|\\     /|(  ___  )(  ____ )( \\      (  __  \\   |\\     /|(  ___  )(  ____ )\n");
-	printf("| )   ( || (   ) || (    )|| (      | (  \\  )  | )   ( || (   ) || (    )|\n");
-	printf("| | _ | || |   | || (____)|| |      | |   ) |  | | _ | || (___) || (____)|\n");
-	printf("| |( )| || |   | ||     __)| |      | |   | |  | |( )| ||  ___  ||     __)\n");
-	printf("| || || || |   | || (\\ (   | |      | |   ) |  | || || || (   ) || (\\ (   \n");
-	printf("| () () || (___) || ) \\ \\__| (____/\\| (__/  )  | () () || )   ( || ) \\ \\__\n");
-	printf("(_______)(_______)|/   \\__/(_______/(______/   (_______)|/     \\||/   \\__/\n");
-	printf("\n");
-	printf("	  	  ######################################\n");
-	printf("	  	  ##                 #                ##\n");
-	printf("	  	  ##      Start      #      Exit      ##\n");
-	printf("	  	  ##                 #                ##\n");
-	printf("	  	  ######################################\n");
-	printf("\n");
+	print_yellow("	  _______           _______ _________ _______  _______\n");
+	print_yellow("	  (  ___  )|\\     /|(  ___  )\\__   __/(  ___  )(  ____ )\n");
+	print_yellow("	  | (   ) || )   ( || (   ) |   ) (   | (   ) || (    )|\n");
+	print_yellow("	  | (___) || |   | || (___) |   | |   | (___) || (____)|\n");
+	print_yellow("	  |  ___  |( (   ) )|  ___  |   | |   |  ___  ||     __)\n");
+	print_yellow("	  | (   ) | \\ \\_/ / | (   ) |   | |   | (   ) || (\\ (\n");
+	print_yellow("	  | )   ( |  \\   /  | )   ( |   | |   | )   ( || ) \\ \\__\n");
+	print_yellow("	  |/     \\|   \\_/   |/     \\|   )_(   |/     \\||/   \\__/\n");
+	print_yellow("\n");
+	print_yellow("          _______  _______  _        ______              _______  _______ \n");
+	print_yellow("|\\     /|(  ___  )(  ____ )( \\      (  __  \\   |\\     /|(  ___  )(  ____ )\n");
+	print_yellow("| )   ( || (   ) || (    )|| (      | (  \\  )  | )   ( || (   ) || (    )|\n");
+	print_yellow("| | _ | || |   | || (____)|| |      | |   ) |  | | _ | || (___) || (____)|\n");
+	print_yellow("| |( )| || |   | ||     __)| |      | |   | |  | |( )| ||  ___  ||     __)\n");
+	print_yellow("| || || || |   | || (\\ (   | |      | |   ) |  | || || || (   ) || (\\ (   \n");
+	print_yellow("| () () || (___) || ) \\ \\__| (____/\\| (__/  )  | () () || )   ( || ) \\ \\__\n");
+	print_yellow("(_______)(_______)|/   \\__/(_______/(______/   (_______)|/     \\||/   \\__/\n");
+	print_yellow("\n");
+	print_yellow("	  	  ######################################\n");
+	print_yellow("	  	  ##                 #                ##\n");
+	print_yellow("	  	  ##      Start      #      Exit      ##\n");
+	print_yellow("	  	  ##                 #                ##\n");
+	print_yellow("	  	  ######################################\n");
+	print_yellow("\n");
 }
 
 void StartGame()
@@ -377,7 +377,7 @@ int main()
 	Setup("pitakar.txt");
 	PrintWelcome();
 
-	printf("Enter Command:\n");
+	print_magenta("Enter Command:\n");
 	scanf("%s", InputString);
 	StartReadingKata(InputString);
 	if (IsKataSame("Start", 5))

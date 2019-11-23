@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "boolean.h"
+#include "pcolor.h"
 #include "point.h"
 #include "building.h"
 
@@ -286,18 +287,18 @@ boolean BuildingGetP(int kind, int level)
     return value;
 }
 
-char BuildingGetAcronym(int kind)
+char *BuildingGetAcronym(int kind)
 /* Mengirimkan akronim nama building untuk kind tertentu */
 {
-    char Acronym;
+    char *Acronym;
     if (kind == 1)
-        Acronym = 'C';
+        Acronym = "C";
     else if (kind == 2)
-        Acronym = 'T';
+        Acronym = "T";
     else if (kind == 3)
-        Acronym = 'F';
+        Acronym = "F";
     else
-        Acronym = 'V';
+        Acronym = "V";
     return Acronym;
 }
 char *BuildingGetName(int kind)
@@ -322,10 +323,30 @@ void BuildingPrintInfo(Building B)
     /* F.S. B tercetak ke layar dengan format:
         <Nama Bangunan> <(Posisi)> <Jumlah Pasukan> <Level>
         */
-    printf("%s ", BuildingGetName(B.kind));
-    PointPrint(BuildingPosition(B));
-    printf(" %d ", BuildingSoldierCount(B));
-    printf("lv. %d", BuildingLevel(B));
+    if (BuildingPlayer(B) == 1)
+    {
+        print_red(BuildingGetName(B.kind));
+        printf(" ");
+        PointPrint(BuildingPosition(B));
+        printf(" %d ", BuildingSoldierCount(B));
+        print_red("lv. ");
+    }
+    else if (BuildingPlayer(B) == 2)
+    {
+        print_blue(BuildingGetName(B.kind));
+        printf(" ");
+        PointPrint(BuildingPosition(B));
+        printf(" %d ", BuildingSoldierCount(B));
+        print_blue("lv. ");
+    }
+    else
+    {
+        printf("%s ", BuildingGetName(B.kind));
+        PointPrint(BuildingPosition(B));
+        printf(" %d ", BuildingSoldierCount(B));
+        printf("lv. ");
+    }
+    printf("%d", BuildingLevel(B));
 }
 
 void BuildingResetStatus(Building *B)
