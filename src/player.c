@@ -161,15 +161,51 @@ void PlayerPrintOwnedCanAttackBuilding(Player P, BuildingArray T)
 ..
 ..
 */
-/* Proses: PlayerOwnedBuildingList berisi index bangunan player pada
-            BuildingArray, maka untuk setiap index pada list ambil bangunan yang
-            berkorespondensi pada T */
 {
     BuildingList CanAttackList;
 
     CanAttackList = PlayerGetOwnedCanAttackBuilding(P, T);
 
     BuildingListPrintInfo(CanAttackList, T);
+}
+
+BuildingList PlayerGetOwnedCanMoveBuilding(Player P, BuildingArray T)
+/* Mengembalikan bangunan player YANG DAPAT MEMINDAHKAN PASUKAN dalam sebuah BuildingList */
+/* I.S. P dan T terdefinisi */
+/* F.S. Index bangunan player yang dapat memindahkan pasukan akan dikembalikan dalam sebuah BuildingList */
+{
+    BuildingList CanMoveList;
+    BuildingListAddress V;
+
+    BuildingListCreateEmpty(&CanMoveList);
+
+    V = BuildingListFirstAddress(PlayerOwnedBuildingList(P));
+
+    while((V) != BuildingListNil)
+    {
+        if(CanBuildingMovePasukan(BuildingArrayElement(T, BuildingListElementInfo(V)))){
+            BuildingListInsertValueLast(&CanMoveList, BuildingListElementInfo(V));
+        }
+        V = BuildingListElementNext(V);
+    }
+
+    return CanMoveList;
+}
+
+void PlayerPrintOwnedCanMoveBuilding(Player P, BuildingArray T)
+/* Mencetak bangunan YANG BISA MEMINDAHKAN PASUKAN yang dimiliki player ke layar */
+/* I.S. P dan T terdefinisi */
+/* F.S. bangunan tercetak ke layar dengan format :
+1. <Building-1 Name> <Position> <SoldierCount> lv. <Level>
+..
+..
+*/
+{
+    BuildingList CanMoveList;
+
+    CanMoveList = PlayerGetOwnedCanMoveBuilding(P, T);
+
+    BuildingListPrintInfo(CanMoveList, T);
 }
 
 void PlayerRefreshStatus(Player *P, BuildingArray T)

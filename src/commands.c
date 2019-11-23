@@ -34,131 +34,140 @@ void Attack(GameMap *G)
 	CanAttackBuildingList = PlayerGetOwnedCanAttackBuilding(P, T);
 	PlayerPrintOwnedCanAttackBuilding(P, T);
 	//PlayerPrintOwnedBuilding(P, T);
-	do
-	{
-		printf("Bangunan yang digunakan untuk menyerang: ");
-		scanf("%d", &UsedBuildingIdx); // memilih bangunan untuk menyerang
-	} while (UsedBuildingIdx > BuildingListNbElmt(CanAttackBuildingList) || (UsedBuildingIdx <= 0));
-
-	BuildingListAddress BB = BuildingListFirstAddress(CanAttackBuildingList);
-	while (i < UsedBuildingIdx)
-	{
-		i++;
-		BB = BuildingListElementNext(BB);
-	}
-	BuildingArrayElType *SelectedBuilding = &BuildingArrayElement(T, BuildingListElementInfo(BB));
-	
-	i = 1;
-
-	BuildingRelationGraphAddress V = BuildingRelationGraphAddressSearch(GG, BuildingListElementInfo(BB));
-	AdjacentBuildingRelationGraphAddress PP = BuildingRelationGraphVertexFirstAdjacent(V);
-	int num = 1;
-	
-	////////////////////
-	//  DANGER POINT  //
-	////////////////////
-
-	Building TempBuilding;
-	Building *DecidedBuilding;
-	int AttackedBuilding;
-	int AttackedArray[50];
-	BuildingListInfotype AttackedArrayIdx[50];
-	if (PP != BuildingRelationGraphNil)
-	{
-		printf("Daftar bangunan yang dapat diserang: \n");
-		while (PP != BuildingRelationGraphNil)
+	if(BuildingListNbElmt(CanAttackBuildingList) > 0){
+		do
 		{
-			AttackedBuilding = BuildingRelationGraphAdjacentVertexInfo(PP);
-			TempBuilding = BuildingArrayElement(BuildingRecord(*G), AttackedBuilding);
-			if (BuildingPlayer(TempBuilding) != CurrentPlayer(*G))
-			{
-				printf("%d. ", num);
-				BuildingPrintInfo(TempBuilding);
-				printf("\n");
-				AttackedArray[num] = AttackedBuilding;
-				AttackedArrayIdx[num] = AttackedBuilding;
-				
+			printf("Bangunan yang digunakan untuk menyerang: ");
+			scanf("%d", &UsedBuildingIdx); // memilih bangunan untuk menyerang
+		} while (UsedBuildingIdx > BuildingListNbElmt(CanAttackBuildingList) || (UsedBuildingIdx <= 0));
 
-				num++;
-			}
-			PP = BuildingRelationGraphAdjacentVertexNextAdjacent(PP);
+		BuildingListAddress BB = BuildingListFirstAddress(CanAttackBuildingList);
+		while (i < UsedBuildingIdx)
+		{
+			i++;
+			BB = BuildingListElementNext(BB);
 		}
+		BuildingArrayElType *SelectedBuilding = &BuildingArrayElement(T, BuildingListElementInfo(BB));
+		
+		if(BuildingSoldierCount(*SelectedBuilding) > 0){
+			i = 1;
 
-		if (num != 1)
-		{
-
-			do
-			{
-				printf("Bangunan yang diserang: ");
-				scanf("%d", &AttackedBuildingIdx);
-			} while ((AttackedBuildingIdx > num - 1) || (AttackedBuildingIdx < 1));
-
-			AttackedBuilding = AttackedArray[AttackedBuildingIdx];
-			TempBuilding = BuildingArrayElement(BuildingRecord(*G), AttackedBuilding);
-			DecidedBuilding = &BuildingArrayElement(BuildingRecord(*G), AttackedBuilding);
-			printf("Jumlah pasukan: ");
-			do{
-				scanf("%d", &UsedSoldier);
-			} while(UsedSoldier > BuildingSoldierCount(*SelectedBuilding) || UsedSoldier <= 0);
+			BuildingRelationGraphAddress V = BuildingRelationGraphAddressSearch(GG, BuildingListElementInfo(BB));
+			AdjacentBuildingRelationGraphAddress PP = BuildingRelationGraphVertexFirstAdjacent(V);
+			int num = 1;
 			
+			////////////////////
+			//  DANGER POINT  //
+			////////////////////
 
-			BuildingDecreasePasukan(SelectedBuilding, UsedSoldier);
-			boolean success = false;
-			GuardSoldier = BuildingSoldierCount(*DecidedBuilding);
-			if (BuildingHasDefense(*DecidedBuilding))
+			Building TempBuilding;
+			Building *DecidedBuilding;
+			int AttackedBuilding;
+			int AttackedArray[50];
+			BuildingListInfotype AttackedArrayIdx[50];
+			if (PP != BuildingRelationGraphNil)
 			{
-				GuardSoldier *= 4;
-				GuardSoldier /= 3;
-			}
+				printf("Daftar bangunan yang dapat diserang: \n");
+				while (PP != BuildingRelationGraphNil)
+				{
+					AttackedBuilding = BuildingRelationGraphAdjacentVertexInfo(PP);
+					TempBuilding = BuildingArrayElement(BuildingRecord(*G), AttackedBuilding);
+					if (BuildingPlayer(TempBuilding) != CurrentPlayer(*G))
+					{
+						printf("%d. ", num);
+						BuildingPrintInfo(TempBuilding);
+						printf("\n");
+						AttackedArray[num] = AttackedBuilding;
+						AttackedArrayIdx[num] = AttackedBuilding;
+						
 
-			if (UsedSoldier < GuardSoldier)
-			{
-				BuildingDecreasePasukan(DecidedBuilding, UsedSoldier);
-				BuildingPrintInfo(*DecidedBuilding);
-			}
-			else if (UsedSoldier == GuardSoldier)
-			{
-				success = true;
+						num++;
+					}
+					PP = BuildingRelationGraphAdjacentVertexNextAdjacent(PP);
+				}
 
-				BuildingSoldierCount(*DecidedBuilding) = 0;
-				//BuildingPrintInfo(*DecidedBuilding);
+				if (num != 1)
+				{
+
+					do
+					{
+						printf("Bangunan yang diserang: ");
+						scanf("%d", &AttackedBuildingIdx);
+					} while ((AttackedBuildingIdx > num - 1) || (AttackedBuildingIdx < 1));
+
+					AttackedBuilding = AttackedArray[AttackedBuildingIdx];
+					TempBuilding = BuildingArrayElement(BuildingRecord(*G), AttackedBuilding);
+					DecidedBuilding = &BuildingArrayElement(BuildingRecord(*G), AttackedBuilding);
+					printf("Jumlah pasukan: ");
+					do{
+						scanf("%d", &UsedSoldier);
+					} while(UsedSoldier > BuildingSoldierCount(*SelectedBuilding) || UsedSoldier <= 0);
+					
+
+					BuildingDecreasePasukan(SelectedBuilding, UsedSoldier);
+					boolean success = false;
+					GuardSoldier = BuildingSoldierCount(*DecidedBuilding);
+					if (BuildingHasDefense(*DecidedBuilding))
+					{
+						GuardSoldier *= 4;
+						GuardSoldier /= 3;
+					}
+
+					if (UsedSoldier < GuardSoldier)
+					{
+						BuildingDecreasePasukan(DecidedBuilding, UsedSoldier);
+						BuildingPrintInfo(*DecidedBuilding);
+					}
+					else if (UsedSoldier == GuardSoldier)
+					{
+						success = true;
+
+						BuildingSoldierCount(*DecidedBuilding) = 0;
+						//BuildingPrintInfo(*DecidedBuilding);
+					}
+					else
+					{ // UsedSoldier > BuildingSoldierCount(*AttackedBuilding)
+						success = true;
+						BuildingSoldierCount(*DecidedBuilding) = (-1) * (GuardSoldier - UsedSoldier);
+						//BuildingPrintInfo(*DecidedBuilding);
+					}
+
+					BuildingHasAttacked(*SelectedBuilding) = true;
+
+					if (success)
+					{
+						
+						BuildingChangePlayer(DecidedBuilding, CurrentPlayer(*G));
+						BuildingPrintInfo(*DecidedBuilding);
+						BuildingListInsertValueLast(&PlayerOwnedBuildingList(P), AttackedArrayIdx[AttackedBuildingIdx]);
+						
+						//BuildingPrintInfo(BuildingArrayElement(BuildingRecord(*G), 13));
+						
+			///////////////////////////
+			//  END OF DANGER POINT  //
+			///////////////////////////
+
+						printf("\nBangunan menjadi milikmu!\n");
+					}
+					else
+						printf("Bangunan gagal direbut.\n");
+				}
+				else
+				{
+					printf("Tidak ada bangunan yang dapat diserang\n");
+				}
 			}
 			else
-			{ // UsedSoldier > BuildingSoldierCount(*AttackedBuilding)
-				success = true;
-				BuildingSoldierCount(*DecidedBuilding) = (-1) * (GuardSoldier - UsedSoldier);
-				//BuildingPrintInfo(*DecidedBuilding);
-			}
-
-			BuildingHasAttacked(*SelectedBuilding) = true;
-
-			if (success)
 			{
-				
-				BuildingChangePlayer(DecidedBuilding, CurrentPlayer(*G));
-				BuildingPrintInfo(*DecidedBuilding);
-				BuildingListInsertValueLast(&PlayerOwnedBuildingList(P), AttackedArrayIdx[AttackedBuildingIdx]);
-				
-				//BuildingPrintInfo(BuildingArrayElement(BuildingRecord(*G), 13));
-				
-	///////////////////////////
-	//  END OF DANGER POINT  //
-	///////////////////////////
-
-				printf("\nBangunan menjadi milikmu!\n");
-			}
-			else
-				printf("Bangunan gagal direbut.\n");
+				printf("Tidak ada bangunan yang dapat diserang\n");
+			}	
+		} else{
+			printf("Bangunan yang kamu pilih tidak memiliki pasukan\n");
 		}
-		else
-		{
-			printf("Tidak ada bangunan yang dapat diserang\n");
-		}
+	} else{
+		printf("Kamu tidak punya bangunan yang bisa menyerang\n");
 	}
-	else
-	{
-		printf("Tidak ada bangunan yang dapat diserang\n");
-	}
+	
 }
 
 void level_up(GameMap *G)
@@ -203,9 +212,42 @@ void level_up(GameMap *G)
 	}
 }
 
-void skill();
+void skill(GameMap *G)
 /* 	Digunakan untuk memakai skill yang sedang dimiliki oleh pemain. */
+{
+	Player *P;
+	if(CurrentPlayer(*G) == 1){
+		P = &Player1(*G);
+	} else if(CurrentPlayer(*G) == 2){
+		P = &Player2(*G);
+	}
+	
+	if(!IsSkillQueueEmpty(PlayerCurrentSkillQueue((*P)))){
+		Skill UsedSkill;
 
+		SkillQueueDelSkill(&PlayerCurrentSkillQueue((*P)), &UsedSkill);
+		if(SkillKind(UsedSkill) == 1){
+			printf("1");
+			BuildingArrayLevelUpOwnedPlayerBuilding(&BuildingRecord(*G), PlayerRole(*P));
+		} else if(SkillKind(UsedSkill) == 2){
+			GameMapSetNextPlayer(G, CurrentPlayer(*G));
+		} else if(SkillKind(UsedSkill) == 3){
+			printf("3");
+			BuildingArrayIncreasePlayerOwnedPasukanBuilding(&BuildingRecord(*G), PlayerRole(*P), 5);
+		} else if(SkillKind(UsedSkill) == 4){
+			printf("4");
+			if(CurrentPlayer(*G) == 1){
+				BuildingArrayDecreasePlayerOwnedPasukanBuilding(&BuildingRecord(*G), 2, 10);
+			} else if (CurrentPlayer(*G) == 2){
+				BuildingArrayDecreasePlayerOwnedPasukanBuilding(&BuildingRecord(*G), 1, 10);
+			}
+		}
+
+		//printf("kosong : %d\n", IsSkillQueueEmpty(PlayerCurrentSkillQueue(P))); 
+	} else{
+		printf("AAAA");
+	}		
+}
 void undo();
 /* 	Digunakan untuk membatalkan perintah terakhir. */
 /* 	Pemain hanya dapat melakukan UNDO hingga command sesudah END_TURN/SKILL. 
@@ -214,8 +256,8 @@ void undo();
 void end_turn(GameMap *G)
 /* 	Digunakan untuk mengakhiri giliran dari pemain. */
 {
-	GameMapChangePlayer(G);
-	BuildingArrayRefreshAllBuilding(&BuildingRecord(*G));
+	//GameMapChangePlayer(G);
+	//BuildingArrayResetAllBuilding(&BuildingRecord(*G));
 }
 
 void move(GameMap *G)
@@ -229,76 +271,103 @@ void move(GameMap *G)
 
 	int UsedBuildingIdx, DestBuildingIdx, UsedSoldier;
 	int i = 1;
+	BuildingList CanMoveBuildingList;
+
 	printf("Daftar bangunan:\n");
-	PlayerPrintOwnedBuilding(P, T);
-	do
-	{
-		printf("Pilih bangunan: ");
-		scanf("%d", &UsedBuildingIdx); // memilih bangunan untuk menyerang
-	} while (UsedBuildingIdx > BuildingListNbElmt(PlayerOwnedBuildingList(P)) || (UsedBuildingIdx <= 0));
-
-	BuildingListAddress BB = BuildingListFirstAddress(PlayerOwnedBuildingList(P));
-	while (i < UsedBuildingIdx)
-	{
-		i++;
-		BB = BuildingListElementNext(BB);
-	}
-	BuildingArrayElType *SelectedBuilding = &BuildingArrayElement(T, BuildingListElementInfo(BB));
-
-	BuildingRelationGraphAddress V = BuildingRelationGraphAddressSearch(GG, BuildingListElementInfo(BB));
-	AdjacentBuildingRelationGraphAddress PP = BuildingRelationGraphVertexFirstAdjacent(V);
-	int num = 1;
-	BuildingArrayElType *DestBuilding;
-	Building DestArray[50];
-	BuildingListInfotype DestArrayIdx[50];
-	if (PP != BuildingRelationGraphNil)
-	{
-		printf("Daftar bangunan yang dapat dituju: \n");
-		while (PP != BuildingRelationGraphNil)
+	CanMoveBuildingList = PlayerGetOwnedCanMoveBuilding(P,T);
+	PlayerPrintOwnedCanMoveBuilding(P,T);
+	//PlayerPrintOwnedBuilding(P, T);
+	if(BuildingListNbElmt(CanMoveBuildingList) > 0){
+		do
 		{
-			DestBuilding = &BuildingArrayElement(T, BuildingRelationGraphAdjacentVertexInfo(PP));
-			if (BuildingPlayer(*DestBuilding) == CurrentPlayer(*G))
+			printf("Pilih bangunan: ");
+			scanf("%d", &UsedBuildingIdx); // memilih bangunan untuk menyerang
+		} while (UsedBuildingIdx > BuildingListNbElmt(CanMoveBuildingList) || (UsedBuildingIdx <= 0));
+
+		BuildingListAddress BB = BuildingListFirstAddress(CanMoveBuildingList);
+		while (i < UsedBuildingIdx)
+		{
+			i++;
+			BB = BuildingListElementNext(BB);
+		}
+		BuildingArrayElType *SelectedBuilding = &BuildingArrayElement(T, BuildingListElementInfo(BB));
+
+		if(BuildingSoldierCount(*SelectedBuilding) > 0){
+			BuildingRelationGraphAddress V = BuildingRelationGraphAddressSearch(GG, BuildingListElementInfo(BB));
+			AdjacentBuildingRelationGraphAddress PP = BuildingRelationGraphVertexFirstAdjacent(V);
+			int num = 1;
+			
+			////////////////////
+			//  DANGER POINT  //
+			////////////////////
+
+			Building TempBuilding;
+			Building *DestBuilding;
+			int DestinationBuilding;
+			int DestArray[50];
+			BuildingListInfotype DestArrayIdx[50];
+			if (PP != BuildingRelationGraphNil)
 			{
-				printf("%d. ", num);
-				BuildingPrintInfo(*DestBuilding);
-				printf("\n");
-				DestArray[num] = *DestBuilding;
-				DestArrayIdx[num] = BuildingRelationGraphAdjacentVertexInfo(PP);
-				num++;
+				printf("Daftar bangunan yang dapat dituju: \n");
+				while (PP != BuildingRelationGraphNil)
+				{	
+					DestinationBuilding = BuildingRelationGraphAdjacentVertexInfo(PP);
+					TempBuilding = BuildingArrayElement(BuildingRecord(*G), DestinationBuilding);
+					if (BuildingPlayer(TempBuilding) == CurrentPlayer(*G))
+					{
+						printf("%d. ", num);
+						BuildingPrintInfo(TempBuilding);
+						printf("\n");
+						DestArray[num] = DestinationBuilding;
+						DestArrayIdx[num] = DestinationBuilding;
+						num++;
+					}
+					PP = BuildingRelationGraphAdjacentVertexNextAdjacent(PP);
+				}
+
+				if (num != 1)
+				{
+					do
+					{
+						printf("Bangunan tujuan: ");
+						scanf("%d", &DestBuildingIdx);
+					} while ((DestBuildingIdx > num - 1) || (DestBuildingIdx < 1));
+
+					DestinationBuilding = DestArray[DestBuildingIdx];
+					DestBuilding = &BuildingArrayElement(BuildingRecord(*G), DestinationBuilding);
+					printf("Jumlah pasukan: ");
+					do{
+						scanf("%d", &UsedSoldier);
+					} while(UsedSoldier > BuildingSoldierCount(*SelectedBuilding) || UsedSoldier <= 0);
+					
+
+					BuildingDecreasePasukan(SelectedBuilding, UsedSoldier);
+					BuildingIncreasePasukan(DestBuilding, UsedSoldier);
+
+					printf("%d pasukan dari ", UsedSoldier);
+					BuildingPrintInfo(*SelectedBuilding);
+					printf(" telah berpindah ke");
+					BuildingPrintInfo(*DestBuilding);
+					printf("\n");
+
+					BuildingHasMovedPasukan(*SelectedBuilding) = true;
+				}
+				else
+				{
+					printf("Tidak ada tujuan bangunan yang tersedia\n");
+				}
 			}
-			PP = BuildingRelationGraphAdjacentVertexNextAdjacent(PP);
-		}
-
-		if (num != 1)
-		{
-			do
+			else
 			{
-				printf("Bangunan tujuan: ");
-				scanf("%d", &DestBuildingIdx);
-			} while ((DestBuildingIdx > num - 1) || (DestBuildingIdx < 1));
-
-			*DestBuilding = DestArray[DestBuildingIdx];
-			printf("Jumlah pasukan: ");
-			scanf("%d", &UsedSoldier);
-
-			BuildingDecreasePasukan(SelectedBuilding, UsedSoldier);
-			BuildingIncreasePasukan(DestBuilding, UsedSoldier);
-
-			printf("%d pasukan dari ", UsedSoldier);
-			BuildingPrintInfo(*SelectedBuilding);
-			printf(" telah berpindah ke");
-			BuildingPrintInfo(*DestBuilding);
-			printf("\n");
+				printf("Tidak ada tujuan bangunan yang tersedia\n");
+			}		
+		} else{
+			printf("Bangunan yang kamu pilih tidak memiliki pasukan\n");
 		}
-		else
-		{
-			printf("Tidak ada tujuan bangunan yang tersedia\n");
-		}
+	} else{
+		printf("Kamu tidak punya bangunan yang bisa memindahkan pasukan\n");
 	}
-	else
-	{
-		printf("Tidak ada tujuan bangunan yang tersedia\n");
-	}
+	
 }
 // agar sekali?
 

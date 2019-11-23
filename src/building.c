@@ -98,6 +98,13 @@ boolean CanBuildingLevelUp(Building B)
     return (IsBuildingLevelMax(B) || (BuildingSoldierCount(B) < (BuildingMaximumSoldierAddCount(B) / 2))) ? false : true;
 }
 
+boolean CanBuildingMovePasukan(Building B)
+{
+    /* Mengirimkan apakah building dapat mengirimkan pasukan */
+
+    return(!BuildingHasMovedPasukan(B));
+}
+
 /////////////////////////////////////
 //       BUILDING OPERATIONS       //
 /////////////////////////////////////
@@ -436,6 +443,10 @@ void BuildingLevelUp(Building *B)
     }
     else
     {
-        printf("Jumlah pasukan %s kurang untuk level up\n", BuildingGetName((*B).kind));
+        if(IsBuildingLevelMax(*B)){
+            printf("Level %s-mu sudah maksimum!\n", BuildingGetName(BuildingKind(*B)));
+        } else{   
+            printf("Jumlah pasukan %s kurang untuk level up\n", BuildingGetName((*B).kind));
+        }
     }
 }

@@ -111,16 +111,32 @@ void BuildingArrayInitializeAllBuilding(BuildingArray *T);
 /* I.S. T berisi Building yang hanya sudah diCreate */
 /* F.S. T berisi Building yang seluruhnya sudah terinisialisasi */
 
-void BuildingArrayRefreshAllBuilding(BuildingArray *T);
+void BuildingArrayResetAllBuilding(BuildingArray *T);
 /* Merefresh seluruh Building pada Array dengan BuildingRefreshStatus */
 /* I.S. T berisi Building yang sudah terinisialisasi */
 /* F.S. Building pada T direfresh */
 
+void BuildingArrayIncreasePlayerOwnedPasukanBuilding(BuildingArray *T, int P, int value);
+/* Menambahkan pasukan sebanyak value pada seluruh bangunan yang dikuasai P */
+/* I.S. T berisi building dengan SoldierCount sembarang */
+/* F.S. T berisi building dengan SoldierCount milik player P bertambah sebanyak value */
+
+void BuildingArrayDecreasePlayerOwnedPasukanBuilding(BuildingArray *T, int P, int value);
+/* Mengurangi pasukan sebanyak value pada seluruh bangunan yang dikuasai P */
+/* I.S. T berisi building dengan SoldierCount sembarang */
+/* F.S. T berisi building dengan SoldierCount milik player P berkurang sebanyak value */
+
 void BuildingArrayIncreaseOwnedPasukanBuilding(BuildingArray *T);
 /* Menambahkan Pasukan pada semua bangunan yang ada kepemilikan player */
-/* Penambahan dilakukan jika bertemu kasus awal turn */
+/* Penambahan dilakukan jika bertemu kasus akhir turn */
 /* I.S. T berisi building dengan SoldierCount sembarang */
 /* F.S. T berisi building dengan SoldierCount yang sudah ditambah sesuai dengan A */
+
+void BuildingArrayLevelUpOwnedPlayerBuilding(BuildingArray *T, int P);
+/* Menaikkan level bangunan yang dimiliki player P sebanyak 1 level */
+/* I.S. T berisi building dengan level sembarang */
+/* F.S. T berisi building player P dengan level bertambah 1 */
+/* Jika level sudah maksimum sebelum bertambah, akan muncul prompt dan tidak akan bertambah level */
 
 BuildingArray BuildingArrayCopyArray(BuildingArray T);
 /* Mengirimkan salinan BuildingArray T menjadi BuildingArray baru */

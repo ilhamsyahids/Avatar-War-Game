@@ -101,6 +101,9 @@ boolean CanBuildingAttack(Building B);
 boolean CanBuildingLevelUp(Building B);
 /* Mengirimkan apakah building dapat level up */
 
+boolean CanBuildingMovePasukan(Building B);
+/* Mengirimkan apakah building dapat mengirimkan pasukan */
+
 /////////////////////////////////////
 //       BUILDING OPERATIONS       //
 /////////////////////////////////////

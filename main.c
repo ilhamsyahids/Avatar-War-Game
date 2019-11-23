@@ -69,12 +69,14 @@ void ReadCommand()
 	{
 		//Command(LevelUp);
 		printf("LevelUp");
+		level_up(&GameState);
 		ActionStackPush(&GameStateStack, GameMapPush);
 	}
 	else if (IsKataSame("Move", 4))
 	{
 		//Command(Move);
 		printf("Move");
+		move(&GameState);
 		ActionStackPush(&GameStateStack, GameMapPush);
 	}
 	else if (IsKataSame("Skill", 5))
@@ -82,7 +84,7 @@ void ReadCommand()
 		//Command(Skill);
 		printf("Skill");
 		//BuildingListDeleteValueLast(&PlayerOwnedBuildingList(Player2(GameState)), &testint);
-		GameMapSetNextPlayer(&GameState, 1);
+		skill(&GameState);
 		ActionStackEmpty(&GameStateStack);
 	}
 	else if (IsKataSame("Undo", 4))
@@ -278,6 +280,7 @@ void PostTurn(int player)
 	{
 		printf("PostTurn");
 		BattlePhase = 1;
+		BuildingArrayIncreaseOwnedPasukanBuilding(&BuildingRecord(GameState));
 		GameMapChangePlayer(&GameState);
 	}
 	else if (!InGame)
@@ -317,8 +320,7 @@ void PreTurn(int player)
 	if (InGame && BattlePhase == 1)
 	{
 		ActionStackEmpty(&GameStateStack);
-		BuildingArrayRefreshAllBuilding(&BuildingRecord(GameState));
-		BuildingArrayIncreaseOwnedPasukanBuilding(&BuildingRecord(GameState));
+		BuildingArrayResetAllBuilding(&BuildingRecord(GameState));
 		RefreshSkillFlags();
 		CheckAddFlags();
 		BattlePhase = 2;
@@ -393,7 +395,7 @@ int main()
 	while (InGame)
 	{
 		int player = CurrentPlayer(GameState);
-		ClearScreen();
+		//ClearScreen();
 		PreTurn(player);
 		InTurn(player);
 		PostTurn(player);

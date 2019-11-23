@@ -1,1 +1,1 @@
-gcc -Iheaders main.c src/fileloader.c src/gamemap.c src/buildingrelationgraph.c src/mesinkar.c src/mesinkata.c src/mapmatrix.c src/buildingarray.c src/building.c src/point.c src/buildinglist.c src/player.c src/skillqueue.c src/skill.c src/pcolor.c src/actionstackt.c -o output.exe
+gcc -Iheaders main.c src/fileloader.c src/gamemap.c src/buildingrelationgraph.c src/mesinkar.c src/mesinkata.c src/mapmatrix.c src/buildingarray.c src/building.c src/point.c src/buildinglist.c src/player.c src/skillqueue.c src/skill.c src/pcolor.c src/actionstackt.c src/commands.c -o output.exe
