@@ -15,7 +15,7 @@
 #include <player.h>
 #include <buildinglist.h>
 
-void Attack(GameMap G);
+void Attack(GameMap *G);
 /* 	Digunakan untuk melakukan serangan ke bangunan lain. */
 /* 	Jika X < Y, maka bangunan yang diserang tetap menjadi milik lawan, namun
 	berkurang jumlah pasukannya di bangunan itu menjadi Y - X. Jumlah pasukan di
@@ -27,7 +27,7 @@ void Attack(GameMap G);
 	menjadi kurang dari X. */
 /* 	Bila bangunan berpindah kepemilikan, level akan kembali menjadi 1. */
 
-void level_up(Player P, BuildingArray T);
+void level_up(GameMap *G);
 /* 	Digunakan untuk menaikkan level dari suatu bangunan. Dalam satu giliran, level up
 	dapat dilakukan berkali-kali. */
 /* 	F.S. Jika pasukan yang dimiliki cukup, level bangunan bertambah 1. */

@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <gamemap.h>
 
-void Attack(GameMap G)
+void Attack(GameMap *G)
 /* 	Digunakan untuk melakukan serangan ke bangunan lain. */
 /* 	Jika X < Y, maka bangunan yang diserang tetap menjadi milik lawan, namun
 	berkurang jumlah pasukannya di bangunan itu menjadi Y - X. Jumlah pasukan di
@@ -23,12 +23,12 @@ void Attack(GameMap G)
 /* 	Bila bangunan berpindah kepemilikan, level akan kembali menjadi 1. */
 {
 	Player P;
-	BuildingArray T = BuildingRecord(G);
-	BuildingRelationGraph GG = BuildingRelation(G);
-	if (CurrentPlayer(G) == 1)
-		P = Player1(G);
+	BuildingArray T = BuildingRecord(*G);
+	BuildingRelationGraph GG = BuildingRelation(*G);
+	if (CurrentPlayer(*G) == 1)
+		P = Player1(*G);
 	else
-		P = Player2(G);
+		P = Player2(*G);
 
 	int UsedBuildingIdx, AttackedBuildingIdx, UsedSoldier;
 	int i = 1;
@@ -62,7 +62,7 @@ void Attack(GameMap G)
 		while (PP != BuildingRelationGraphNil)
 		{
 			AttackedBuilding = &BuildingArrayElement(T, BuildingRelationGraphAdjacentVertexInfo(PP));
-			if (BuildingPlayer(*AttackedBuilding) != CurrentPlayer(G))
+			if (BuildingPlayer(*AttackedBuilding) != CurrentPlayer(*G))
 			{
 				printf("%d. ", num);
 				num++;
@@ -73,7 +73,7 @@ void Attack(GameMap G)
 			}
 			PP = BuildingRelationGraphAdjacentVertexNextAdjacent(PP);
 		}
-		// printf("%d\n", BuildingRelationGraphAdjacentVertexInfo(PP));
+
 		do
 		{
 			printf("Bangunan yang diserang: ");
@@ -104,7 +104,7 @@ void Attack(GameMap G)
 			BuildingPrintInfo(*AttackedBuilding);
 		}
 		else
-		{ // UsedSoldier > BuildingSoldierCount(T.TI[AttackedBuildingIdx])
+		{ // UsedSoldier > BuildingSoldierCount(*AttackedBuilding)
 			success = true;
 			BuildingSoldierCount(*AttackedBuilding) = (-1) * (BuildingSoldierCount(*AttackedBuilding) - UsedSoldier);
 		}
@@ -125,30 +125,49 @@ void Attack(GameMap G)
 	}
 }
 
-void level_up(Player P, BuildingArray T)
+void level_up(GameMap *G)
 /* 	Digunakan untuk menaikkan level dari suatu bangunan. Dalam satu giliran, level up
 	dapat dilakukan berkali-kali. */
 /* 	F.S. Jika pasukan yang dimiliki cukup, level bangunan bertambah 1. */
 /*	Jika pasukan yang dimiliki kurang, level bangunan tetap. */
 {
-	int BuildingIdx;
-	BuildingArrayElType BuildingElmt;
+	Player P;
+	BuildingArray T = BuildingRecord(*G);
+	BuildingRelationGraph GG = BuildingRelation(*G);
+	if (CurrentPlayer(*G) == 1)
+		P = Player1(*G);
+	else
+		P = Player2(*G);
+
+	int UsedBuildingIdx;
+	int i = 1;
 	printf("Daftar bangunan:\n");
 	PlayerPrintOwnedBuilding(P, T);
-	printf("Bangunan yang akan di level up: ");
-	scanf("%d", &BuildingIdx);
-	BuildingElmt = T.TI[BuildingIdx];
-	if (IsBuildingLevelMax(BuildingElmt))
-		printf("Level %s-mu sudah maksimum!\n", BuildingGetName(BuildingKind(BuildingElmt)));
+	do
+	{
+		printf("Bangunan yang akan di level up: ");
+		scanf("%d", &UsedBuildingIdx); // memilih bangunan untuk menyerang
+	} while (UsedBuildingIdx > BuildingListNbElmt(PlayerOwnedBuildingList(P)) || (UsedBuildingIdx <= 0));
+
+	BuildingListAddress BB = BuildingListFirstAddress(PlayerOwnedBuildingList(P));
+	while (i < UsedBuildingIdx)
+	{
+		i++;
+		BB = BuildingListElementNext(BB);
+	}
+	BuildingArrayElType *SelectedBuilding = &BuildingArrayElement(T, BuildingListElementInfo(BB));
+
+	if (IsBuildingLevelMax(*SelectedBuilding))
+		printf("Level %s-mu sudah maksimum!\n", BuildingGetName(BuildingKind(*SelectedBuilding)));
 	else
 	{
-		BuildingLevelUp(&BuildingElmt);
-		if (CanBuildingLevelUp(BuildingElmt))
+		if (CanBuildingLevelUp(*SelectedBuilding))
 		{
-			printf("Level %s-mu meningkat menjadi %d!\n", BuildingGetName(BuildingKind(BuildingElmt)), BuildingLevel(BuildingElmt));
+			BuildingLevelUp(SelectedBuilding);
+			printf("Level %s-mu meningkat menjadi %d!\n", BuildingGetName(BuildingKind(*SelectedBuilding)), BuildingLevel(*SelectedBuilding));
 		}
 		else
-			printf("Jumlah pasukan %s kurang untuk level up\n", BuildingGetName(BuildingKind(BuildingElmt)));
+			printf("Jumlah pasukan %s kurang untuk level up\n", BuildingGetName(BuildingKind(*SelectedBuilding)));
 	}
 }
 
