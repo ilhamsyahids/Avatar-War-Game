@@ -116,7 +116,7 @@ int BuildingGetM(int kind, int level);
 boolean BuildingGetP(int kind, int level);
 /* Mengirimkan nilai P untuk kind dan level tertentu */
 
-char BuildingGetAcronym(int kind);
+char *BuildingGetAcronym(int kind);
 /* Mengirimkan akronim nama building untuk kind tertentu */
 
 char *BuildingGetName(int kind);

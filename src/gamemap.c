@@ -44,9 +44,12 @@ void GameMapSetCurrentPlayer(GameMap *G, int role)
 /* I.S. CurrentPlayer sembarang */
 /* F.S. CurrentPlayer menjadi Player1 (jika role 1) dan sebaliknya */
 {
-	if(role == 1){
+	if (role == 1)
+	{
 		CurrentPlayer(*G) = 1;
-	} else if(role == 2){
+	}
+	else if (role == 2)
+	{
 		CurrentPlayer(*G) = 2;
 	}
 }
@@ -56,9 +59,12 @@ void GameMapSetNextPlayer(GameMap *G, int role)
 /* I.S. NextPlayer sembarang */
 /* F.S. NextPlayer menjadi Player1 (jika role 1) dan sebaliknya */
 {
-	if(role == 1){
+	if (role == 1)
+	{
 		NextPlayer(*G) = 1;
-	} else if(role == 2){
+	}
+	else if (role == 2)
+	{
 		NextPlayer(*G) = 2;
 	}
 }
@@ -70,10 +76,10 @@ void GameMapInitializeAllComponents(GameMap *G)
 {
 	// Initialize Building
 	BuildingArrayInitializeAllBuilding(&BuildingRecord(*G));
-	
+
 	// Initialize Player
-	PlayerInitialize(&(Player1(*G)),BuildingRecord(*G));
-	PlayerInitialize(&(Player2(*G)),BuildingRecord(*G));
+	PlayerInitialize(&(Player1(*G)), BuildingRecord(*G));
+	PlayerInitialize(&(Player2(*G)), BuildingRecord(*G));
 }
 
 void GameMapChangePlayer(GameMap *G)
@@ -82,11 +88,13 @@ void GameMapChangePlayer(GameMap *G)
 /* F.S curretntPlayer GameMap menjadi 2/1 */
 {
 
-	if (NextPlayer(*G) == 1){
+	if (NextPlayer(*G) == 1)
+	{
 		CurrentPlayer(*G) = 1;
 		NextPlayer(*G) = 2;
 	}
-	else if(NextPlayer(*G) == 2){
+	else if (NextPlayer(*G) == 2)
+	{
 		CurrentPlayer(*G) = 2;
 		NextPlayer(*G) = 1;
 	}
@@ -109,14 +117,17 @@ void GameMapPrintInfo(GameMap G)
 	Available Skill: IU
 
 */
-{	
-	printf("======================================\n");
-	if((CurrentPlayer(G)) == 1){
-		printf("====          Player 1 Turn        ===\n");
-	} else{
-		printf("====          Player 2 Turn        ===\n");
+{
+	print_magenta("=======================================\n");
+	if ((CurrentPlayer(G)) == 1)
+	{
+		print_red("====          Player 1 Turn        ====\n");
 	}
-	printf("======================================\n");
+	else
+	{
+		print_blue("====          Player 2 Turn        ====\n");
+	}
+	print_magenta("=======================================\n");
 	MapMatrixPrintMap(BuildingMap(G), BuildingRecord(G));
 	BuildingListPrintInfo(PlayerOwnedBuildingList(GameMapGetCurrentPlayer(G)), BuildingRecord(G));
 	PrintQueueSkill(PlayerCurrentSkillQueue(GameMapGetCurrentPlayer(G)));
@@ -146,7 +157,6 @@ GameMap GameMapCopyCurrentMap(GameMap G)
 	GameMapSetCurrentPlayer(&GCopy, CurrentPlayerCopy);
 
 	return GCopy;
-
 }
 
 ///////////////////////////////
@@ -155,11 +165,12 @@ GameMap GameMapCopyCurrentMap(GameMap G)
 Player GameMapGetCurrentPlayer(GameMap G)
 /* Mengembalikan player yang sedang menjalani turnnya dari GameMap */
 {
-	if(CurrentPlayer(G) == 1){
+	if (CurrentPlayer(G) == 1)
+	{
 		return Player1(G);
-	} else {
+	}
+	else
+	{
 		return Player2(G);
 	}
-	
 }
-

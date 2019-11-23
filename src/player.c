@@ -56,23 +56,22 @@ void PlayerInitialize(Player *P, BuildingArray T)
     total = 0;
 
     // Filter BuildingArray
-    for(int i = 1; i <= BuildingArrayNeff(T); i++){
-        if(BuildingPlayer(BuildingArrayElement(T, i)) == PlayerRole(*P)){
-            BuildingListInsertValueLast(&BL,i);
+    for (int i = 1; i <= BuildingArrayNeff(T); i++)
+    {
+        if (BuildingPlayer(BuildingArrayElement(T, i)) == PlayerRole(*P))
+        {
+            BuildingListInsertValueLast(&BL, i);
             total += BuildingSoldierCount(BuildingArrayElement(T, i));
         }
     }
 
     // Initialize Skill
     SkillQueueAddSkill(&S, SkillCreate(1));
-    
+
     PlayerOwnedBuildingList(*P) = BL;
     PlayerTotalSoldier(*P) = total;
     PlayerCurrentSkillQueue(*P) = S;
-
-
 }
-
 
 //////////////////////////////////
 //      PLAYER OPERATIONS       //
@@ -112,26 +111,22 @@ void PlayerPrintOwnedBuilding(Player P, BuildingArray T)
     V = BuildingListFirstAddress(PlayerOwnedBuildingList(P));
     i = 1;
 
-    if(V){
-        Building B = BuildingArrayElement(T,BuildingListElementInfo(V));
+    if (V)
+    {
+        Building B = BuildingArrayElement(T, BuildingListElementInfo(V));
         printf("%d. ", i);
-        char* name = BuildingGetName(BuildingKind(B));
-        printf("%s ", name);
-        PointPrint(BuildingPosition(B));
-        printf(" %d ", BuildingSoldierCount(B));
-        printf("lv. %d\n", BuildingLevel(B));       
+        BuildingPrintInfo(B);
+        printf("\n");
     }
 
-    while(BuildingListElementNext(V) != BuildingListNil){
+    while (BuildingListElementNext(V) != BuildingListNil)
+    {
         i += 1;
         V = BuildingListElementNext(V);
-        Building B = BuildingArrayElement(T,BuildingListElementInfo(V));
+        Building B = BuildingArrayElement(T, BuildingListElementInfo(V));
         printf("%d. ", i);
-        char* name = BuildingGetName(BuildingKind(B));
-        printf("%s ", name);
-        PointPrint(BuildingPosition(B));
-        printf(" %d ", BuildingSoldierCount(B));
-        printf("lv. %d\n", BuildingLevel(B));  
+        BuildingPrintInfo(B);
+        printf("\n");
     }
 }
 
@@ -154,9 +149,11 @@ kemudian menghitung kembali total pasukan */
     total = 0;
 
     // Filter BuildingArray
-    for(int i = 1; i <= BuildingArrayNeff(T); i++){
-        if(BuildingPlayer(BuildingArrayElement(T, i)) == PlayerRole(*P)){
-            BuildingListInsertValueLast(&BL,i);
+    for (int i = 1; i <= BuildingArrayNeff(T); i++)
+    {
+        if (BuildingPlayer(BuildingArrayElement(T, i)) == PlayerRole(*P))
+        {
+            BuildingListInsertValueLast(&BL, i);
             total += BuildingSoldierCount(BuildingArrayElement(T, i));
         }
     }
@@ -192,5 +189,4 @@ Player PlayerCopyPlayer(Player P, BuildingArray T)
     PlayerInitialize(&PlayerCopy, T);
 
     return PlayerCopy;
-
 }

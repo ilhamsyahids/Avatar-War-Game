@@ -35,15 +35,15 @@ int main(){
 	BuildingArrayAddAsLastElement(&B, BB);
 	MapMatrixElement(M,PointCreate(3,2)) = 3;
 	
-	printf("Kind = %c, player = %d, position = ", BuildingGetAcronym(BuildingKind(BuildingArrayElement(B, 1))),BuildingPlayer(BuildingArrayElement(B, 1)));
+	printf("Kind = %s, player = %d, position = ", BuildingGetAcronym(BuildingKind(BuildingArrayElement(B, 1))),BuildingPlayer(BuildingArrayElement(B, 1)));
 	PointPrint(BuildingPosition(BuildingArrayElement(B, 1)));
 	printf("\n");
 	
-	printf("Kind = %c, player = %d, position = ", BuildingGetAcronym(BuildingKind(BuildingArrayElement(B, 2))),BuildingPlayer(BuildingArrayElement(B, 2)));
+	printf("Kind = %s, player = %d, position = ", BuildingGetAcronym(BuildingKind(BuildingArrayElement(B, 2))),BuildingPlayer(BuildingArrayElement(B, 2)));
 	PointPrint(BuildingPosition(BuildingArrayElement(B, 2)));
 	printf("\n");
 
-	printf("Kind = %c, player = %d, position = ", BuildingGetAcronym(BuildingKind(BuildingArrayElement(B, 3))),BuildingPlayer(BuildingArrayElement(B, 3)));
+	printf("Kind = %s, player = %d, position = ", BuildingGetAcronym(BuildingKind(BuildingArrayElement(B, 3))),BuildingPlayer(BuildingArrayElement(B, 3)));
 	PointPrint(BuildingPosition(BuildingArrayElement(B, 3)));
 	printf("\n");
 	
