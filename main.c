@@ -62,7 +62,7 @@ void ReadCommand()
 	if (IsKataSame("Attack", 6))
 	{
 		printf("Attack");
-Attack(GameState);
+		Attack(&GameState);
 		ActionStackPush(&GameStateStack, GameMapPush);
 	}
 	else if (IsKataSame("LevelUp", 7))
@@ -298,7 +298,7 @@ void InTurn(int player)
 {
 	while (InGame && BattlePhase == 2)
 	{
-		ClearScreen();
+		//ClearScreen();
 		CheckAddFlags();
 		GameMapPrintInfo(GameState);
 		printf("Enter Command: \n");
