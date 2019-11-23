@@ -95,6 +95,23 @@ void PlayerPrintOwnedBuilding(Player P, BuildingArray T);
             BuildingArray, maka untuk setiap index pada list ambil bangunan yang
             berkorespondensi pada T */
 
+BuildingList PlayerGetOwnedCanAttackBuilding(Player P, BuildingArray T);
+/* Mengembalikan bangunan player YANG BISA MENYERANG dalam sebuah BuildingList */
+/* I.S. P dan T terdefinisi */
+/* F.S. Index bangunan player yang dapat menyerang akan dikembalikan dalam sebuah BuildingList */
+
+void PlayerPrintOwnedCanAttackBuilding(Player P, BuildingArray T);
+/* Mencetak bangunan YANG BISA MENYERANG yang dimiliki player ke layar */
+/* I.S. P dan T terdefinisi */
+/* F.S. bangunan tercetak ke layar dengan format :
+1. <Building-1 Name> <Position> <SoldierCount> lv. <Level>
+..
+..
+*/
+/* Proses: PlayerOwnedBuildingList berisi index bangunan player pada
+            BuildingArray, maka untuk setiap index pada list ambil bangunan yang
+            berkorespondensi pada T */
+
 void PlayerRefreshStatus(Player *P, BuildingArray T);
 /* Memperbarui PlayerOwnedBuildingList dengan BuildingArray terbaru,
 kemudian menghitung kembali total pasukan */
