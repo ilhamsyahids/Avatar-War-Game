@@ -62,6 +62,10 @@ void ActionStackCreateEmpty(ActionStack *S, int maxElement);
 /* jadi indeksnya antara 1.. maxElement+1 karena 0 tidak dipakai */
 /* Ciri stack kosong : TOP bernilai StackNil */
 
+void ActionStackRealokasi(ActionStack *S);
+/* I.S. S Penuh; */
+/* F.S. Merealokasikan sebuah action stack S yang sebelumnya berkapasitas maxElement menjadi maxElement + 1*/
+
 ///////////////////////////
 // 		 DESTRUCTOR 	 //
 ///////////////////////////
@@ -83,8 +87,8 @@ boolean IsActionStackFull(ActionStack S);
 ///////////////////////////////////////
 void ActionStackPush(ActionStack *S, ActionStackInfotype X);
 /* Menambahkan X sebagai elemen Stack S. */
-/* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
-/* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
+/* I.S. S mungkin kosong dan mungkin penuh*/
+/* F.S. X menjadi TOP yang baru,TOP bertambah 1 dan ketika S sebelumnya penuh maka akan dilakukan realloc*/
 
 void ActionStackPop(ActionStack *S, ActionStackInfotype *X);
 /* Menghapus X dari Stack S. */
