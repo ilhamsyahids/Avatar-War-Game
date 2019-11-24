@@ -37,19 +37,17 @@ typedef struct
 	BuildingRelationGraph BuildingRelation; /* Relasi antar bangunan pada peta */
 } GameMap;
 
-
-
 //////////////////////////
 //        SELECTOR      //
 //////////////////////////
 /* ********* AKSES (Selektor) ********* */
 /* Jika M adalah GameMap, maka akses elemen : */
-#define BuildingMap(G) 		(G).BuildingMap
-#define BuildingRecord(G) 	(G).BuildingRecord
-#define CurrentPlayer(G) 	(G).CurrentPlayer
-#define NextPlayer(G)		(G).NextPlayer
-#define Player1(G)			(G).Player1
-#define Player2(G)			(G).Player2
+#define BuildingMap(G) (G).BuildingMap
+#define BuildingRecord(G) (G).BuildingRecord
+#define CurrentPlayer(G) (G).CurrentPlayer
+#define NextPlayer(G) (G).NextPlayer
+#define Player1(G) (G).Player1
+#define Player2(G) (G).Player2
 #define BuildingRelation(G) (G).BuildingRelation
 
 ///////////////////////////
@@ -104,10 +102,6 @@ void GameMapPrintInfo(GameMap G);
 GameMap GameMapCopyCurrentMap(GameMap G);
 /* Mengirimkan salinan dari GameMap G menjadi GameMap yang baru dan independen */
 
-
-///////////////////////////////
-// STILL BUGGING DONT USE!!! //
-///////////////////////////////
 Player GameMapGetCurrentPlayer(GameMap G);
 /* Mengembalikan player yang sedang menjalani turnnya dari GameMap */
 

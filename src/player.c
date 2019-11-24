@@ -142,9 +142,10 @@ BuildingList PlayerGetOwnedCanAttackBuilding(Player P, BuildingArray T)
 
     V = BuildingListFirstAddress(PlayerOwnedBuildingList(P));
 
-    while((V) != BuildingListNil)
+    while ((V) != BuildingListNil)
     {
-        if(CanBuildingAttack(BuildingArrayElement(T, BuildingListElementInfo(V)))){
+        if (CanBuildingAttack(BuildingArrayElement(T, BuildingListElementInfo(V))))
+        {
             BuildingListInsertValueLast(&CanAttackList, BuildingListElementInfo(V));
         }
         V = BuildingListElementNext(V);
@@ -181,9 +182,10 @@ BuildingList PlayerGetOwnedCanMoveBuilding(Player P, BuildingArray T)
 
     V = BuildingListFirstAddress(PlayerOwnedBuildingList(P));
 
-    while((V) != BuildingListNil)
+    while ((V) != BuildingListNil)
     {
-        if(CanBuildingMovePasukan(BuildingArrayElement(T, BuildingListElementInfo(V)))){
+        if (CanBuildingMovePasukan(BuildingArrayElement(T, BuildingListElementInfo(V))))
+        {
             BuildingListInsertValueLast(&CanMoveList, BuildingListElementInfo(V));
         }
         V = BuildingListElementNext(V);

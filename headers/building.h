@@ -43,7 +43,7 @@ typedef struct
     int soldierAddCount;        /* Menandakan berapa banyak pasukan yang telah ditambah */
     boolean hasDefense;         /* Boolean untuk menandakan apakah bangunan dilindungi */
     boolean hasAttacked;        /* Boolean untuk menandakan apakah bangunan sudah menyerang pada turn */
-    boolean hasMovedPasukan ;   /* Boolean untuk menandakan apakah pasukan di bangunan sudah dipindahkan pada turn */
+    boolean hasMovedPasukan;    /* Boolean untuk menandakan apakah pasukan di bangunan sudah dipindahkan pada turn */
     Point position;             /* Posisi bangunan dalam map */
 } Building;
 
@@ -52,17 +52,17 @@ typedef struct
 //////////////////////////
 /* ********* AKSES (Selektor) ********* */
 /* Jika B adalah Building, maka akses elemen : */
-#define BuildingKind(B)                     (B).kind
-#define BuildingPlayer(B)                   (B).player
-#define BuildingLevel(B)                    (B).level
-#define BuildingSoldierCount(B)             (B).soldierCount
-#define BuildingSoldierAddValue(B)          (B).soldierAddValue
-#define BuildingMaximumSoldierAddCount(B)   (B).maximumSoldierAddCount
-#define BuildingSoldierAddCount(B)          (B).soldierAddCount
-#define BuildingHasDefense(B)               (B).hasDefense
-#define BuildingHasAttacked(B)              (B).hasAttacked
-#define BuildingHasMovedPasukan(B)          (B).hasMovedPasukan
-#define BuildingPosition(B)                 (B).position
+#define BuildingKind(B) (B).kind
+#define BuildingPlayer(B) (B).player
+#define BuildingLevel(B) (B).level
+#define BuildingSoldierCount(B) (B).soldierCount
+#define BuildingSoldierAddValue(B) (B).soldierAddValue
+#define BuildingMaximumSoldierAddCount(B) (B).maximumSoldierAddCount
+#define BuildingSoldierAddCount(B) (B).soldierAddCount
+#define BuildingHasDefense(B) (B).hasDefense
+#define BuildingHasAttacked(B) (B).hasAttacked
+#define BuildingHasMovedPasukan(B) (B).hasMovedPasukan
+#define BuildingPosition(B) (B).position
 
 ///////////////////////////
 //       CONSTRUCTOR     //
@@ -80,7 +80,6 @@ void BuildingInitialize(Building *B);
    isDefended = P
 */
 /* Proses : Melakukan setup sesuai kind */
-
 
 ///////////////////////////
 //        PREDIKAT       //
@@ -165,7 +164,5 @@ void BuildingLevelUp(Building *B);
 /* Level bertambah 1 dan soldierCount berkurang sebesar M/2 */
 /* Atau : Level tetap karena sudah maksimum atau soldierCount kurang (berikan prompt) */
 /* Proses: Mengecek apakah levelup bisa dilakukan, jika bisa FS1 jika tidak FS2 */
-
-
 
 #endif

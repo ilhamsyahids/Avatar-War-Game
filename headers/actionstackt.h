@@ -29,18 +29,19 @@
 #define ActionStackNil 0;
 /* Nil adalah action stack dengan elemen kosong . */
 
-typedef GameMap ActionStackInfotype;	/* Tipe Elemen tabel */
-typedef int ActionStackAddress;   /* TIpe Indeks tabel */
+typedef GameMap ActionStackInfotype; /* Tipe Elemen tabel */
+typedef int ActionStackAddress;		 /* TIpe Indeks tabel */
 
 ///////////////////////////
 // 	Definisi Stack  	 //
 ///////////////////////////
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
-typedef struct {
-  	ActionStackInfotype *T; 	/* tabel penyimpan elemen */
-  	ActionStackAddress TOP;  	/* alamat TOP: elemen puncak */
-	int MaxElement; 	/* Jumlah elemen maksimum stack */
+typedef struct
+{
+	ActionStackInfotype *T; /* tabel penyimpan elemen */
+	ActionStackAddress TOP; /* alamat TOP: elemen puncak */
+	int MaxElement;			/* Jumlah elemen maksimum stack */
 } ActionStack;
 /* Definisi stack S kosong : S.TOP = ActionStackNil */
 /* Elemen yang dipakai menyimpan nilai Stack T[1]..T[MaxElement] */
@@ -50,8 +51,8 @@ typedef struct {
 //////////////////////////
 /* ********* AKSES (Selektor) ********* */
 /* Jika S adalah Stack, maka akses elemen : */
-#define ActionStackTop(S) 		(S).TOP
-#define ActionStackInfoTop(S) 	(S).T[(S).TOP]
+#define ActionStackTop(S) (S).TOP
+#define ActionStackInfoTop(S) (S).T[(S).TOP]
 
 ///////////////////////////
 // 		CONSTRUCTOR 	 //

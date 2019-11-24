@@ -29,11 +29,10 @@ void LoadingSequence();
 /* I.S : G, Map, Record, CurrentPlayer sembarang */
 /* F.S : Terbentuk G dengan atribut Map, Record dan CurrentPlayer sesuai file */
 
-void StartLoading(char* filename, char Player1Color, char Player2Color);
+void StartLoading(char *filename, char Player1Color, char Player2Color);
 /* Memulai pembacaan dari file konfigurasi */
 /* I.S : Pita file kosong */
 /* F.S : File siap dibaca dan sekuens pembacaan dimulai */
-
 
 void LoadMapSize();
 /* Menangani pembacaan ukuran peta dari file */

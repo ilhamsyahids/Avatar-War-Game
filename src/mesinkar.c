@@ -22,7 +22,7 @@ char CC;
 int X;
 boolean EOP;
 int StringIndex;
-char* StringInput;
+char *StringInput;
 
 ///////////////////////////////////
 //		  Static Variables	 	 //
@@ -33,23 +33,28 @@ static int retval;
 ///////////////////////////////////
 // 	     MESINKAR OPERATIONS 	 //
 ///////////////////////////////////
-void OpenFile(char* filename){
+void OpenFile(char *filename)
+{
     pita = fopen(filename, "r");
 }
 
-void CloseFile(){
+void CloseFile()
+{
     fclose(pita);
 }
 
-void AdvFileChar(){
+void AdvFileChar()
+{
     retval = fscanf(pita, "%c", &CC);
 }
 
-void AdvFileInt(){
+void AdvFileInt()
+{
     retval = fscanf(pita, "%d", &X);
 }
 
-void AdvFileLine(){
+void AdvFileLine()
+{
     retval = fscanf(pita, "\n", &CC);
 }
 
@@ -57,7 +62,7 @@ void AdvStringChar()
 /* String dimajukan satu karakter */
 /* I.S : CC adalah karakter sembarang */
 /* F.S : CC adalah karakter berikutnya */
-{	
-	CC = StringInput[StringIndex];
-	StringIndex = StringIndex + 1;
+{
+    CC = StringInput[StringIndex];
+    StringIndex = StringIndex + 1;
 }

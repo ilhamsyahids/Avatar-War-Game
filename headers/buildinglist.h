@@ -140,4 +140,5 @@ int BuildingListNbElmtKind(BuildingList BL, BuildingArray T, int kind);
 
 boolean IsBuildingListAllLevel4(BuildingList BL, BuildingArray T);
 /* Mengirimkan apakah semua building dalam buildinglist BL berlevel 4 */
+
 #endif
