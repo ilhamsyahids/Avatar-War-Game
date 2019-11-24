@@ -28,21 +28,24 @@ int main()
         BuildingArrayCreateEmpty(&B, 3);
 
         BB = BuildingCreate(2, 1, PointCreate(1, 1));
+        BuildingInitialize(&BB);
         BuildingArrayAddAsLastElement(&B, BB);
         MapMatrixElement(M, PointCreate(1, 1)) = 1;
-        // printf("%d", MapMatrixElement(M, PointCreate(1, 1)));
+        printf("%d", MapMatrixElement(M, PointCreate(1, 1)));
 
         BB = BuildingCreate(2, 1, PointCreate(2, 3));
+        BuildingInitialize(&BB);
         BuildingArrayAddAsLastElement(&B, BB);
         MapMatrixElement(M, PointCreate(2, 3)) = 2;
 
         BB = BuildingCreate(3, 2, PointCreate(3, 2));
+        BuildingInitialize(&BB);
         BuildingArrayAddAsLastElement(&B, BB);
         MapMatrixElement(M, PointCreate(3, 2)) = 3;
 
         BuildingListInsertValueLast(&L, 2);
         BuildingListPrintInfo(L, B);
-        //BuildingListDeleteValue(&L, 2);
+        BuildingListDeleteValue(&L, 2);
         printf("\n");
         BuildingListPrintInfo(L, B);
         printf("\n");
@@ -54,7 +57,6 @@ int main()
         printf("\n");
 
         BuildingListDeleteValueLast(&L, &X);
-        //Dari sini ga lewat
 
         BuildingList LL = BuildingListCopyBuildingList(L);
         BuildingListPrintInfo(LL, B);
