@@ -118,6 +118,4 @@ void PrintQueueSkill(SkillQueue Q);
 SkillQueue SkillQueueCopySkillQueue(SkillQueue Q);
 /* Mengirimkan salinan dari SkillQueue Q menjadi SkillQueue baru */
 
-// Gonna still be added
-
 #endif

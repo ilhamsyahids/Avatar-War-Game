@@ -141,5 +141,4 @@ void BuildingArrayLevelUpOwnedPlayerBuilding(BuildingArray *T, int P);
 BuildingArray BuildingArrayCopyArray(BuildingArray T);
 /* Mengirimkan salinan BuildingArray T menjadi BuildingArray baru */
 
-// Gonna still be added
 #endif

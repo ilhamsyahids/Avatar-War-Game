@@ -91,5 +91,3 @@ char *SkillGetEffect(int kind)
 		return "Barrage (BR)\nEfek :	Jumlah pasukan pada seluruh bangunan musuh akan berkurang sebanyak 10 pasukan.\n	Pemain mendapat skill ini jika lawan baru saja bertambah bangunannya menjadi 10 bangunan.\n";
 	}
 }
-
-// Gonna still be added

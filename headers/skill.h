@@ -56,7 +56,4 @@ char* SkillGetAcronym(int kind);
 char* SkillGetEffect(int kind);
 /* Mengembalikan string efek skill dengan kind tertentu */
 
-// Gonna still be added
-
-
 #endif

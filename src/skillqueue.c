@@ -180,4 +180,3 @@ SkillQueue SkillQueueCopySkillQueue(SkillQueue Q)
 
     return QCopy;
 }
-// Gonna still be added
