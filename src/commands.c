@@ -1,5 +1,13 @@
-/* File : commands.c */
-/* Berisi list command yang bisa dilakukan pemain pada suatu turn */
+//==============================================//
+//								       			//
+//					 Commands             		//
+//                                     			//
+//----------------------------------------------//
+// File : commands.c */		              		//
+//----------------------------------------------//
+// List Command yang bisa dilakukan pemain		//
+// selama bermain								//
+//==============================================//
 
 ///////////////////////////
 //        INCLUDE        //

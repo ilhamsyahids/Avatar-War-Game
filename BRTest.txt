@@ -34,3 +34,45 @@ V 10 3
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+
+Scenario:
+Attack 1 16 20
+Move 1 1 20
+Attack 1 15 20
+End_Turn
+End_Turn
+Move 3 2 10
+Attack 1 14 20
+Attack 1 13 20
+Skill
+End_Turn
+End_Turn
+Attack 1 12 20
+Attack 1 11 20
+Attack 1 10 20
+Attack 1 9 20 
+Attack 1 8 20 -> Add BR Test
+End_Turn
+Castle(10,1) 25
+Village(10,3) 10
+Village(9,13) 10
+Village(8,15) 10
+Village(8,6) 10
+Village(8,2) 5
+Village(7,10) 5
+Village(6,3) 5
+Village(5,12) 5
+Village(4,5) 5
+Skill 
+Skill -> Use BR
+End_Turn
+Castle(10,1) 30
+Village(10,3) 0
+Village(9,13) 0
+Village(8,15) 0
+Village(8,6) 0
+Village(8,2) 5
+Village(7,10) 5
+Village(6,3) 5
+Village(5,12) 5
+Village(4,5) 5

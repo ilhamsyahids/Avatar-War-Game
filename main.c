@@ -5,8 +5,7 @@
 //----------------------------------------------//
 // File : main.c */		              			//
 //----------------------------------------------//
-// Definisi ADT GameMap yang menghubungkan		//
-// MapMatrix dengan BuildingArray               //
+// Program Utama dari game AVATAR WORLD WAR		//
 //==============================================//
 
 ///////////////////////////
@@ -180,7 +179,7 @@ void CheckAddFlags()
 	}
 	else if (AddIR == 1)
 	{
-		if (IsBuildingListAllLevel4(PlayerOwnedBuildingList(GameMapGetCurrentPlayer(GameState)), BuildingRecord(GameState)))
+		if (IsBuildingListAllLevel4(PlayerOwnedBuildingList(GameMapGetCurrentPlayer(GameState)), BuildingRecord(GameState)) && BattlePhase == 3)
 		{
 			AddIR = 2;
 		}
@@ -274,6 +273,7 @@ void PostTurn(int player)
 	CheckBattleCondition();
 	if (InGame && BattlePhase == 3)
 	{
+		CheckAddFlags();
 		ExecuteAddFlags();
 		BattlePhase = 1;
 		GameMapChangePlayer(&GameState);
@@ -282,11 +282,21 @@ void PostTurn(int player)
 	{
 		if (BuildingListNbElmt(PlayerOwnedBuildingList(Player1(GameState))) == 0)
 		{
-			printf("PLAYER 1 KALAH");
+			printf("=================================================\n");
+			printf("|                 PLAYER 2 WINS                 |\n");
+			printf("-------------------------------------------------\n");
+			printf("| Seluruh bangunan Player 1 telah ditaklukkan ! |\n");
+			printf("| Player 2 berhasil menguasai dunia!            |\n");
+			printf("=================================================\n");
 		}
 		else if (BuildingListNbElmt(PlayerOwnedBuildingList(Player2(GameState))) == 0)
 		{
-			printf("PLAYER 2 KALAH");
+			printf("=================================================\n");
+			printf("|                 PLAYER 1 WINS                 |\n");
+			printf("-------------------------------------------------\n");
+			printf("| Seluruh bangunan Player 2 telah ditaklukkan ! |\n");
+			printf("| Player 1 berhasil menguasai dunia !           |\n");
+			printf("=================================================\n");
 		}
 		RefreshSkillFlags();
 		BattlePhase = 0;
@@ -316,7 +326,7 @@ void PreTurn(int player)
 		ActionStackEmpty(&GameStateStack);
 		BuildingArrayResetAllBuilding(&BuildingRecord(GameState));
 		RefreshSkillFlags();
-		CheckAddFlags();
+		//CheckAddFlags();
 		BuildingArrayIncreaseOwnedPasukanBuilding(&BuildingRecord(GameState), player);
 		BattlePhase = 2;
 	}

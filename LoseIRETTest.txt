@@ -5,4 +5,31 @@ C 3 3
 F 2 2
 0 1 1
 1 0 1
-1 1 0 
+1 1 0
+
+Scenario:
+End_Turn
+End_Turn
+End_Turn
+End_Turn
+Attack 1 2 80
+Skill -> IU Test
+End_Turn 
+Attack 1 2 20 -> Add ET Test
+End_Turn
+Skill -> ET Test
+LevelUp 1
+End_Turn
+Attack 1 2 20 -> Add ET Test
+End_Turn
+LevelUp 1
+LevelUp 1
+Skill -> IU Test
+Skill -> ET Test
+End_Turn -> Add IR Test
+Attack 1 2 20
+Skill -> IR Test
+End_Turn
+Attack 1 1 45
+Move 1 1 15
+Attack 1 1 15

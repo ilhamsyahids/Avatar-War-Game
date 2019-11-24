@@ -1,0 +1,40 @@
+3 3
+4
+C 1 1
+C 3 3
+T 2 2
+C 2 1
+0 1 1 1
+1 0 1 1
+1 1 0 1
+1 1 1 0
+
+Scenario Attack Gagal:
+Attack 1 3 10 -> Attack Gagal
+Castle(2,1) tidak berpindah kepemilikan
+Pasukan Castle (2,1) menjadi 30 pasukan
+
+Scenario Attack Berhasil:
+Attack 1 3 40 -> Attack Berhasil
+Castle(2,1) berpindah kepemilikan
+Pasukan Castle (2,1) menjadi 0 pasukan
+
+Scenario Attack Berhasil:
+Attack 1 3 50 -> Attack Berhasil
+Castle(2,1) berpindah kepemilikan
+Pasukan Castle (2,1) menjadi 10 pasukan
+
+Scenario Attack Building ber-Defense Gagal:
+Attack 1 2 20 -> Attack Gagal
+Tower(2,2) tidak berpindah kepemilikan
+Pasukan Tower(2,2) menjadi 15
+
+Scenario Attack Building ber-Defense Berhasil:
+Attack 1 2 40 -> Attack Berhasil
+Tower(2,2) berpindah kepemilikan
+Pasukan Tower(2,2) menjadi 0
+
+Scenario Attack Building ber-Defense Berhasil:
+Attack 1 2 50 -> Attack Berhasil
+Tower(2,2) berpindah kepemilikan
+Pasukan Tower(2,2) menjadi 10

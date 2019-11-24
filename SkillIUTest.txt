@@ -1,0 +1,22 @@
+3 3
+4
+C 1 1
+C 3 3
+F 2 2
+V 2 1
+0 1 1
+1 0 1
+1 1 0
+
+Scenario Use Skill IU - 1 Building:
+Skill
+Castle(1,1) menjadi lvl 2 dengan pasukan 50
+
+Scenario Use Skill IU - >1 Building:
+Attack 1 3 20
+Village(2,1) berpindah kepemilikikan dengan 0 pasukan
+Skill
+Castle(1,1) menjadi lvl 2 dengan pasukan 30
+Village(2,1) menjadi lvl 2 dengan pasukan 0
+ 
+

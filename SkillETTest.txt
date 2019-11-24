@@ -1,0 +1,36 @@
+3 3
+3
+C 1 1
+C 3 3
+F 2 2
+0 1 1
+1 0 1
+1 1 0
+
+Scenario Add ET:
+End_Turn
+End_Turn
+End_Turn
+End_Turn
+End_Turn
+End_Turn
+Attack 1 2 80
+Skill
+End_Turn 
+Attack 1 2 20 -> ET Added For Player 1
+End_Turn
+
+Scenario Use ET:
+End_Turn
+End_Turn
+End_Turn
+End_Turn
+End_Turn
+End_Turn
+Attack 1 2 80
+Skill
+End_Turn 
+Attack 1 2 20 -> ET Added For Player 1
+End_Turn
+Skill -> ET Test
+End_Turn

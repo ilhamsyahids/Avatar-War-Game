@@ -1,0 +1,20 @@
+3 3
+3
+C 1 1
+C 3 3
+V 2 2
+0 1 1
+1 0 1
+1 1 0
+
+
+Scenario WinLose - Player 1 menghabiskan bangunan Player 2:
+Attack 1 1 40 -> Player 2 Kalah karena bangunannya habis
+
+Scenario WinLose - Player 1 menguasai semua bangunan:
+Attack 1 2 20
+Skill
+End_Turn
+End_Turn
+Move 2 1 10
+Attack 1 1 50 -> Player 2 Kalah karena bangunannya habis

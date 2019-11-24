@@ -1,0 +1,21 @@
+3 3
+4
+C 1 1
+C 3 3
+F 2 2
+V 2 1
+0 1 1 1
+1 0 1 1
+1 1 0 1
+1 1 1 0
+
+Move Gagal - Tidak ada bangunan yang berhubungan:
+Move 1 _ _
+
+Move Gagal - Tidak memiliki pasukan :
+Attack 1 3 20
+Move 2 _ _
+
+Move Berhasil :
+Attack 1 3 20
+Move 1 1 30

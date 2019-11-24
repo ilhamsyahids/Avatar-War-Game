@@ -1,0 +1,121 @@
+10 15
+17
+C 10 1
+C 1 15
+V 1 9
+V 1 13
+V 2 3
+V 3 1
+V 3 8
+V 3 14
+V 4 5
+V 5 12
+V 6 3
+V 7 10
+V 8 2
+V 8 6
+V 8 15
+V 9 13
+V 10 3
+0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0
+
+Scenario Add BR:
+Attack 1 16 20
+Move 1 1 20
+Attack 1 15 20
+End_Turn
+End_Turn
+Attack 1 14 20
+End_Turn
+End_Turn
+Move 2 1 10
+Attack 1 13 20
+Skill
+End_Turn
+End_Turn
+Move 5 4 10
+Move 4 1 5
+Attack 1 12 20
+Attack 1 11 20
+Attack 1 10 20
+End_Turn
+End_Turn
+Move 6 1 5
+Attack 1 9 20
+End_Turn -> Check Tidak ada BR di Player 2 (Jumlah bangunan Player 1 masih 9)
+End_Turn
+Attack 2 8 20 (Jumlah bangunan Player 1 sudah 10)
+End_Turn -> BR Added for Player 2 
+
+Scenario Use BR:
+Attack 1 16 20
+Move 1 1 20
+Attack 1 15 20
+End_Turn
+End_Turn
+Attack 1 14 20
+End_Turn
+End_Turn
+Move 2 1 10
+Attack 1 13 20
+Skill
+End_Turn
+End_Turn
+Move 5 4 10
+Move 4 1 5
+Attack 1 12 20
+Attack 1 11 20
+Attack 1 10 20
+End_Turn
+End_Turn
+Move 6 1 5
+Attack 1 9 20
+End_Turn -> Check Tidak ada BR di Player 2 (Jumlah bangunan Player 1 masih 9)
+End_Turn
+Attack 2 8 20 (Jumlah bangunan Player 1 sudah 10)
+End_Turn -> BR Added for Player 2
+End_Turn
+Detil bangunan Player 1
+Castle(10,1) 30
+Village(10,3) 0
+Village(9,13) 20
+Village(8,15) 30
+Village(8,6) 20
+Village(8,2) 10
+Village(7,10) 15
+Village(6,3) 15
+Village(5,12) 10
+Village(4,5) 5
+End_Turn
+Skill
+Skill -> BR Used
+Detil bangunan Player 1
+Castle(10,1) 30
+Village(10,3) 0
+Village(9,13) 20
+Village(8,15) 30
+Village(8,6) 20
+Village(8,2) 10
+Village(7,10) 15
+Village(6,3) 15
+Village(5,12) 10
+Village(4,5) 5
+
+
+

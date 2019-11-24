@@ -1,0 +1,68 @@
+3 3
+3
+C 1 1
+C 3 3
+V 2 2
+0 1 1
+1 0 1
+1 1 0
+
+Scenario Add IR - 1 Building:
+LevelUp 1
+LevelUp 1
+Skill
+End_Turn -> IR Added For Player 1
+End_Turn
+Attack 1 2 20
+End_Turn -> IR not Added For Player 1
+End_Turn
+
+
+Scenario Add IR - >1 Building:
+LevelUp 1
+LevelUp 1
+Skill
+End_Turn -> IR Added For Player 1
+End_Turn
+End_Turn -> IR Added For Player 1
+End_Turn
+Attack 1 2 20
+End_Turn -> IR not Added For Player 1
+End_Turn
+Move 1 1 55
+LevelUp 2
+LevelUp 2
+LevelUp 2
+End_Turn -> IR Added For Player 1
+End_Turn
+
+
+Scenario Use IR - 1 Building:
+LevelUp 1
+LevelUp 1
+Skill
+End_Turn -> IR Added For Player 1
+End_Turn
+Skill
+Castle(1,1) bertambah pasukan 25 -> 30
+
+Scenario Use IR - >1 Building:
+LevelUp 1
+LevelUp 1
+Skill
+End_Turn -> IR Added For Player 1
+End_Turn
+End_Turn -> IR Added For Player 1
+End_Turn
+Attack 1 2 20
+End_Turn -> IR not Added For Player 1
+End_Turn
+Move 1 1 55
+LevelUp 2
+LevelUp 2
+LevelUp 2
+End_Turn -> IR Added For Player 1
+End_Turn
+Skill
+Castle(1,1) bertambah pasukan 25 -> 30
+Village(2,2) bertambah pasukan 35 -> 40

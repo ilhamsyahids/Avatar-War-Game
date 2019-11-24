@@ -1,0 +1,37 @@
+3 3
+4
+C 1 1
+C 3 3
+T 2 2
+C 2 1
+0 1 1 1
+1 0 1 1
+1 1 0 1
+1 1 1 0
+
+Scenario LevelUp Berhasil:
+LevelUp 1
+Castle(1,1) menjadi lvl 2 dengan pasukan 30
+LevelUp 1
+Castle(1,1) menjadi lvl 3 dengan pasukan 0
+
+Scenario LevelUp Gagal karena Jumlah pasukan kurang:
+LevelUp 1
+Castle(1,1) menjadi lvl 2 dengan pasukan 30
+LevelUp 1
+Castle(1,1) menjadi lvl 3 dengan pasukan 0
+LevelUp 1
+Castle(1,1) tetap lvl 3 dengan pasukan 0
+
+Scenario LevelUp Gagal karena Level Building Sudah Maksimum:
+LevelUp 1
+Castle(1,1) menjadi lvl 2 dengan pasukan 30
+LevelUp 1
+Castle(1,1) menjadi lvl 3 dengan pasukan 0
+Skill
+Castle(1,1) menjadi lvl 4 dengan pasukan 0
+End_Turn
+End_Turn
+LevelUp 1
+Castle(1,1) tetap lvl 4 dengan pasukan 0
+
