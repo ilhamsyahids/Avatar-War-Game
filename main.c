@@ -44,7 +44,7 @@ int AddBR;
 ///////////////////////////////////
 void ClearScreen()
 {
-	system("cls");
+	//system("cls");
 }
 
 void ReadCommand()
@@ -391,7 +391,7 @@ int main()
 	StartReadingKata(InputString);
 	if (IsKataSame("Start", 5))
 	{
-		ClearScreen();
+		//ClearScreen();
 		StartGame();
 	}
 	else if (IsKataSame("Exit", 4))
