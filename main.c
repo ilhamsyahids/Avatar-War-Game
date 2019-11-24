@@ -18,9 +18,9 @@
 #include "actionstackt.h"
 #include "commands.h"
 
-///////////////////////////////////
-//		  CONST & TYPEDEF	 	 //
-///////////////////////////////////
+///////////////////////////
+//		  VARIABLES	 	 //
+///////////////////////////
 GameMap GameState;
 ActionStack GameStateStack;
 char InputString[51];
