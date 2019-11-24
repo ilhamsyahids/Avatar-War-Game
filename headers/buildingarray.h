@@ -126,7 +126,7 @@ void BuildingArrayDecreasePlayerOwnedPasukanBuilding(BuildingArray *T, int P, in
 /* I.S. T berisi building dengan SoldierCount sembarang */
 /* F.S. T berisi building dengan SoldierCount milik player P berkurang sebanyak value */
 
-void BuildingArrayIncreaseOwnedPasukanBuilding(BuildingArray *T);
+void BuildingArrayIncreaseOwnedPasukanBuilding(BuildingArray *T, int P);
 /* Menambahkan Pasukan pada semua bangunan yang ada kepemilikan player */
 /* Penambahan dilakukan jika bertemu kasus akhir turn */
 /* I.S. T berisi building dengan SoldierCount sembarang */

@@ -277,7 +277,6 @@ void PostTurn(int player)
 	{
 		ExecuteAddFlags();
 		BattlePhase = 1;
-		BuildingArrayIncreaseOwnedPasukanBuilding(&BuildingRecord(GameState));
 		GameMapChangePlayer(&GameState);
 	}
 	else if (!InGame)
@@ -320,6 +319,7 @@ void PreTurn(int player)
 		BuildingArrayResetAllBuilding(&BuildingRecord(GameState));
 		RefreshSkillFlags();
 		CheckAddFlags();
+		BuildingArrayIncreaseOwnedPasukanBuilding(&BuildingRecord(GameState), player);
 		BattlePhase = 2;
 	}
 }

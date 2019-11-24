@@ -150,14 +150,14 @@ void BuildingArrayDecreasePlayerOwnedPasukanBuilding(BuildingArray *T, int P, in
   } 
 }
 
-void BuildingArrayIncreaseOwnedPasukanBuilding(BuildingArray *T)
+void BuildingArrayIncreaseOwnedPasukanBuilding(BuildingArray *T, int P)
 /* Menambahkan Pasukan pada semua bangunan yang ada kepemilikan player */
 /* Penambahan dilakukan jika bertemu kasus akhir turn */
 /* I.S. T berisi building dengan SoldierCount sembarang */
 /* F.S. T berisi building dengan SoldierCount yang sudah ditambah sesuai dengan A */
 {
   for(int i = 1; i <= BuildingArrayNeff(*T); i++){ 
-    if((BuildingPlayer(BuildingArrayElement((*T), i)) == 1 || BuildingPlayer(BuildingArrayElement((*T), i)) == 2) && (CanBuildingAddPasukan(BuildingArrayElement((*T), i)))){
+    if((BuildingPlayer(BuildingArrayElement((*T), i)) == P) && (CanBuildingAddPasukan(BuildingArrayElement((*T), i)))){
       BuildingIncreasePasukan(&(BuildingArrayElement((*T), i)), BuildingSoldierAddValue(BuildingArrayElement((*T), i)));
       BuildingSoldierAddCount(BuildingArrayElement((*T), i)) += BuildingSoldierAddValue(BuildingArrayElement((*T), i));  
     }
