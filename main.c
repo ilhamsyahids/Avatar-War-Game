@@ -61,17 +61,17 @@ void ReadCommand()
 	}
 	else if (IsKataSame("LevelUp", 7))
 	{
-		level_up(&GameState);
+		Level_up(&GameState);
 		ActionStackPush(&GameStateStack, GameMapPush);
 	}
 	else if (IsKataSame("Move", 4))
 	{
-		move(&GameState);
+		Move(&GameState);
 		ActionStackPush(&GameStateStack, GameMapPush);
 	}
 	else if (IsKataSame("Skill", 5))
 	{
-		skill(&GameState);
+		Skills(&GameState);
 		ActionStackEmpty(&GameStateStack);
 	}
 	else if (IsKataSame("Undo", 4))
@@ -93,7 +93,7 @@ void ReadCommand()
 	else if (IsKataSame("Exit", 4))
 	{
 		exit(0);
-	} 
+	}
 	else if (IsKataSame("Help", 4))
 	{
 		printf("Command tersedia\n");
@@ -119,7 +119,6 @@ void ReadCommand()
 		printf("7. Exit\n");
 		printf("8. Help\n");
 	}
-
 }
 void CheckAddFlags()
 {
@@ -297,7 +296,6 @@ void InTurn(int player)
 {
 	while (InGame && BattlePhase == 2)
 	{
-		//ClearScreen();
 		CheckAddFlags();
 		GameMapPrintInfo(GameState);
 		print_magenta("Enter Command: \n");
@@ -372,7 +370,7 @@ void Setup(char *filename)
 }
 
 int main()
-{	
+{
 	printf("Masukkan nama file konfigurasi : ");
 	scanf("%s", InputString);
 	Setup(InputString);
@@ -394,7 +392,6 @@ int main()
 	while (InGame)
 	{
 		int player = CurrentPlayer(GameState);
-		//ClearScreen();
 		PreTurn(player);
 		InTurn(player);
 		PostTurn(player);

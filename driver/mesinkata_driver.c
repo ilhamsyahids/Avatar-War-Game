@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "mesinkata.h"
 
-int main(){
+int main()
+{
 	char InputString[51];
 
 	scanf("%s", InputString);

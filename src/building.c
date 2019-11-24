@@ -102,7 +102,7 @@ boolean CanBuildingMovePasukan(Building B)
 {
     /* Mengirimkan apakah building dapat mengirimkan pasukan */
 
-    return(!BuildingHasMovedPasukan(B));
+    return (!BuildingHasMovedPasukan(B));
 }
 
 /////////////////////////////////////
@@ -443,9 +443,12 @@ void BuildingLevelUp(Building *B)
     }
     else
     {
-        if(IsBuildingLevelMax(*B)){
+        if (IsBuildingLevelMax(*B))
+        {
             printf("Level %s-mu sudah maksimum!\n", BuildingGetName(BuildingKind(*B)));
-        } else{   
+        }
+        else
+        {
             printf("Jumlah pasukan %s kurang untuk level up\n", BuildingGetName((*B).kind));
         }
     }

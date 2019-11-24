@@ -181,7 +181,6 @@ void BuildingListDeleteValue(BuildingList *L, BuildingListInfotype X)
             BuildingListElementNext(prev) = BuildingListElementNext(BuildingListElementNext(prev));
             BuildingListElementDealokasi(P);
         }
-        
     }
 }
 
@@ -254,7 +253,8 @@ int BuildingListNbElmtKind(BuildingList BL, BuildingArray T, int kind)
         BuildingListAddress P = BuildingListFirstAddress(BL);
         while ((P) != BuildingListNil)
         {
-            if(BuildingKind(BuildingArrayElement(T, BuildingListElementInfo(P))) == kind){
+            if (BuildingKind(BuildingArrayElement(T, BuildingListElementInfo(P))) == kind)
+            {
                 count += 1;
             }
             P = BuildingListElementNext(P);

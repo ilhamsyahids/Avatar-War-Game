@@ -3,7 +3,8 @@
 #include "boolean.h"
 #include "buildingrelationgraph.h"
 
-int main(){
+int main()
+{
 	BuildingRelationGraph G;
 	BuildingRelationGraphAddress V;
 	BuildingRelationGraphAddress VTest;
@@ -12,9 +13,9 @@ int main(){
 
 	BuildingRelationGraphCreateEmpty(&G);
 
-	printf("%d\n",BuildingRelationGraphFirstAddress(G));
+	printf("%d\n", BuildingRelationGraphFirstAddress(G));
 
-	printf("%d\n",IsBuildingRelationGraphEmpty(G));
+	printf("%d\n", IsBuildingRelationGraphEmpty(G));
 
 	//ALLOCATION TEST
 	/*
@@ -79,32 +80,32 @@ int main(){
 	*/
 
 	VTest = BuildingRelationGraphAddressSearch(G, 10);
-	printf("%d\n",VTest);
-	printf("%d\n",BuildingRelationGraphVertexInfo(VTest));
-	
+	printf("%d\n", VTest);
+	printf("%d\n", BuildingRelationGraphVertexInfo(VTest));
+
 	//ADJACENT VERTEX INSERT TEST
-	printf("%d\n",IsAdjacentBuildingRelationGraphEmpty(VTest));
-	BuildingRelationGraphInsertAdjacentVertex(VTest,11);
+	printf("%d\n", IsAdjacentBuildingRelationGraphEmpty(VTest));
+	BuildingRelationGraphInsertAdjacentVertex(VTest, 11);
 	BuildingRelationGraphInsertAdjacentVertex(VTest, 13);
 	BuildingRelationGraphInsertAdjacentVertex(VTest, 15);
-	printf("%d\n",IsAdjacentBuildingRelationGraphEmpty(VTest));
-	printf("%d\n",BuildingRelationGraphAdjacentVertexInfo(BuildingRelationGraphVertexFirstAdjacent(VTest)));
-	printf("%d\n",IsAdjacentWithVertex(VTest, 13));
-	
+	printf("%d\n", IsAdjacentBuildingRelationGraphEmpty(VTest));
+	printf("%d\n", BuildingRelationGraphAdjacentVertexInfo(BuildingRelationGraphVertexFirstAdjacent(VTest)));
+	printf("%d\n", IsAdjacentWithVertex(VTest, 13));
+
 	//BuildingRelationGraphInsertAdjacentVertex(VTest, 11);
-	printf("%d\n",IsAdjacentBuildingRelationGraphEmpty(VTest));
-	printf("%d\n",BuildingRelationGraphAdjacentVertexInfo(BuildingRelationGraphVertexFirstAdjacent(VTest)));
-	printf("%d\n",IsAdjacentWithVertex(VTest, 11));
+	printf("%d\n", IsAdjacentBuildingRelationGraphEmpty(VTest));
+	printf("%d\n", BuildingRelationGraphAdjacentVertexInfo(BuildingRelationGraphVertexFirstAdjacent(VTest)));
+	printf("%d\n", IsAdjacentWithVertex(VTest, 11));
 
 	PTest = BuildingRelationGraphAdjacentAddressSearch(VTest, 11);
-	printf("%d\n",BuildingRelationGraphAdjacentVertexInfo(PTest));
+	printf("%d\n", BuildingRelationGraphAdjacentVertexInfo(PTest));
 
 	VTest = BuildingRelationGraphAddressSearch(G, 5);
 	BuildingRelationGraphInsertAdjacentVertex(VTest, 13);
 	BuildingRelationGraphInsertAdjacentVertex(VTest, 11);
 	//BuildingRelationGraphInsertAdjacentVertex(VTest, 15);
 	PTest = BuildingRelationGraphAdjacentAddressSearch(VTest, 11);
-	printf("%d\n",BuildingRelationGraphAdjacentVertexInfo(PTest));
+	printf("%d\n", BuildingRelationGraphAdjacentVertexInfo(PTest));
 
 	BuildingRelationGraphPrintInfo(G);
 

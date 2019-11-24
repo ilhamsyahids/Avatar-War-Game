@@ -47,7 +47,7 @@ int main()
     }
 
     printf("\nIncrease Soldier Role 1 by 500\n");
-    BuildingArrayIncreasePlayerOwnedPasukanBuilding(&ArrB,1,500);
+    BuildingArrayIncreasePlayerOwnedPasukanBuilding(&ArrB, 1, 500);
     for (int i = 0; i < 5; i++)
     {
         BuildingPrintInfo(BuildingArrayElement(ArrB, i + 1));
@@ -55,7 +55,7 @@ int main()
     }
 
     printf("\nDeacrease Soldier Role 2 by 20\n");
-    BuildingArrayDecreasePlayerOwnedPasukanBuilding(&ArrB,2,20);
+    BuildingArrayDecreasePlayerOwnedPasukanBuilding(&ArrB, 2, 20);
     for (int i = 0; i < 5; i++)
     {
         BuildingPrintInfo(BuildingArrayElement(ArrB, i + 1));
@@ -63,7 +63,7 @@ int main()
     }
 
     printf("\nLevel Up Building Role 2\n");
-    BuildingArrayLevelUpOwnedPlayerBuilding(&ArrB,2);
+    BuildingArrayLevelUpOwnedPlayerBuilding(&ArrB, 2);
     for (int i = 0; i < 5; i++)
     {
         BuildingPrintInfo(BuildingArrayElement(ArrB, i + 1));

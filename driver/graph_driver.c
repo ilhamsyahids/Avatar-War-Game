@@ -3,7 +3,8 @@
 #include "boolean.h"
 #include "graph.h"
 
-int main(){
+int main()
+{
 	Graph G;
 	GraphAddress V;
 	GraphAddress VTest;
@@ -12,9 +13,9 @@ int main(){
 
 	GraphCreateEmpty(&G);
 
-	printf("%d\n",GraphFirstAddress(G));
+	printf("%d\n", GraphFirstAddress(G));
 
-	printf("%d\n",IsGraphEmpty(G));
+	printf("%d\n", IsGraphEmpty(G));
 
 	//ALLOCATION TEST
 	/*
@@ -79,32 +80,32 @@ int main(){
 	*/
 
 	VTest = GraphAddressSearch(G, 10);
-	printf("%d\n",VTest);
-	printf("%d\n",GraphVertexInfo(VTest));
-	
+	printf("%d\n", VTest);
+	printf("%d\n", GraphVertexInfo(VTest));
+
 	//ADJACENT VERTEX INSERT TEST
-	printf("%d\n",IsAdjacentGraphEmpty(VTest));
-	GraphInsertAdjacentVertex(VTest,11);
+	printf("%d\n", IsAdjacentGraphEmpty(VTest));
+	GraphInsertAdjacentVertex(VTest, 11);
 	GraphInsertAdjacentVertex(VTest, 13);
 	GraphInsertAdjacentVertex(VTest, 15);
-	printf("%d\n",IsAdjacentGraphEmpty(VTest));
-	printf("%d\n",GraphAdjacentVertexInfo(GraphVertexFirstAdjacent(VTest)));
-	printf("%d\n",IsAdjacentWithVertex(VTest, 13));
-	
+	printf("%d\n", IsAdjacentGraphEmpty(VTest));
+	printf("%d\n", GraphAdjacentVertexInfo(GraphVertexFirstAdjacent(VTest)));
+	printf("%d\n", IsAdjacentWithVertex(VTest, 13));
+
 	//GraphInsertAdjacentVertex(VTest, 11);
-	printf("%d\n",IsAdjacentGraphEmpty(VTest));
-	printf("%d\n",GraphAdjacentVertexInfo(GraphVertexFirstAdjacent(VTest)));
-	printf("%d\n",IsAdjacentWithVertex(VTest, 11));
+	printf("%d\n", IsAdjacentGraphEmpty(VTest));
+	printf("%d\n", GraphAdjacentVertexInfo(GraphVertexFirstAdjacent(VTest)));
+	printf("%d\n", IsAdjacentWithVertex(VTest, 11));
 
 	PTest = GraphAdjacentAddressSearch(VTest, 11);
-	printf("%d\n",GraphAdjacentVertexInfo(PTest));
+	printf("%d\n", GraphAdjacentVertexInfo(PTest));
 
 	VTest = GraphAddressSearch(G, 5);
 	GraphInsertAdjacentVertex(VTest, 13);
 	GraphInsertAdjacentVertex(VTest, 11);
 	//GraphInsertAdjacentVertex(VTest, 15);
 	PTest = GraphAdjacentAddressSearch(VTest, 11);
-	printf("%d\n",GraphAdjacentVertexInfo(PTest));
+	printf("%d\n", GraphAdjacentVertexInfo(PTest));
 
 	GraphPrintInfo(G);
 

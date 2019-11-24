@@ -27,29 +27,18 @@ void Attack(GameMap *G);
 	menjadi kurang dari X. */
 /* 	Bila bangunan berpindah kepemilikan, level akan kembali menjadi 1. */
 
-void level_up(GameMap *G);
+void Level_up(GameMap *G);
 /* 	Digunakan untuk menaikkan level dari suatu bangunan. Dalam satu giliran, level up
 	dapat dilakukan berkali-kali. */
 /* 	F.S. Jika pasukan yang dimiliki cukup, level bangunan bertambah 1. */
 /*	Jika pasukan yang dimiliki kurang, level bangunan tetap. */
 
-void skill(GameMap *G);
+void Skills(GameMap *G);
 /* 	Digunakan untuk memakai skill yang sedang dimiliki oleh pemain. */
 
-void undo(GameMap *G);
-/* 	Digunakan untuk membatalkan perintah terakhir. */
-/* 	Pemain hanya dapat melakukan UNDO hingga command sesudah END_TURN/SKILL. 
-	Artinya, setelah command END_TURN/SKILL, pemain tidak dapat melakukan UNDO lagi. */
-
-void end_turn(GameMap *G);
-/* 	Digunakan untuk mengakhiri giliran dari pemain. */
-
-void move(GameMap *G);
+void Move(GameMap *G);
 /* 	Digunakan untuk memindahkan pasukan dari suatu bangunan ke bangunan lain 
 	milik pemain yang terhubung dengan bangunan tersebut. 
 	MOVE hanya dapat dilakukan sekali untuk tiap bangunan pada tiap gilirannya. */
-
-// void exit();
-/* 	Digunakan untuk keluar dari permainan/program. */
 
 #endif

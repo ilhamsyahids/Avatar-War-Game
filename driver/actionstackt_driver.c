@@ -1,7 +1,8 @@
 #include "actionstackt.h"
 #include "gamemap.h"
 
-int main(){
+int main()
+{
 	GameMap GameState;
 	ActionStack GameStateStack;
 	Player Player1;
@@ -26,43 +27,41 @@ int main(){
 	GameMapSetCurrentPlayer(&GameState, 1);
 	printf("Array neff : %d\n", BuildingArrayNeff(BuildingRecord(GameState)));
 	printf("Castle Soldier : %d\n",
-			BuildingSoldierCount(BuildingArrayElement(BuildingRecord(GameState),1)));
+		   BuildingSoldierCount(BuildingArrayElement(BuildingRecord(GameState), 1)));
 	printf("Owned by player %d\n",
-			BuildingPlayer(BuildingArrayElement(BuildingRecord(GameState),1)));
+		   BuildingPlayer(BuildingArrayElement(BuildingRecord(GameState), 1)));
 	GameMap GameMapPush = GameState;
 	BuildingRecord(GameMapPush) = BuildingArrayCopyArray(BuildingRecord(GameState));
 	ActionStackPush(&GameStateStack, GameMapPush);
 
 	GameMapChangePlayer(&GameState);
-	BuildingSoldierCount(BuildingArrayElement(BuildingRecord(GameState),1)) += 1;
+	BuildingSoldierCount(BuildingArrayElement(BuildingRecord(GameState), 1)) += 1;
 	//BuildingChangePlayer(&BuildingArrayElement(BuildingRecord(GameState),1));
 	BuildingArrayNeff(BuildingRecord(GameState)) += 1;
 	printf("Array neff : %d\n", BuildingArrayNeff(BuildingRecord(GameState)));
 	printf("Castle Soldier : %d\n",
-			BuildingSoldierCount(BuildingArrayElement(BuildingRecord(GameState),1)));
+		   BuildingSoldierCount(BuildingArrayElement(BuildingRecord(GameState), 1)));
 	printf("Owned by player %d\n",
-			BuildingPlayer(BuildingArrayElement(BuildingRecord(GameState),1)));
+		   BuildingPlayer(BuildingArrayElement(BuildingRecord(GameState), 1)));
 	GameMapPush = GameState;
 	BuildingRecord(GameMapPush) = BuildingArrayCopyArray(BuildingRecord(GameState));
 	printf("Push Array neff : %d\n", BuildingArrayNeff(BuildingRecord(GameMapPush)));
-	
+
 	ActionStackPush(&GameStateStack, GameMapPush);
 
+	ActionStackPop(&GameStateStack, &GameState);
+	printf("Array neff : %d\n", BuildingArrayNeff(BuildingRecord(GameState)));
+	printf("Castle Soldier : %d\n",
+		   BuildingSoldierCount(BuildingArrayElement(BuildingRecord(GameState), 1)));
+	printf("Owned by player %d\n",
+		   BuildingPlayer(BuildingArrayElement(BuildingRecord(GameState), 1)));
 
 	ActionStackPop(&GameStateStack, &GameState);
 	printf("Array neff : %d\n", BuildingArrayNeff(BuildingRecord(GameState)));
 	printf("Castle Soldier : %d\n",
-			BuildingSoldierCount(BuildingArrayElement(BuildingRecord(GameState),1)));
+		   BuildingSoldierCount(BuildingArrayElement(BuildingRecord(GameState), 1)));
 	printf("Owned by player %d\n",
-			BuildingPlayer(BuildingArrayElement(BuildingRecord(GameState),1)));
+		   BuildingPlayer(BuildingArrayElement(BuildingRecord(GameState), 1)));
 
-	ActionStackPop(&GameStateStack, &GameState);
-	printf("Array neff : %d\n", BuildingArrayNeff(BuildingRecord(GameState)));
-	printf("Castle Soldier : %d\n",
-			BuildingSoldierCount(BuildingArrayElement(BuildingRecord(GameState),1)));
-	printf("Owned by player %d\n",
-			BuildingPlayer(BuildingArrayElement(BuildingRecord(GameState),1)));
-
-	
 	return 0;
 }
