@@ -110,7 +110,12 @@ void Attack(GameMap *G)
 
 					if (UsedSoldier < GuardSoldier)
 					{
-						BuildingDecreasePasukan(DecidedBuilding, UsedSoldier);
+						if(BuildingHasDefense(*DecidedBuilding)){
+							BuildingDecreasePasukan(DecidedBuilding, UsedSoldier * 3 / 4);
+						} else{
+							BuildingDecreasePasukan(DecidedBuilding, UsedSoldier);
+						}
+						
 					}
 					else if (UsedSoldier == GuardSoldier)
 					{
