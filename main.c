@@ -40,11 +40,6 @@ int AddET;
 int AddIR;
 int AddBR;
 
-//SkillTriggerFlags
-boolean TriggerET;
-boolean TriggerIR;
-boolean TriggerBR;
-
 //////////////////////z/////////////
 // 	      MAIN FUNCTIONS 	 	 //
 ///////////////////////////////////
@@ -59,32 +54,23 @@ void ReadCommand()
 	GameMapPush = GameMapCopyCurrentMap(GameState);
 	BuildingRecord(GameMapPush) = BuildingArrayCopyArray(BuildingRecord(GameState));
 
-	//CheckAddFlags();
 	if (IsKataSame("Attack", 6))
 	{
-		printf("Attack");
 		Attack(&GameState);
 		ActionStackPush(&GameStateStack, GameMapPush);
 	}
 	else if (IsKataSame("LevelUp", 7))
 	{
-		//Command(LevelUp);
-		printf("LevelUp");
 		level_up(&GameState);
 		ActionStackPush(&GameStateStack, GameMapPush);
 	}
 	else if (IsKataSame("Move", 4))
 	{
-		//Command(Move);
-		printf("Move");
 		move(&GameState);
 		ActionStackPush(&GameStateStack, GameMapPush);
 	}
 	else if (IsKataSame("Skill", 5))
 	{
-		//Command(Skill);
-		printf("Skill");
-		//BuildingListDeleteValueLast(&PlayerOwnedBuildingList(Player2(GameState)), &testint);
 		skill(&GameState);
 		ActionStackEmpty(&GameStateStack);
 	}
@@ -96,29 +82,44 @@ void ReadCommand()
 		}
 		else
 		{
-			printf("Undo");
-			printf("PopepdState\n");
 			ActionStackPop(&GameStateStack, &GameState);
-			GameMapPrintInfo(GameState);
 		}
 	}
 	else if (IsKataSame("End_Turn", 8))
 	{
-		printf("End_Turn");
 		ActionStackEmpty(&GameStateStack);
 		BattlePhase = 3;
 	}
 	else if (IsKataSame("Exit", 4))
 	{
-		printf("Exit");
+		exit(0);
+	} 
+	else if (IsKataSame("Help", 4))
+	{
+		printf("Command tersedia\n");
+		printf("1. Attack\n");
+		printf("2. LevelUp\n");
+		printf("3. Skill\n");
+		printf("4. Move\n");
+		printf("5. Undo\n");
+		printf("6. End_Turn\n");
+		printf("7. Exit\n");
+		printf("8. Help\n");
 	}
 	else
 	{
-		printf("Others");
+		printf("Command tersebut tidak tersedia\n");
+		printf("Command tersedia\n");
+		printf("1. Attack\n");
+		printf("2. LevelUp\n");
+		printf("3. Skill\n");
+		printf("4. Move\n");
+		printf("5. Undo\n");
+		printf("6. End_Turn\n");
+		printf("7. Exit\n");
+		printf("8. Help\n");
 	}
 
-	//scanf("\n", &testchar);
-	//CheckAddFlags();
 }
 void CheckAddFlags()
 {
@@ -251,12 +252,6 @@ void ExecuteAddFlags()
 		AddET = 0;
 	}
 }
-void RefreshTriggerFlags()
-{
-	TriggerET = false;
-	TriggerIR = false;
-	TriggerBR = false;
-}
 
 void RefreshAddFlags()
 {
@@ -268,7 +263,6 @@ void RefreshAddFlags()
 void RefreshSkillFlags()
 {
 	RefreshAddFlags();
-	RefreshTriggerFlags();
 }
 
 void CheckBattleCondition()
@@ -403,9 +397,6 @@ int main()
 		InTurn(player);
 		PostTurn(player);
 	}
-	//GameMapPrintInfo(GameState);
-
-	//BuildingRelationGraphPrintInfo(BuildingRelation(GameState));
 
 	return 0;
 }

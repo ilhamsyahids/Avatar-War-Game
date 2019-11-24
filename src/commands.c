@@ -245,7 +245,7 @@ void skill(GameMap *G)
 
 		//printf("kosong : %d\n", IsSkillQueueEmpty(PlayerCurrentSkillQueue(P))); 
 	} else{
-		printf("AAAA");
+		printf("Kamu tidak memiliki skill yang dapat digunakan!\n");
 	}		
 }
 void undo();

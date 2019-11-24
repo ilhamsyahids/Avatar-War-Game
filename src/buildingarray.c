@@ -157,12 +157,14 @@ void BuildingArrayIncreaseOwnedPasukanBuilding(BuildingArray *T)
 /* F.S. T berisi building dengan SoldierCount yang sudah ditambah sesuai dengan A */
 {
   for(int i = 1; i <= BuildingArrayNeff(*T); i++){ 
-    if((BuildingPlayer(BuildingArrayElement((*T), i)) == 1 || BuildingPlayer(BuildingArrayElement((*T), i)) == 2) && (CanBuildingAddPasukan(BuildingArrayElement((*T), i)))){
+    if((BuildingPlayer(BuildingArrayElement((*T), i)) == 1 || BuildingPlayer(BuildingArrayElement((*T), i)) == 2)){
       BuildingIncreasePasukan(&(BuildingArrayElement((*T), i)), BuildingSoldierAddValue(BuildingArrayElement((*T), i)));
       BuildingSoldierAddCount(BuildingArrayElement((*T), i)) += BuildingSoldierAddValue(BuildingArrayElement((*T), i));  
     }
   } 
 }
+
+// && (CanBuildingAddPasukan(BuildingArrayElement((*T), i)))
 
 void BuildingArrayLevelUpOwnedPlayerBuilding(BuildingArray *T, int P)
 /* Menaikkan level bangunan yang dimiliki player P sebanyak 1 level */
