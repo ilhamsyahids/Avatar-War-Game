@@ -39,8 +39,6 @@ void CompleteFileLoad(GameMap *G)
 	NextPlayer(*G) = 2;
 }
 
-
-
 void LoadBuildingRelation()
 /* Menangani pembacaan hubungan antar bangunan pada peta */
 /* I.S : */
@@ -51,19 +49,20 @@ void LoadBuildingRelation()
 	BuildingRelationGraphAddress V;
 	AdjacentBuildingRelationGraphAddress P;
 
-	for(i = 1; i <= BuildingArrayNeff(Record); i++){
+	for (i = 1; i <= BuildingArrayNeff(Record); i++)
+	{
 		V = BuildingRelationGraphAddressSearch(BuildingRelation, i);
-		for(j = 1; j <= BuildingArrayNeff(Record); j++){
+		for (j = 1; j <= BuildingArrayNeff(Record); j++)
+		{
 			AdvFileInt();
-			if(X == 1){
+			if (X == 1)
+			{
 				BuildingRelationGraphInsertAdjacentVertex(V, j);
 			}
 		}
 		AdvFileLine();
 	}
 }
-
-
 
 void LoadBuildingList()
 /* Menangani pembacaan daftar bangunan yang ada di peta */
@@ -89,7 +88,6 @@ void LoadBuildingList()
 	MapMatrixElement(Map, P) = 1;
 	AdvFileLine();
 
-	
 	// Load Player 2's Castle
 	AdvFileChar();
 	AdvFileInt();
@@ -103,15 +101,23 @@ void LoadBuildingList()
 	AdvFileLine();
 
 	// Load Other Buildings
-	for(i = 1; i <= BuildingArrayMaxElement(Record) - 2; i++){
+	for (i = 1; i <= BuildingArrayMaxElement(Record) - 2; i++)
+	{
 		AdvFileChar();
-		if(CC == 'C'){
+		if (CC == 'C')
+		{
 			kind = 1;
-		} else if(CC == 'T'){
+		}
+		else if (CC == 'T')
+		{
 			kind = 2;
-		} else if(CC == 'F'){
+		}
+		else if (CC == 'F')
+		{
 			kind = 3;
-		} else if(CC == 'V'){
+		}
+		else if (CC == 'V')
+		{
 			kind = 4;
 		}
 		AdvFileInt();
@@ -125,7 +131,6 @@ void LoadBuildingList()
 		AdvFileLine();
 	}
 }
-
 
 void LoadBuildingCount()
 /* Menangani pembacaan banyaknya bangunan pada peta dari file */
@@ -141,14 +146,13 @@ void LoadBuildingCount()
 	BuildingArrayCreateEmpty(&Record, BuildingCount);
 	BuildingRelationGraphCreateEmpty(&BuildingRelation);
 
-	for(i = 1; i <= BuildingCount; i++){
+	for (i = 1; i <= BuildingCount; i++)
+	{
 		BuildingRelationGraphInsertVertex(&BuildingRelation, i);
 	}
 
 	AdvFileLine();
 }
-
-
 
 void LoadMapSize()
 /* Menangani pembacaan ukuran peta dari file */
@@ -167,7 +171,6 @@ void LoadMapSize()
 	MapMatrixCreateEmpty(&Map, MapRow, MapCol);
 
 	AdvFileLine();
-
 }
 
 void LoadingSequence()
@@ -181,8 +184,7 @@ void LoadingSequence()
 	LoadBuildingRelation();
 }
 
-
-void StartLoading(char* filename, char Player1Color, char Player2Color)
+void StartLoading(char *filename, char Player1Color, char Player2Color)
 /* Memulai pembacaan dari file konfigurasi */
 /* I.S : Pita file kosong, GameMap belum siap diload */
 /* F.S : File siap dibaca, GameMap siap diload, dan sekuens pembacaan dimulai */

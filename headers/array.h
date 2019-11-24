@@ -32,15 +32,14 @@
 typedef int ArrayIdxType; /* type indeks */
 typedef int ArrayElType;  /* type elemen tabel */
 
-
 //////////////////////
 //  Definisi Array  //
 //////////////////////
 typedef struct
 {
-    ArrayElType *TI;  /* memori tempat penyimpan elemen (container) */
-    int Neff;         /* >=0, banyaknya elemen efektif */
-    int MaxElement;   /* ukuran array maksimum */
+  ArrayElType *TI; /* memori tempat penyimpan elemen (container) */
+  int Neff;        /* >=0, banyaknya elemen efektif */
+  int MaxElement;  /* ukuran array maksimum */
 } Array;
 /* Indeks yang digunakan [IdxMin..MaxEl] */
 /* Jika T adalah TabInt, cara deklarasi dan akses: */
@@ -54,10 +53,10 @@ typedef struct
 //////////////////////////
 /* ********* AKSES (Selektor) ********* */
 /* Jika T adalah Array, maka akses elemen : */
-#define ArrayTab(T)         (T).TI
-#define ArrayElement(T,i)   (T).TI[(i)]
-#define ArrayNeff(T)        (T).Neff
-#define ArrayMaxElement(T)  (T).MaxElement
+#define ArrayTab(T) (T).TI
+#define ArrayElement(T, i) (T).TI[(i)]
+#define ArrayNeff(T) (T).Neff
+#define ArrayMaxElement(T) (T).MaxElement
 
 ///////////////////////////
 //       CONSTRUCTOR     //
@@ -91,7 +90,6 @@ boolean IsArrayEmpty(Array T);
 /* *** Test tabel penuh *** */
 boolean IsArrayFull(Array T);
 /* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
-
 
 boolean IsArrayEQ(Array T1, Array T2);
 /* Mengirimkan true jika T1 sama dengan T2 yaitu jika Neff T1 = T2 dan semua elemennya sama */

@@ -65,7 +65,6 @@ boolean IsActionStackFull(ActionStack S){
     return ActionStackTop(S) == S.MaxElement;
 }
 
-
 ///////////////////////////////////////
 // 	     ACTION STACK OPERATIONS 	 //
 ///////////////////////////////////////

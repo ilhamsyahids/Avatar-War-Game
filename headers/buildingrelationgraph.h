@@ -32,18 +32,21 @@ typedef struct TBuildingRelationGraphAdjacentVertex *AdjacentBuildingRelationGra
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //  Definisi BuildingRelationGraph, BuildingRelationGraphVertex dan BuildingRelationGraphAdjacentVertex //
 ////////////////////////////////////////////////////////// ///////////////////////////////////////////////
-typedef struct TBuildingRelationGraphVertex {
+typedef struct TBuildingRelationGraphVertex
+{
 	BuildingRelationGraphInfotype info;
 	BuildingRelationGraphAddress next;
 	AdjacentBuildingRelationGraphAddress firstAdjacent;
 } BuildingRelationGraphVertex;
 
-typedef struct TBuildingRelationGraphAdjacentVertex {
+typedef struct TBuildingRelationGraphAdjacentVertex
+{
 	BuildingRelationGraphInfotype info;
 	AdjacentBuildingRelationGraphAddress nextAdjacent;
 } BuildingRelationGraphAdjacentVertex;
 
-typedef struct {
+typedef struct
+{
 	BuildingRelationGraphAddress First;
 } BuildingRelationGraph;
 
@@ -58,12 +61,12 @@ typedef struct {
 //////////////////////////
 /* ********* AKSES (Selektor) ********* */
 /* Jika G adalah BuildingRelationGraph, V adalah BuildingRelationGraphAddress dan P adalah AdjacentBuildingRelationGraphAddress, maka akses elemen : */
-#define BuildingRelationGraphVertexInfo(V)					(V)->info
-#define BuildingRelationGraphVertexNext(V) 					(V)->next
-#define BuildingRelationGraphVertexFirstAdjacent(V)			(V)->firstAdjacent
-#define BuildingRelationGraphAdjacentVertexInfo(P) 			(P)->info
-#define BuildingRelationGraphAdjacentVertexNextAdjacent(P) 	(P)->nextAdjacent
-#define BuildingRelationGraphFirstAddress(G) 				((G).First)
+#define BuildingRelationGraphVertexInfo(V) (V)->info
+#define BuildingRelationGraphVertexNext(V) (V)->next
+#define BuildingRelationGraphVertexFirstAdjacent(V) (V)->firstAdjacent
+#define BuildingRelationGraphAdjacentVertexInfo(P) (P)->info
+#define BuildingRelationGraphAdjacentVertexNextAdjacent(P) (P)->nextAdjacent
+#define BuildingRelationGraphFirstAddress(G) ((G).First)
 
 ///////////////////////////
 //       CONSTRUCTOR     //
@@ -109,7 +112,7 @@ boolean IsVertexInBuildingRelationGraph(BuildingRelationGraph G, BuildingRelatio
 /* Mengirim true jika vertex dengan info X ada pada BuildingRelationGraph */
 
 boolean IsAdjacentWithVertex(BuildingRelationGraphAddress V, BuildingRelationGraphInfotype X);
-/* Mengirim true jika vertex dengan info X adalah tetagga dengan Vertex dengan address V */ 
+/* Mengirim true jika vertex dengan info X adalah tetagga dengan Vertex dengan address V */
 
 //////////////////////////
 //    BuildingRelationGraph OPERATIONS  //

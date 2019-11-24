@@ -159,9 +159,6 @@ GameMap GameMapCopyCurrentMap(GameMap G)
 	return GCopy;
 }
 
-///////////////////////////////
-// STILL BUGGING DONT USE!!! //
-///////////////////////////////
 Player GameMapGetCurrentPlayer(GameMap G)
 /* Mengembalikan player yang sedang menjalani turnnya dari GameMap */
 {
