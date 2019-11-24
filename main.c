@@ -282,21 +282,21 @@ void PostTurn(int player)
 	{
 		if (BuildingListNbElmt(PlayerOwnedBuildingList(Player1(GameState))) == 0)
 		{
-			printf("=================================================\n");
-			printf("|                 PLAYER 2 WINS                 |\n");
-			printf("-------------------------------------------------\n");
-			printf("| Seluruh bangunan Player 1 telah ditaklukkan ! |\n");
-			printf("| Player 2 berhasil menguasai dunia!            |\n");
-			printf("=================================================\n");
+			print_magenta("=================================================\n");
+			print_blue("|                 PLAYER 2 WINS                 |\n");
+			print_magenta("-------------------------------------------------\n");
+			print_blue("| Seluruh bangunan Player 1 telah ditaklukkan ! |\n");
+			print_blue("| Player 2 berhasil menguasai dunia!            |\n");
+			print_magenta("=================================================\n");
 		}
 		else if (BuildingListNbElmt(PlayerOwnedBuildingList(Player2(GameState))) == 0)
 		{
-			printf("=================================================\n");
-			printf("|                 PLAYER 1 WINS                 |\n");
-			printf("-------------------------------------------------\n");
-			printf("| Seluruh bangunan Player 2 telah ditaklukkan ! |\n");
-			printf("| Player 1 berhasil menguasai dunia !           |\n");
-			printf("=================================================\n");
+			print_magenta("=================================================\n");
+			print_red("|                 PLAYER 1 WINS                 |\n");
+			print_magenta("-------------------------------------------------\n");
+			print_red("| Seluruh bangunan Player 2 telah ditaklukkan ! |\n");
+			print_red("| Player 1 berhasil menguasai dunia !           |\n");
+			print_magenta("=================================================\n");
 		}
 		RefreshSkillFlags();
 		BattlePhase = 0;
