@@ -140,6 +140,11 @@ void Attack(GameMap *G)
 						BuildingChangePlayer(DecidedBuilding, CurrentPlayer(*G));
 						BuildingPrintInfo(*DecidedBuilding);
 						BuildingListInsertValueLast(&PlayerOwnedBuildingList(P), AttackedArrayIdx[AttackedBuildingIdx]);
+						if(CurrentPlayer(*G) == 1){
+							BuildingListDeleteValue(&PlayerOwnedBuildingList(Player2(*G)),AttackedArrayIdx[AttackedBuildingIdx]);
+						} else if(CurrentPlayer(*G) == 2){
+							BuildingListDeleteValue(&PlayerOwnedBuildingList(Player1(*G)),AttackedArrayIdx[AttackedBuildingIdx]);
+						}
 						
 						//BuildingPrintInfo(BuildingArrayElement(BuildingRecord(*G), 13));
 						
@@ -313,7 +318,7 @@ void move(GameMap *G)
 				{	
 					DestinationBuilding = BuildingRelationGraphAdjacentVertexInfo(PP);
 					TempBuilding = BuildingArrayElement(BuildingRecord(*G), DestinationBuilding);
-					if (BuildingPlayer(TempBuilding) == CurrentPlayer(*G))
+					if ((BuildingPlayer(TempBuilding) == CurrentPlayer(*G)) && (DestinationBuilding != BuildingListElementInfo(BB)))
 					{
 						printf("%d. ", num);
 						BuildingPrintInfo(TempBuilding);

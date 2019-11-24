@@ -207,7 +207,7 @@ void CheckAddFlags()
 void ExecuteAddFlags()
 {
 	// IR
-	if (AddIR == 2)
+	if (AddIR == 2 && BattlePhase == 3)
 	{
 		Skill AddSkill = SkillCreate(3);
 		if (CurrentPlayer(GameState) == 1)
@@ -275,7 +275,7 @@ void PostTurn(int player)
 	CheckBattleCondition();
 	if (InGame && BattlePhase == 3)
 	{
-		printf("PostTurn");
+		ExecuteAddFlags();
 		BattlePhase = 1;
 		BuildingArrayIncreaseOwnedPasukanBuilding(&BuildingRecord(GameState));
 		GameMapChangePlayer(&GameState);
@@ -290,7 +290,7 @@ void PostTurn(int player)
 		{
 			printf("PLAYER 2 KALAH");
 		}
-		RefreshSkillFlags;
+		RefreshSkillFlags();
 		BattlePhase = 0;
 	}
 }
@@ -363,7 +363,7 @@ void PreGame()
 }
 void Setup(char *filename)
 {
-	StartLoading(filename, 'b', 'r');
+	StartLoading(filename, 'r', 'b');
 	CompleteFileLoad(&GameState);
 	GameMapInitializeAllComponents(&GameState);
 	GameMapSetCurrentPlayer(&GameState, 1);
@@ -372,8 +372,10 @@ void Setup(char *filename)
 }
 
 int main()
-{
-	Setup("pitakar.txt");
+{	
+	printf("Masukkan nama file konfigurasi : ");
+	scanf("%s", InputString);
+	Setup(InputString);
 	PrintWelcome();
 
 	print_magenta("Enter Command:\n");

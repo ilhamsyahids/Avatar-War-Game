@@ -131,6 +131,12 @@ void GameMapPrintInfo(GameMap G)
 	MapMatrixPrintMap(BuildingMap(G), BuildingRecord(G));
 	BuildingListPrintInfo(PlayerOwnedBuildingList(GameMapGetCurrentPlayer(G)), BuildingRecord(G));
 	PrintQueueSkill(PlayerCurrentSkillQueue(GameMapGetCurrentPlayer(G)));
+	printf("Next Turn : ");
+	if(NextPlayer(G) == 1){
+		printf("Player 1\n");
+	} else{
+		printf("Player 2\n");
+	}
 }
 
 GameMap GameMapCopyCurrentMap(GameMap G)
