@@ -26,6 +26,7 @@ GameMap GameState;
 ActionStack GameStateStack;
 char InputString[51];
 int testint;
+char testchar;
 int UniversalCounter;
 
 boolean InGame;
@@ -115,6 +116,8 @@ void ReadCommand()
 	{
 		printf("Others");
 	}
+
+	//scanf("\n", &testchar);
 	//CheckAddFlags();
 }
 void CheckAddFlags()

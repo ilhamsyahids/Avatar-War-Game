@@ -75,6 +75,7 @@ void ActionStackPush(ActionStack *S, ActionStackInfotype X){
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 dan ketika S sebelumnya penuh maka akan dilakukan realloc*/
     if (!IsActionStackEmpty(*S)){
         if(IsActionStackFull(*S)){
+            ActionStackRealokasi(S);
         }
         ActionStackTop(*S)++;
     }else{
