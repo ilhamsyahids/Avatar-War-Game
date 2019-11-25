@@ -77,7 +77,7 @@ void ReadCommand()
 	{
 		if (IsActionStackEmpty(GameStateStack))
 		{
-			printf("Tidak ada Action yang dapat diundo!\n");
+			print_magenta("Tidak ada Action yang dapat diundo!\n");
 		}
 		else
 		{
@@ -95,28 +95,28 @@ void ReadCommand()
 	}
 	else if (IsKataSame("Help", 4))
 	{
-		printf("Command tersedia\n");
-		printf("1. Attack\n");
-		printf("2. LevelUp\n");
-		printf("3. Skill\n");
-		printf("4. Move\n");
-		printf("5. Undo\n");
-		printf("6. End_Turn\n");
-		printf("7. Exit\n");
-		printf("8. Help\n");
+		print_yellow("Command tersedia\n");
+		print_yellow("1. Attack\n");
+		print_yellow("2. LevelUp\n");
+		print_yellow("3. Skill\n");
+		print_yellow("4. Move\n");
+		print_yellow("5. Undo\n");
+		print_yellow("6. End_Turn\n");
+		print_yellow("7. Exit\n");
+		print_yellow("8. Help\n");
 	}
 	else
 	{
-		printf("Command tersebut tidak tersedia\n");
-		printf("Command tersedia\n");
-		printf("1. Attack\n");
-		printf("2. LevelUp\n");
-		printf("3. Skill\n");
-		printf("4. Move\n");
-		printf("5. Undo\n");
-		printf("6. End_Turn\n");
-		printf("7. Exit\n");
-		printf("8. Help\n");
+		print_yellow("Command tersebut tidak tersedia\n");
+		print_yellow("Command tersedia\n");
+		print_yellow("1. Attack\n");
+		print_yellow("2. LevelUp\n");
+		print_yellow("3. Skill\n");
+		print_yellow("4. Move\n");
+		print_yellow("5. Undo\n");
+		print_yellow("6. End_Turn\n");
+		print_yellow("7. Exit\n");
+		print_yellow("8. Help\n");
 	}
 }
 void CheckAddFlags()
@@ -326,7 +326,6 @@ void PreTurn(int player)
 		ActionStackEmpty(&GameStateStack);
 		BuildingArrayResetAllBuilding(&BuildingRecord(GameState));
 		RefreshSkillFlags();
-		//CheckAddFlags();
 		BuildingArrayIncreaseOwnedPasukanBuilding(&BuildingRecord(GameState), player);
 		BattlePhase = 2;
 	}
@@ -381,7 +380,7 @@ void Setup(char *filename)
 
 int main()
 {
-	printf("Masukkan nama file konfigurasi : ");
+	print_yellow("Masukkan nama file konfigurasi : ");
 	scanf("%s", InputString);
 	Setup(InputString);
 	PrintWelcome();
@@ -391,7 +390,6 @@ int main()
 	StartReadingKata(InputString);
 	if (IsKataSame("Start", 5))
 	{
-		//ClearScreen();
 		StartGame();
 	}
 	else if (IsKataSame("Exit", 4))

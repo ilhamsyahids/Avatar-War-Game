@@ -139,17 +139,17 @@ void PrintQueueSkill(SkillQueue Q)
 
     if (IsSkillQueueEmpty(Q))
     {
-        print_cyan("Tidak Ada Skill Tersedia\n");
+        print_green("Tidak Ada Skill Tersedia\n");
     }
     else
     {
         int count = 1;
-        print_cyan("Skill Available :\n");
+        print_green("Skill Available :\n");
         while (!IsSkillQueueEmpty(Q))
         {
             SkillQueueDelSkill(&Q, &tempDel);
             printf("%d. ", count);
-            printf("%s", SkillGetName(SkillKind(tempDel)));
+            print_green(SkillGetName(SkillKind(tempDel)));
             if (count == 1)
             {
                 print_yellow("  <=== Can be used");
