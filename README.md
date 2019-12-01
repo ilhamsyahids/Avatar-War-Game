@@ -4,9 +4,7 @@
 
 In the project folder, you can run:
 
-### `gcc -o [file_linter] [src/name_of_files_c] -Iheaders`
-Example:
-### `gcc -o queue src/queue.c src/main.c -Iheaders`
-Run program:
-### `./queue`
+```gcc -Iheaders main.c src/fileloader.c src/gamemap.c src/buildingrelationgraph.c src/mesinkar.c src/mesinkata.c src/mapmatrix.c src/buildingarray.c src/building.c src/point.c src/buildinglist.c src/player.c src/skillqueue.c src/skill.c src/pcolor.c src/actionstackt.c src/commands.c -o output```
 
+Run program:
+```./output```
